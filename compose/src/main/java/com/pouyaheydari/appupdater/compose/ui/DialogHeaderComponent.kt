@@ -18,6 +18,7 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.pouyaheydari.appupdater.compose.ui.theme.AndroidAppUpdaterTheme
 import com.pouyaheydari.appupdater.core.R as coreR
 
 /**
@@ -64,12 +65,14 @@ internal fun DialogHeaderComponent(
     }
 }
 
-@Preview(showSystemUi = true, showBackground = true, backgroundColor = 0xFFFFFF)
+@Preview(showSystemUi = true)
 @Composable
 private fun Preview() {
-    DialogHeaderComponent(
-        dialogTitle = stringResource(id = coreR.string.appupdater_app_name),
-        typeface = null,
-        dialogDescription = stringResource(id = coreR.string.appupdater_download_notification_desc),
-    )
+    AndroidAppUpdaterTheme {
+        DialogHeaderComponent(
+            dialogTitle = stringResource(id = coreR.string.appupdater_app_name),
+            typeface = null,
+            dialogDescription = stringResource(id = coreR.string.appupdater_download_notification_desc),
+        )
+    }
 }

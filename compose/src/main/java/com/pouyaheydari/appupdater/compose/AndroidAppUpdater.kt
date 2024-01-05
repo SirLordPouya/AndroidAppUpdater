@@ -115,51 +115,59 @@ private fun DialogContent(dialogContent: UpdaterDialogUIData) {
 @Preview(showBackground = true)
 @Composable
 private fun LightPreview() {
-    AndroidAppUpdater(
-        UpdaterDialogData(
-            dialogTitle = stringResource(id = coreR.string.appupdater_app_name),
-            dialogDescription = stringResource(id = coreR.string.appupdater_download_notification_desc),
-            storeList = storeList,
-            theme = Theme.LIGHT,
-        ),
-    )
+    AndroidAppUpdaterTheme {
+        AndroidAppUpdater(
+            UpdaterDialogData(
+                dialogTitle = stringResource(id = coreR.string.appupdater_app_name),
+                dialogDescription = stringResource(id = coreR.string.appupdater_download_notification_desc),
+                storeList = storeList,
+                theme = Theme.LIGHT,
+            ),
+        )
+    }
 }
 
 @Preview(showBackground = true)
 @Composable
 private fun LightPreviewSingleStoreItem() {
-    AndroidAppUpdater(
-        UpdaterDialogData(
-            dialogTitle = stringResource(id = coreR.string.appupdater_app_name),
-            dialogDescription = stringResource(id = coreR.string.appupdater_download_notification_desc),
-            storeList = storeList.subList(2, 3),
-            theme = Theme.LIGHT,
-        ),
-    )
+    AndroidAppUpdaterTheme {
+        AndroidAppUpdater(
+            UpdaterDialogData(
+                dialogTitle = stringResource(id = coreR.string.appupdater_app_name),
+                dialogDescription = stringResource(id = coreR.string.appupdater_download_notification_desc),
+                storeList = storeList.subList(2, 3),
+                theme = Theme.LIGHT,
+            ),
+        )
+    }
 }
 
 @Preview(showBackground = true)
 @Composable
 private fun LightPreviewSingleDirectLinkItem() {
-    AndroidAppUpdater(
-        UpdaterDialogData(
-            dialogTitle = stringResource(id = coreR.string.appupdater_app_name),
-            dialogDescription = stringResource(id = coreR.string.appupdater_download_notification_desc),
-            storeList = storeList.subList(0, 1),
-            theme = Theme.LIGHT,
-        ),
-    )
+    AndroidAppUpdaterTheme {
+        AndroidAppUpdater(
+            UpdaterDialogData(
+                dialogTitle = stringResource(id = coreR.string.appupdater_app_name),
+                dialogDescription = stringResource(id = coreR.string.appupdater_download_notification_desc),
+                storeList = storeList.subList(0, 1),
+                theme = Theme.LIGHT,
+            ),
+        )
+    }
 }
 
 @Preview(showBackground = true)
 @Composable
 private fun DarkPreview() {
-    AndroidAppUpdater(
-        UpdaterDialogData(
-            dialogTitle = stringResource(id = coreR.string.appupdater_app_name),
-            dialogDescription = stringResource(id = coreR.string.appupdater_download_notification_desc),
-            storeList = storeList,
-            theme = Theme.DARK,
-        ),
-    )
+    AndroidAppUpdaterTheme {
+        AndroidAppUpdater(
+            UpdaterDialogData(
+                dialogTitle = stringResource(id = coreR.string.appupdater_app_name),
+                dialogDescription = stringResource(id = coreR.string.appupdater_download_notification_desc),
+                storeList = storeList,
+                theme = Theme.DARK,
+            ),
+        )
+    }
 }

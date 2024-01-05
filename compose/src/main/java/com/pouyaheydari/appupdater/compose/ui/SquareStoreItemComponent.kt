@@ -12,6 +12,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.pouyaheydari.appupdater.compose.ui.theme.AndroidAppUpdaterTheme
+import com.pouyaheydari.appupdater.core.R
 import com.pouyaheydari.appupdater.core.pojo.StoreListItem
 
 /**
@@ -42,5 +44,7 @@ internal fun SquareStoreItemComponent(
 @Preview
 @Composable
 private fun Preview() {
-    SquareStoreItemComponent(item = StoreListItem(icon = com.pouyaheydari.appupdater.core.R.drawable.appupdater_ic_google_play))
+    AndroidAppUpdaterTheme {
+        SquareStoreItemComponent(item = StoreListItem(icon = R.drawable.appupdater_ic_google_play))
+    }
 }

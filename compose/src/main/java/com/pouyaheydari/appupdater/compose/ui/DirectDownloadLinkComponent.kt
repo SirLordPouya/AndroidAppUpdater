@@ -7,6 +7,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
+import com.pouyaheydari.appupdater.compose.ui.theme.AndroidAppUpdaterTheme
 import com.pouyaheydari.appupdater.compose.ui.theme.Blue
 import com.pouyaheydari.appupdater.core.pojo.StoreListItem
 
@@ -30,10 +31,12 @@ internal fun DirectDownloadLinkComponent(
     )
 }
 
-@Preview(showSystemUi = true)
+@Preview
 @Composable
 private fun Preview() {
-    DirectDownloadLinkComponent(
-        item = StoreListItem(title = "Direct Link 1"),
-    )
+    AndroidAppUpdaterTheme {
+        DirectDownloadLinkComponent(
+            item = StoreListItem(title = "Direct Link 1"),
+        )
+    }
 }
