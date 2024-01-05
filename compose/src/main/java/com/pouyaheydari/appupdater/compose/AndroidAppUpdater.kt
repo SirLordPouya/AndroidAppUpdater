@@ -20,8 +20,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.pouyaheydari.appupdater.compose.pojo.UpdaterDialogData
-import com.pouyaheydari.appupdater.compose.pojo.UpdaterDialogUIData
+import com.pouyaheydari.appupdater.compose.models.DialogHeaderModel
+import com.pouyaheydari.appupdater.compose.models.UpdaterDialogData
+import com.pouyaheydari.appupdater.compose.models.UpdaterDialogUIData
 import com.pouyaheydari.appupdater.compose.ui.DialogHeaderComponent
 import com.pouyaheydari.appupdater.compose.ui.DirectDownloadLinkComponent
 import com.pouyaheydari.appupdater.compose.ui.DividerComponent
@@ -55,8 +56,7 @@ fun AndroidAppUpdater(dialogData: UpdaterDialogData) {
 
                 DialogContent(
                     UpdaterDialogUIData(
-                        dialogTitle = dialogTitle,
-                        dialogDescription = dialogDescription,
+                        dialogHeader = DialogHeaderModel(dialogTitle, dialogDescription),
                         directDownloadList = directDownloadItems,
                         storeList = storeItems,
                         typeface = typeface,
@@ -94,7 +94,9 @@ private fun DialogContent(dialogContent: UpdaterDialogUIData) {
             contentPadding = PaddingValues(vertical = 16.dp),
         ) {
             with(dialogContent) {
-                item(span = { GridItemSpan(maxLineSpan) }) { DialogHeaderComponent(dialogTitle, dialogDescription, typeface) }
+                item(span = { GridItemSpan(maxLineSpan) }) {
+                    DialogHeaderComponent(dialogHeader, typeface)
+                }
                 directDownloadList.forEach {
                     item(span = { GridItemSpan(maxLineSpan) }) {
                         DirectDownloadLinkComponent(it, onClickListener)
@@ -105,12 +107,17 @@ private fun DialogContent(dialogContent: UpdaterDialogUIData) {
                 }
 
                 storeList.forEach {
-                    item(span = { if (storeList.size > 1) GridItemSpan(1) else GridItemSpan(maxLineSpan) }) { SquareStoreItemComponent(it, onClickListener) }
+                    item(span = { getStoreListGridItemSpan(storeList.size, maxLineSpan) }) {
+                        SquareStoreItemComponent(it, onClickListener)
+                    }
                 }
             }
         }
     }
 }
+
+private fun getStoreListGridItemSpan(storeListSize: Int, maxLineSpan: Int) =
+    if (storeListSize > 1) GridItemSpan(1) else GridItemSpan(maxLineSpan)
 
 @Preview(showBackground = true)
 @Composable

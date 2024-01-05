@@ -18,22 +18,17 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.pouyaheydari.appupdater.compose.models.DialogHeaderModel
 import com.pouyaheydari.appupdater.compose.ui.theme.AndroidAppUpdaterTheme
 import com.pouyaheydari.appupdater.core.R as coreR
 
 /**
  * Shows header icon, title and description
  *
- * @param dialogTitle Title of dialog
- * @param dialogDescription a brief description about the update dialog
- * @param typeface for texts
+ * @param data DialogHeaderComponentModel
  */
 @Composable
-internal fun DialogHeaderComponent(
-    dialogTitle: String,
-    dialogDescription: String,
-    typeface: Typeface?,
-) {
+internal fun DialogHeaderComponent(data: DialogHeaderModel, typeface: Typeface?) {
     Column(horizontalAlignment = CenterHorizontally) {
         Image(
             painter = painterResource(id = coreR.drawable.appupdater_ic_cloud),
@@ -44,7 +39,7 @@ internal fun DialogHeaderComponent(
         )
         Text(
             textAlign = TextAlign.Center,
-            text = dialogTitle,
+            text = data.dialogTitle,
             color = MaterialTheme.colorScheme.onSurface,
             style = MaterialTheme.typography.titleLarge,
             fontFamily = typeface?.let { FontFamily(it) },
@@ -54,7 +49,7 @@ internal fun DialogHeaderComponent(
         )
         Text(
             textAlign = TextAlign.Center,
-            text = dialogDescription,
+            text = data.dialogDescription,
             color = MaterialTheme.colorScheme.onSurface,
             style = MaterialTheme.typography.bodyMedium,
             fontFamily = typeface?.let { FontFamily(it) },
@@ -70,9 +65,11 @@ internal fun DialogHeaderComponent(
 private fun Preview() {
     AndroidAppUpdaterTheme {
         DialogHeaderComponent(
-            dialogTitle = stringResource(id = coreR.string.appupdater_app_name),
+            data = DialogHeaderModel(
+                dialogTitle = stringResource(id = coreR.string.appupdater_app_name),
+                dialogDescription = stringResource(id = coreR.string.appupdater_download_notification_desc),
+            ),
             typeface = null,
-            dialogDescription = stringResource(id = coreR.string.appupdater_download_notification_desc),
         )
     }
 }

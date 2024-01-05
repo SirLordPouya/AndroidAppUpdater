@@ -1,4 +1,4 @@
-package com.pouyaheydari.appupdater.compose.pojo
+package com.pouyaheydari.appupdater.compose.models
 
 import android.graphics.Typeface
 import com.pouyaheydari.appupdater.core.pojo.StoreListItem
