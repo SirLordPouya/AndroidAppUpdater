@@ -48,11 +48,10 @@ private const val UPDATE_DIALOG_README_URL = "https://github.com/SirLordPouya/An
  * Shows ForceUpdate Dialog Fragment
  */
 class AppUpdaterDialog : DialogFragment() {
-
     private val viewModel: AppUpdaterViewModel by viewModels()
 
-    private var _binding: FragmentAppUpdaterDialogBinding? = null
-    private val binding get() = _binding!!
+    private var appUpdaterDialogBinding: FragmentAppUpdaterDialogBinding? = null
+    private val binding get() = appUpdaterDialogBinding!!
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -67,7 +66,7 @@ class AppUpdaterDialog : DialogFragment() {
         setDialogBackground(mapToSelectedTheme(data.theme, requireContext()))
         isCancelable = data.isForceUpdate
 
-        _binding = FragmentAppUpdaterDialogBinding.inflate(inflater, container, false)
+        appUpdaterDialogBinding = FragmentAppUpdaterDialogBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -98,13 +97,11 @@ class AppUpdaterDialog : DialogFragment() {
             .distinctUntilChanged()
             .onEach {
                 when (it) {
-                    is DialogStates.DownloadApk -> {
-                        getApk(it.apkUrl, requireActivity())
-                    }
-
-                    DialogStates.HideUpdateInProgress -> hideUpdateInProgressDialog()
+                    is DialogStates.DownloadApk -> getApk(it.apkUrl, requireActivity())
                     is DialogStates.OpenStore -> it.store?.showStore(requireContext())
+                    DialogStates.HideUpdateInProgress -> hideUpdateInProgressDialog()
                     DialogStates.ShowUpdateInProgress -> showUpdateInProgressDialog(theme)
+                    DialogStates.Empty -> hideUpdateInProgressDialog()
                 }
             }.launchIn(lifecycleScope)
     }
@@ -146,7 +143,13 @@ class AppUpdaterDialog : DialogFragment() {
         }
     }
 
-    private fun setUpProperties(title: String?, description: String?, list: List<StoreListItem>, theme: UserSelectedTheme, typeface: Typeface?) {
+    private fun setUpProperties(
+        title: String?,
+        description: String?,
+        list: List<StoreListItem>,
+        theme: UserSelectedTheme,
+        typeface: Typeface?,
+    ) {
         binding.txtTitle.text = title
         binding.txtDescription.text = description
 
@@ -158,7 +161,12 @@ class AppUpdaterDialog : DialogFragment() {
         setUpBothRecyclers(directLinks, storeList, theme, typeface)
     }
 
-    private fun setUpBothRecyclers(directDownloadList: List<StoreListItem>, storeList: List<StoreListItem>, theme: UserSelectedTheme, typeface: Typeface?) {
+    private fun setUpBothRecyclers(
+        directDownloadList: List<StoreListItem>,
+        storeList: List<StoreListItem>,
+        theme: UserSelectedTheme,
+        typeface: Typeface?,
+    ) {
         if (directDownloadList.isNotEmpty()) {
             binding.recyclerDirect.adapter = DirectRecyclerAdapter(directDownloadList, typeface) { viewModel.onListListener(it) }
         }
@@ -194,11 +202,10 @@ class AppUpdaterDialog : DialogFragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        _binding = null
+        appUpdaterDialogBinding = null
     }
 
     companion object {
-
         /**
          * @param title Title of the dialog
          * @param description Description that is shown below the title

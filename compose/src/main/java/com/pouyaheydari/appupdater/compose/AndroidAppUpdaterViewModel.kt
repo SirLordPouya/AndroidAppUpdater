@@ -16,27 +16,33 @@ import kotlinx.coroutines.launch
  */
 internal class AndroidAppUpdaterViewModel : ViewModel() {
     val screenState = MutableStateFlow<DialogStates>(DialogStates.HideUpdateInProgress)
+    private val getIsUpdateInProgress by lazy { GetIsUpdateInProgress() }
 
-    fun onListListener(item: StoreListItem) {
+    fun onListItemClicked(item: StoreListItem) {
         when (item.store) {
-            Store.DIRECT_URL -> {
-                observeUpdateInProgressStatus()
-                screenState.value = DialogStates.DownloadApk(item.url)
-            }
+            Store.DIRECT_URL -> startDirectUrlApkDownload(item)
+            else -> showAppInSelectedStore(item)
+        }
+    }
 
-            else -> viewModelScope.launch {
-                val store = item.store.provider?.newInstance()?.also { it.setStoreData(item) }
-                screenState.value = DialogStates.OpenStore(store)
-                runWithDelay {
-                    screenState.value = DialogStates.HideUpdateInProgress
-                }
+    private fun showAppInSelectedStore(item: StoreListItem) {
+        viewModelScope.launch {
+            val store = item.store.provider?.getDeclaredConstructor()?.newInstance()?.also { it.setStoreData(item) }
+            screenState.value = DialogStates.OpenStore(store)
+            runWithDelay {
+                screenState.value = DialogStates.Empty
             }
         }
     }
 
-    private fun observeUpdateInProgressStatus() {
+    private fun startDirectUrlApkDownload(item: StoreListItem) {
+        observeUpdateProgress()
+        screenState.value = DialogStates.DownloadApk(item.url)
+    }
+
+    private fun observeUpdateProgress() {
         viewModelScope.launch {
-            GetIsUpdateInProgress().invoke().collectLatest {
+            getIsUpdateInProgress().collectLatest {
                 screenState.value = if (it) DialogStates.ShowUpdateInProgress else DialogStates.HideUpdateInProgress
             }
         }
