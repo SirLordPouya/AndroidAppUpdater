@@ -1,4 +1,4 @@
-package com.pouyaheydari.appupdater.compose.ui
+package com.pouyaheydari.appupdater.compose.ui.components
 
 import androidx.compose.foundation.clickable
 import androidx.compose.material3.MaterialTheme

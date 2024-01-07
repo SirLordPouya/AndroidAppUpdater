@@ -1,4 +1,4 @@
-package com.pouyaheydari.appupdater.compose.models
+package com.pouyaheydari.appupdater.compose.ui.models
 
 internal data class DialogHeaderModel(
     val dialogTitle: String = "",

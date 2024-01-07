@@ -19,8 +19,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.pouyaheydari.androidappupdater.R
 import com.pouyaheydari.androidappupdater.ui.compose.theme.AndroidAppUpdaterTheme
 import com.pouyaheydari.androidappupdater.utils.getNormalList
-import com.pouyaheydari.appupdater.compose.AndroidAppUpdater
-import com.pouyaheydari.appupdater.compose.models.UpdaterDialogData
+import com.pouyaheydari.appupdater.compose.ui.AndroidAppUpdater
+import com.pouyaheydari.appupdater.compose.ui.models.UpdaterDialogData
 import com.pouyaheydari.appupdater.compose.utils.storeList
 import com.pouyaheydari.appupdater.core.pojo.Theme
 import com.pouyaheydari.appupdater.core.R as coreR
