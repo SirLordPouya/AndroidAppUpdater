@@ -1,33 +1,27 @@
-package com.pouyaheydari.appupdater.compose.utils
+package com.pouyaheydari.androidappupdater.utils
 
 import com.pouyaheydari.appupdater.core.pojo.Store
 import com.pouyaheydari.appupdater.core.pojo.StoreListItem
 import com.pouyaheydari.appupdater.core.R as coreR
 
-private const val CUSTOM_URL = "https://cafebazaar.ir/download/bazaar.apk"
-private const val SAMPLE_PACKAGE_NAME = "com.tencent.mm"
-private const val FDROID_SAMPLE_PACKAGE_NAME = "de.storchp.fdroidbuildstatus"
-private const val GET_APP_SAMPLE_PACKAGE_NAME = "com.opera.browser"
-private const val ONE_STORE_SAMPLE_PACKAGE_NAME = "com.kakao.talk"
-
-internal val previewDirectDownloadListData = listOf(
+internal val directDownloadList = listOf(
     StoreListItem(
         store = Store.DIRECT_URL,
         title = "Direct Download 1",
         icon = coreR.drawable.appupdater_ic_cloud,
-        url = CUSTOM_URL,
+        url = APK_URL,
         packageName = SAMPLE_PACKAGE_NAME,
     ),
     StoreListItem(
         store = Store.DIRECT_URL,
         title = "Direct Download 2",
         icon = coreR.drawable.appupdater_ic_cloud,
-        url = CUSTOM_URL,
+        url = APK_URL,
         packageName = SAMPLE_PACKAGE_NAME,
     ),
 )
 
-internal val previewStoreListData = listOf(
+internal val storeList = listOf(
     StoreListItem(
         Store.GOOGLE_PLAY,
         "Google Play",

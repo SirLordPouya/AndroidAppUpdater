@@ -18,10 +18,11 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.pouyaheydari.androidappupdater.R
 import com.pouyaheydari.androidappupdater.ui.compose.theme.AndroidAppUpdaterTheme
+import com.pouyaheydari.androidappupdater.utils.directDownloadList
 import com.pouyaheydari.androidappupdater.utils.getNormalList
+import com.pouyaheydari.androidappupdater.utils.storeList
 import com.pouyaheydari.appupdater.compose.ui.AndroidAppUpdater
 import com.pouyaheydari.appupdater.compose.ui.models.UpdaterDialogData
-import com.pouyaheydari.appupdater.compose.utils.storeList
 import com.pouyaheydari.appupdater.core.pojo.Theme
 import com.pouyaheydari.appupdater.core.R as coreR
 
@@ -66,7 +67,7 @@ private fun DefaultPreview() {
             UpdaterDialogData(
                 dialogTitle = stringResource(id = coreR.string.appupdater_app_name),
                 dialogDescription = stringResource(id = R.string.library_description),
-                storeList = storeList,
+                storeList = directDownloadList + storeList,
                 theme = Theme.DARK,
             ),
         )

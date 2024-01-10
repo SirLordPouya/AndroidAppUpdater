@@ -1,39 +1,21 @@
 package com.pouyaheydari.appupdater.compose.ui
 
-import android.graphics.Typeface
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.grid.GridCells
-import androidx.compose.foundation.lazy.grid.GridItemSpan
-import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.window.Dialog
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.pouyaheydari.appupdater.compose.ui.components.DialogHeaderComponent
-import com.pouyaheydari.appupdater.compose.ui.components.DirectDownloadLinkComponent
-import com.pouyaheydari.appupdater.compose.ui.components.DividerComponent
-import com.pouyaheydari.appupdater.compose.ui.components.SquareStoreItemComponent
+import com.pouyaheydari.appupdater.compose.ui.components.AppUpdaterDialog
 import com.pouyaheydari.appupdater.compose.ui.components.UpdateInProgressDialogComponent
 import com.pouyaheydari.appupdater.compose.ui.models.DialogScreenIntents
 import com.pouyaheydari.appupdater.compose.ui.models.UpdaterDialogData
-import com.pouyaheydari.appupdater.compose.ui.models.UpdaterDialogUIData
 import com.pouyaheydari.appupdater.compose.ui.theme.AndroidAppUpdaterTheme
 import com.pouyaheydari.appupdater.compose.utils.getActivity
 import com.pouyaheydari.appupdater.compose.utils.getApkIfActivityIsNotNull
 import com.pouyaheydari.appupdater.compose.utils.isDarkThemeSelected
-import com.pouyaheydari.appupdater.compose.utils.storeList
+import com.pouyaheydari.appupdater.compose.utils.previewDirectDownloadListData
+import com.pouyaheydari.appupdater.compose.utils.previewStoreListData
 import com.pouyaheydari.appupdater.core.pojo.Theme
 import com.pouyaheydari.appupdater.core.stores.Stores
 import com.pouyaheydari.appupdater.core.R as coreR
@@ -50,7 +32,12 @@ fun AndroidAppUpdater(dialogData: UpdaterDialogData) {
 
     AndroidAppUpdaterTheme(darkTheme = isDarkThemeSelected(dialogData.theme)) {
         if (state.shouldShowDialog) {
-            AppUpdaterDialog(state.dialogContent, viewModel::handleIntent, typeface = dialogData.typeface)
+            AppUpdaterDialog(
+                dialogContent = state.dialogContent,
+                onStoreClickListener = { viewModel.handleIntent(DialogScreenIntents.OnStoreClicked(it)) },
+                onDirectLinkClickListener = { viewModel.handleIntent(DialogScreenIntents.OnDirectLinkClicked(it)) },
+                typeface = dialogData.typeface,
+            )
         }
         if (state.shouldShowUpdateInProgress) {
             UpdateInProgressDialogComponent()
@@ -86,58 +73,6 @@ private fun SetupStoreOpener(store: Stores?, shouldOpenStore: Boolean, onStoreOp
     }
 }
 
-@Composable
-private fun AppUpdaterDialog(dialogContent: UpdaterDialogUIData, onClickListener: (DialogScreenIntents) -> Unit, typeface: Typeface?) {
-    Dialog(onDismissRequest = { dialogContent.onDismissRequested() }) {
-        DialogContent(dialogContent, onClickListener, typeface)
-    }
-}
-
-@Composable
-private fun DialogContent(dialogContent: UpdaterDialogUIData, onClickListener: (DialogScreenIntents) -> Unit, typeface: Typeface?) {
-    Card(
-        shape = RoundedCornerShape(12.dp),
-        elevation = CardDefaults.cardElevation(8.dp),
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(vertical = 16.dp),
-    ) {
-        LazyVerticalGrid(
-            columns = GridCells.Fixed(2),
-            verticalArrangement = Arrangement.spacedBy(32.dp),
-            contentPadding = PaddingValues(vertical = 16.dp),
-        ) {
-            with(dialogContent) {
-                item(span = { GridItemSpan(maxLineSpan) }) {
-                    DialogHeaderComponent(dialogHeader, typeface)
-                }
-                directDownloadList.forEach {
-                    item(span = { GridItemSpan(maxLineSpan) }) {
-                        DirectDownloadLinkComponent(it) {
-                            onClickListener(DialogScreenIntents.OnDirectLinkClicked(it))
-                        }
-                    }
-                }
-                if (shouldShowDividers) {
-                    item(span = { GridItemSpan(maxLineSpan) }) { DividerComponent() }
-                }
-
-                storeList.forEach {
-                    item(span = { getStoreListGridItemSpan(storeList.size, maxLineSpan) }) {
-                        SquareStoreItemComponent(it) {
-                            onClickListener(DialogScreenIntents.OnStoreClicked(it))
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
-
-private fun getStoreListGridItemSpan(storeListSize: Int, maxLineSpan: Int) =
-    if (storeListSize > 1) GridItemSpan(1) else GridItemSpan(maxLineSpan)
-
 @Preview(showBackground = true)
 @Composable
 private fun LightPreview() {
@@ -146,7 +81,7 @@ private fun LightPreview() {
             UpdaterDialogData(
                 dialogTitle = stringResource(id = coreR.string.appupdater_app_name),
                 dialogDescription = stringResource(id = coreR.string.appupdater_download_notification_desc),
-                storeList = storeList,
+                storeList = previewDirectDownloadListData + previewStoreListData,
                 theme = Theme.LIGHT,
             ),
         )
@@ -161,7 +96,7 @@ private fun LightPreviewSingleStoreItem() {
             UpdaterDialogData(
                 dialogTitle = stringResource(id = coreR.string.appupdater_app_name),
                 dialogDescription = stringResource(id = coreR.string.appupdater_download_notification_desc),
-                storeList = storeList.subList(2, 3),
+                storeList = previewStoreListData.subList(0, 1),
                 theme = Theme.LIGHT,
             ),
         )
@@ -176,7 +111,7 @@ private fun LightPreviewSingleDirectLinkItem() {
             UpdaterDialogData(
                 dialogTitle = stringResource(id = coreR.string.appupdater_app_name),
                 dialogDescription = stringResource(id = coreR.string.appupdater_download_notification_desc),
-                storeList = storeList.subList(0, 1),
+                storeList = previewDirectDownloadListData.subList(0, 1),
                 theme = Theme.LIGHT,
             ),
         )
@@ -191,7 +126,7 @@ private fun DarkPreview() {
             UpdaterDialogData(
                 dialogTitle = stringResource(id = coreR.string.appupdater_app_name),
                 dialogDescription = stringResource(id = coreR.string.appupdater_download_notification_desc),
-                storeList = storeList,
+                storeList = previewDirectDownloadListData + previewStoreListData,
                 theme = Theme.DARK,
             ),
         )
