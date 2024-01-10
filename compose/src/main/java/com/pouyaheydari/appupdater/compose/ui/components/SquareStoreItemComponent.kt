@@ -25,10 +25,10 @@ import com.pouyaheydari.appupdater.core.pojo.StoreListItem
 @Composable
 internal fun SquareStoreItemComponent(
     item: StoreListItem,
-    onClickListener: (StoreListItem) -> Unit = {},
+    onClickListener: () -> Unit = {},
 ) {
     Column(
-        modifier = Modifier.clickable { onClickListener(item) },
+        modifier = Modifier.clickable { onClickListener() },
         horizontalAlignment = CenterHorizontally,
     ) {
         Image(painter = painterResource(id = item.icon), contentDescription = null)

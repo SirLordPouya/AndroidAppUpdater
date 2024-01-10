@@ -13,7 +13,7 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
@@ -26,7 +26,7 @@ import com.pouyaheydari.appupdater.compose.ui.components.DirectDownloadLinkCompo
 import com.pouyaheydari.appupdater.compose.ui.components.DividerComponent
 import com.pouyaheydari.appupdater.compose.ui.components.SquareStoreItemComponent
 import com.pouyaheydari.appupdater.compose.ui.components.UpdateInProgressDialogComponent
-import com.pouyaheydari.appupdater.compose.ui.models.DialogState
+import com.pouyaheydari.appupdater.compose.ui.models.DialogScreenIntents
 import com.pouyaheydari.appupdater.compose.ui.models.UpdaterDialogData
 import com.pouyaheydari.appupdater.compose.ui.models.UpdaterDialogUIData
 import com.pouyaheydari.appupdater.compose.ui.theme.AndroidAppUpdaterTheme
@@ -34,9 +34,8 @@ import com.pouyaheydari.appupdater.compose.utils.getActivity
 import com.pouyaheydari.appupdater.compose.utils.getApkIfActivityIsNotNull
 import com.pouyaheydari.appupdater.compose.utils.isDarkThemeSelected
 import com.pouyaheydari.appupdater.compose.utils.storeList
-import com.pouyaheydari.appupdater.core.pojo.DialogStates
-import com.pouyaheydari.appupdater.core.pojo.StoreListItem
 import com.pouyaheydari.appupdater.core.pojo.Theme
+import com.pouyaheydari.appupdater.core.stores.Stores
 import com.pouyaheydari.appupdater.core.R as coreR
 
 /**
@@ -47,45 +46,55 @@ import com.pouyaheydari.appupdater.core.R as coreR
 @Composable
 fun AndroidAppUpdater(dialogData: UpdaterDialogData) {
     val viewModel: AndroidAppUpdaterViewModel = viewModel(factory = AndroidAppUpdaterViewModelFactory(dialogData))
+    val state = viewModel.uiState.value
 
     AndroidAppUpdaterTheme(darkTheme = isDarkThemeSelected(dialogData.theme)) {
-        SubscribeToDialogState(viewModel, dialogData.typeface)
-        OnIntentReceived(viewModel)
-    }
-}
-
-@Composable
-private fun SubscribeToDialogState(viewModel: AndroidAppUpdaterViewModel, typeface: Typeface?) {
-    when (val value = viewModel.dialogState.collectAsState().value) {
-        is DialogState.ShowDialog -> AppUpdaterDialog(value.dialogContent, value.onItemClickListener, typeface = typeface)
-        DialogState.HideDialog -> { // Do nothing
+        if (state.shouldShowDialog) {
+            AppUpdaterDialog(state.dialogContent, viewModel::handleIntent, typeface = dialogData.typeface)
         }
+        if (state.shouldShowUpdateInProgress) {
+            UpdateInProgressDialogComponent()
+        }
+
+        SetupStoreOpener(state.selectedStore, state.shouldOpenStore) {
+            viewModel.handleIntent(DialogScreenIntents.OnStoreOpened)
+        }
+        SetupDirectApkDownload(state.downloadUrl, state.shouldStartAPKDownload)
     }
 }
 
 @Composable
-private fun OnIntentReceived(viewModel: AndroidAppUpdaterViewModel) {
+private fun SetupDirectApkDownload(url: String, shouldStartAPKDownload: Boolean) {
     val activity = LocalContext.current.getActivity()
 
-    when (val value = viewModel.screenState.collectAsState().value) {
-        is DialogStates.DownloadApk -> getApkIfActivityIsNotNull(activity, value.apkUrl)
-        is DialogStates.OpenStore -> value.store?.showStore(activity)
-        DialogStates.ShowUpdateInProgress -> UpdateInProgressDialogComponent()
-        DialogStates.HideUpdateInProgress -> {}
-        DialogStates.Empty -> { // Just to avoid last state being populated over and over
+    LaunchedEffect(key1 = url) {
+        if (shouldStartAPKDownload) {
+            getApkIfActivityIsNotNull(activity, url)
         }
     }
 }
 
 @Composable
-private fun AppUpdaterDialog(dialogContent: UpdaterDialogUIData, onClickListener: (StoreListItem) -> Unit, typeface: Typeface?) {
+private fun SetupStoreOpener(store: Stores?, shouldOpenStore: Boolean, onStoreOpenedListener: () -> Unit) {
+    val activity = LocalContext.current.getActivity()
+
+    LaunchedEffect(key1 = store) {
+        if (shouldOpenStore) {
+            store?.showStore(activity)
+        }
+        onStoreOpenedListener()
+    }
+}
+
+@Composable
+private fun AppUpdaterDialog(dialogContent: UpdaterDialogUIData, onClickListener: (DialogScreenIntents) -> Unit, typeface: Typeface?) {
     Dialog(onDismissRequest = { dialogContent.onDismissRequested() }) {
         DialogContent(dialogContent, onClickListener, typeface)
     }
 }
 
 @Composable
-private fun DialogContent(dialogContent: UpdaterDialogUIData, onClickListener: (StoreListItem) -> Unit, typeface: Typeface?) {
+private fun DialogContent(dialogContent: UpdaterDialogUIData, onClickListener: (DialogScreenIntents) -> Unit, typeface: Typeface?) {
     Card(
         shape = RoundedCornerShape(12.dp),
         elevation = CardDefaults.cardElevation(8.dp),
@@ -105,7 +114,9 @@ private fun DialogContent(dialogContent: UpdaterDialogUIData, onClickListener: (
                 }
                 directDownloadList.forEach {
                     item(span = { GridItemSpan(maxLineSpan) }) {
-                        DirectDownloadLinkComponent(it, onClickListener)
+                        DirectDownloadLinkComponent(it) {
+                            onClickListener(DialogScreenIntents.OnDirectLinkClicked(it))
+                        }
                     }
                 }
                 if (shouldShowDividers) {
@@ -114,7 +125,9 @@ private fun DialogContent(dialogContent: UpdaterDialogUIData, onClickListener: (
 
                 storeList.forEach {
                     item(span = { getStoreListGridItemSpan(storeList.size, maxLineSpan) }) {
-                        SquareStoreItemComponent(it, onClickListener)
+                        SquareStoreItemComponent(it) {
+                            onClickListener(DialogScreenIntents.OnStoreClicked(it))
+                        }
                     }
                 }
             }

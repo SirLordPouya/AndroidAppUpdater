@@ -20,14 +20,14 @@ import com.pouyaheydari.appupdater.core.pojo.StoreListItem
 @Composable
 internal fun DirectDownloadLinkComponent(
     item: StoreListItem,
-    onClickListener: (StoreListItem) -> Unit = {},
+    onClickListener: () -> Unit = {},
 ) {
     Text(
         text = item.title,
         textAlign = TextAlign.Center,
         color = Blue,
         style = MaterialTheme.typography.bodyLarge,
-        modifier = Modifier.clickable { onClickListener(item) },
+        modifier = Modifier.clickable { onClickListener() },
     )
 }
 

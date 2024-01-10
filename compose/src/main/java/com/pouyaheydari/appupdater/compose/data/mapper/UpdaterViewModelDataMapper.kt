@@ -1,4 +1,4 @@
-package com.pouyaheydari.appupdater.compose.domain.mapper
+package com.pouyaheydari.appupdater.compose.data.mapper
 
 import com.pouyaheydari.appupdater.compose.ui.models.UpdaterDialogData
 import com.pouyaheydari.appupdater.compose.ui.models.UpdaterViewModelData
