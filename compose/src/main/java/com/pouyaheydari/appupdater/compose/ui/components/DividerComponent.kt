@@ -19,10 +19,10 @@ import com.pouyaheydari.appupdater.core.R as coreR
  * Shows a divider between direct download links and stores
  */
 @Composable
-internal fun DividerComponent() {
+internal fun DividerComponent(modifier: Modifier = Modifier) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .padding(top = 16.dp),
     ) {

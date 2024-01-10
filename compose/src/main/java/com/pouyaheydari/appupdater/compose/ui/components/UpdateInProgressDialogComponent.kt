@@ -22,13 +22,13 @@ import com.pouyaheydari.appupdater.core.R as coreR
  * Update in progress dialog is not dismissible by the user.
  */
 @Composable
-internal fun UpdateInProgressDialogComponent() {
+internal fun UpdateInProgressDialogComponent(modifier: Modifier = Modifier) {
     Dialog(onDismissRequest = { /* Do nothing */ }) {
         Card(
+            modifier = modifier.fillMaxWidth(),
             shape = RoundedCornerShape(12.dp),
             elevation = CardDefaults.cardElevation(8.dp),
             colors = CardDefaults.cardColors(MaterialTheme.colorScheme.surface),
-            modifier = Modifier.fillMaxWidth(),
         ) {
             Column(
                 modifier = Modifier

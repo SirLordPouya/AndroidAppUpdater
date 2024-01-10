@@ -9,25 +9,19 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import com.pouyaheydari.appupdater.compose.ui.theme.AndroidAppUpdaterTheme
 import com.pouyaheydari.appupdater.compose.ui.theme.Blue
-import com.pouyaheydari.appupdater.core.pojo.StoreListItem
 
-/**
- * Shows direct download link's text
- *
- * @param item of type [StoreListItem] to show the title and return it in onClick event
- * @param onClickListener informs parent about selected item
- */
 @Composable
 internal fun DirectDownloadLinkComponent(
-    item: StoreListItem,
+    modifier: Modifier = Modifier,
+    title: String,
     onClickListener: () -> Unit = {},
 ) {
     Text(
-        text = item.title,
+        modifier = modifier.clickable { onClickListener() },
+        text = title,
         textAlign = TextAlign.Center,
         color = Blue,
         style = MaterialTheme.typography.bodyLarge,
-        modifier = Modifier.clickable { onClickListener() },
     )
 }
 
@@ -35,8 +29,6 @@ internal fun DirectDownloadLinkComponent(
 @Composable
 private fun Preview() {
     AndroidAppUpdaterTheme {
-        DirectDownloadLinkComponent(
-            item = StoreListItem(title = "Direct Link 1"),
-        )
+        DirectDownloadLinkComponent(title = "Direct Link 1")
     }
 }

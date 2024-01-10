@@ -60,11 +60,11 @@ private fun DialogContent(
         ) {
             with(dialogContent) {
                 item(span = { GridItemSpan(maxLineSpan) }) {
-                    DialogHeaderComponent(dialogHeader, typeface)
+                    DialogHeaderComponent(content = dialogHeader, typeface = typeface)
                 }
                 directDownloadList.forEach {
                     item(span = { GridItemSpan(maxLineSpan) }) {
-                        DirectDownloadLinkComponent(it) { onDirectLinkClickListener(it) }
+                        DirectDownloadLinkComponent(title = it.title) { onDirectLinkClickListener(it) }
                     }
                 }
                 if (shouldShowDividers) {
@@ -73,7 +73,7 @@ private fun DialogContent(
 
                 storeList.forEach {
                     item(span = { getStoreListGridItemSpan(storeList.size, maxLineSpan) }) {
-                        SquareStoreItemComponent(it) { onStoreClickListener(it) }
+                        SquareStoreItemComponent(title = it.title, icon = it.icon) { onStoreClickListener(it) }
                     }
                 }
             }

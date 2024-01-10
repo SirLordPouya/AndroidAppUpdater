@@ -25,37 +25,37 @@ import com.pouyaheydari.appupdater.core.R as coreR
 /**
  * Shows header icon, title and description
  *
- * @param data DialogHeaderComponentModel
+ * @param content DialogHeaderComponentModel
  */
 @Composable
-internal fun DialogHeaderComponent(data: DialogHeaderModel, typeface: Typeface?) {
-    Column(horizontalAlignment = CenterHorizontally) {
+internal fun DialogHeaderComponent(modifier: Modifier = Modifier, content: DialogHeaderModel, typeface: Typeface?) {
+    Column(modifier = modifier, horizontalAlignment = CenterHorizontally) {
         Image(
-            painter = painterResource(id = coreR.drawable.appupdater_ic_cloud),
-            contentDescription = null,
             modifier = Modifier
                 .width(100.dp)
                 .height(100.dp),
+            painter = painterResource(id = coreR.drawable.appupdater_ic_cloud),
+            contentDescription = null,
         )
         Text(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(all = 8.dp),
             textAlign = TextAlign.Center,
-            text = data.dialogTitle,
+            text = content.dialogTitle,
             color = MaterialTheme.colorScheme.onSurface,
             style = MaterialTheme.typography.titleLarge,
             fontFamily = typeface?.let { FontFamily(it) },
+        )
+        Text(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(all = 8.dp),
-        )
-        Text(
             textAlign = TextAlign.Center,
-            text = data.dialogDescription,
+            text = content.dialogDescription,
             color = MaterialTheme.colorScheme.onSurface,
             style = MaterialTheme.typography.bodyMedium,
             fontFamily = typeface?.let { FontFamily(it) },
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(all = 8.dp),
         )
     }
 }
@@ -65,7 +65,7 @@ internal fun DialogHeaderComponent(data: DialogHeaderModel, typeface: Typeface?)
 private fun Preview() {
     AndroidAppUpdaterTheme {
         DialogHeaderComponent(
-            data = DialogHeaderModel(
+            content = DialogHeaderModel(
                 dialogTitle = stringResource(id = coreR.string.appupdater_app_name),
                 dialogDescription = stringResource(id = coreR.string.appupdater_download_notification_desc),
             ),
