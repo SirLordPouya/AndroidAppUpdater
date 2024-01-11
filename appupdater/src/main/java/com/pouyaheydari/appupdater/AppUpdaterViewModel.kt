@@ -3,10 +3,10 @@ package com.pouyaheydari.appupdater
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.pouyaheydari.appupdater.core.interactors.GetIsUpdateInProgress
-import com.pouyaheydari.appupdater.core.pojo.DialogStates
 import com.pouyaheydari.appupdater.core.pojo.Store
 import com.pouyaheydari.appupdater.core.pojo.StoreListItem
 import com.pouyaheydari.appupdater.core.utils.runWithDelay
+import com.pouyaheydari.appupdater.pojo.DialogStates
 import com.pouyaheydari.appupdater.utils.TypefaceHolder
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.collectLatest
@@ -16,7 +16,6 @@ import kotlinx.coroutines.launch
  * View Model of [AppUpdaterDialog]
  */
 internal class AppUpdaterViewModel : ViewModel() {
-
     val screenState = MutableStateFlow<DialogStates>(DialogStates.HideUpdateInProgress)
 
     fun onListListener(item: StoreListItem) {

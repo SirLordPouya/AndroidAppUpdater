@@ -18,7 +18,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import com.pouyaheydari.appupdater.adapters.DirectRecyclerAdapter
 import com.pouyaheydari.appupdater.adapters.StoresRecyclerAdapter
-import com.pouyaheydari.appupdater.core.pojo.DialogStates
 import com.pouyaheydari.appupdater.core.pojo.Store.DIRECT_URL
 import com.pouyaheydari.appupdater.core.pojo.StoreListItem
 import com.pouyaheydari.appupdater.core.pojo.Theme
@@ -26,6 +25,7 @@ import com.pouyaheydari.appupdater.core.utils.getApk
 import com.pouyaheydari.appupdater.core.utils.shouldShowStoresDivider
 import com.pouyaheydari.appupdater.databinding.FragmentAppUpdaterDialogBinding
 import com.pouyaheydari.appupdater.mapper.mapToSelectedTheme
+import com.pouyaheydari.appupdater.pojo.DialogStates
 import com.pouyaheydari.appupdater.pojo.UpdaterDialogData
 import com.pouyaheydari.appupdater.pojo.UpdaterFragmentModel
 import com.pouyaheydari.appupdater.pojo.UserSelectedTheme

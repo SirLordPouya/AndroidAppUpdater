@@ -1,4 +1,4 @@
-package com.pouyaheydari.appupdater.core.pojo
+package com.pouyaheydari.appupdater.pojo
 
 import com.pouyaheydari.appupdater.core.stores.Stores
 
