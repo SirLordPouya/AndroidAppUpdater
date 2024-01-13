@@ -6,8 +6,9 @@ import androidx.test.espresso.intent.matcher.IntentMatchers
 import androidx.test.espresso.intent.rule.IntentsRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
-import com.pouyaheydari.appupdater.core.pojo.Store
-import com.pouyaheydari.appupdater.core.pojo.StoreListItem
+import com.pouyaheydari.appupdater.core.data.model.ShowStoreModel
+import com.pouyaheydari.appupdater.core.data.model.Store
+import com.pouyaheydari.appupdater.core.utils.showAppInSelectedStore
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -20,12 +21,11 @@ internal class TencentStoreTest {
     @Test
     fun whenCalling_setStoreData_then_intentGetsFiredCorrectly() {
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        val tencentAppStore = TencentAppStore()
         val packageName = appContext.packageName
         val url = "https://pouyaheydari.com"
+        val tencentStoreModel = ShowStoreModel(packageName, Store.TENCENT_APPS_STORE, url)
 
-        tencentAppStore.setStoreData(StoreListItem(store = Store.TENCENT_APPS_STORE, packageName = packageName, url = url))
-        tencentAppStore.showStore(appContext)
+        showAppInSelectedStore(appContext, tencentStoreModel)
 
         Intents.intended(IntentMatchers.hasData(Uri.parse("$TENCENT_APP_STORE_URL$packageName")))
     }

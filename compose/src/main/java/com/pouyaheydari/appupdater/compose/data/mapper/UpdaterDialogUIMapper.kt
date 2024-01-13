@@ -3,7 +3,7 @@ package com.pouyaheydari.appupdater.compose.data.mapper
 import com.pouyaheydari.appupdater.compose.ui.models.DialogHeaderModel
 import com.pouyaheydari.appupdater.compose.ui.models.UpdaterDialogUIData
 import com.pouyaheydari.appupdater.compose.ui.models.UpdaterViewModelData
-import com.pouyaheydari.appupdater.core.pojo.Store
+import com.pouyaheydari.appupdater.core.data.model.Store
 import com.pouyaheydari.appupdater.core.utils.shouldShowStoresDivider
 
 internal object UpdaterDialogUIMapper {

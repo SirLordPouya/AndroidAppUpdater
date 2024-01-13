@@ -1,6 +1,7 @@
-package com.pouyaheydari.appupdater.core.pojo
+package com.pouyaheydari.appupdater.core.data.model
 
 import com.pouyaheydari.appupdater.core.stores.AmazonAppStore
+import com.pouyaheydari.appupdater.core.stores.AppStore
 import com.pouyaheydari.appupdater.core.stores.Aptoide
 import com.pouyaheydari.appupdater.core.stores.CafeBazaarStore
 import com.pouyaheydari.appupdater.core.stores.FDroid
@@ -13,7 +14,6 @@ import com.pouyaheydari.appupdater.core.stores.NineApps
 import com.pouyaheydari.appupdater.core.stores.OneStoreAppMarket
 import com.pouyaheydari.appupdater.core.stores.OppoAppMarket
 import com.pouyaheydari.appupdater.core.stores.SamsungGalaxyStore
-import com.pouyaheydari.appupdater.core.stores.Stores
 import com.pouyaheydari.appupdater.core.stores.TencentAppStore
 import com.pouyaheydari.appupdater.core.stores.VAppStore
 import com.pouyaheydari.appupdater.core.stores.ZTEAppCenter
@@ -21,7 +21,7 @@ import com.pouyaheydari.appupdater.core.stores.ZTEAppCenter
 /**
  * Enum class to select type of market
  */
-enum class Store(val provider: Class<out Stores>?) {
+enum class Store(val provider: Class<out AppStore>?) {
     DIRECT_URL(null),
     GOOGLE_PLAY(GooglePlayStore::class.java),
     CAFE_BAZAAR(CafeBazaarStore::class.java),

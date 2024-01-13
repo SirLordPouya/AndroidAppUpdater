@@ -2,10 +2,10 @@ package com.pouyaheydari.appupdater.mapper
 
 import android.content.Context
 import android.content.res.Configuration
-import com.pouyaheydari.appupdater.core.pojo.Theme
-import com.pouyaheydari.appupdater.core.pojo.Theme.DARK
-import com.pouyaheydari.appupdater.core.pojo.Theme.LIGHT
-import com.pouyaheydari.appupdater.core.pojo.Theme.SYSTEM_DEFAULT
+import com.pouyaheydari.appupdater.core.data.model.Theme
+import com.pouyaheydari.appupdater.core.data.model.Theme.DARK
+import com.pouyaheydari.appupdater.core.data.model.Theme.LIGHT
+import com.pouyaheydari.appupdater.core.data.model.Theme.SYSTEM_DEFAULT
 import com.pouyaheydari.appupdater.pojo.UserSelectedTheme
 
 /**

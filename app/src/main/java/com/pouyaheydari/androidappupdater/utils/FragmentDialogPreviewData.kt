@@ -2,12 +2,12 @@ package com.pouyaheydari.androidappupdater.utils
 
 import android.content.Context
 import com.pouyaheydari.androidappupdater.R
-import com.pouyaheydari.appupdater.core.pojo.Store
-import com.pouyaheydari.appupdater.core.pojo.StoreListItem
+import com.pouyaheydari.appupdater.core.data.model.Store
+import com.pouyaheydari.appupdater.core.data.model.StoreListItem
 import com.pouyaheydari.appupdater.core.R as coreR
 
 /**
- * @return A list of [com.pouyaheydari.appupdater.core.pojo.StoreListItem] to be used in the compose and fragment sample codes
+ * @return A list of [com.pouyaheydari.appupdater.core.data.model.StoreListItem] to be used in the compose and fragment sample codes
  */
 internal fun getNormalList(context: Context) = listOf(
     // direct download

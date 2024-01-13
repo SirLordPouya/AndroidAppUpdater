@@ -23,7 +23,7 @@ import com.pouyaheydari.androidappupdater.utils.getNormalList
 import com.pouyaheydari.androidappupdater.utils.storeList
 import com.pouyaheydari.appupdater.compose.ui.AndroidAppUpdater
 import com.pouyaheydari.appupdater.compose.ui.models.UpdaterDialogData
-import com.pouyaheydari.appupdater.core.pojo.Theme
+import com.pouyaheydari.appupdater.core.data.model.Theme
 import com.pouyaheydari.appupdater.core.R as coreR
 
 /**

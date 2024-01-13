@@ -1,4 +1,4 @@
-package com.pouyaheydari.appupdater.core.pojo
+package com.pouyaheydari.appupdater.core.data.model
 
 /**
  * Specifies the theme of dialog

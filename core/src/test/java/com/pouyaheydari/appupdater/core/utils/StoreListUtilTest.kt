@@ -1,12 +1,11 @@
 package com.pouyaheydari.appupdater.core.utils
 
-import com.pouyaheydari.appupdater.core.pojo.Store
-import com.pouyaheydari.appupdater.core.pojo.StoreListItem
+import com.pouyaheydari.appupdater.core.data.model.Store
+import com.pouyaheydari.appupdater.core.data.model.StoreListItem
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
 internal class StoreListUtilTest {
-
     @Test
     fun `when both lists are not empty, then shouldShowStoresDivider return true`() {
         val directDownloadList = listOf(StoreListItem(store = Store.DIRECT_URL))

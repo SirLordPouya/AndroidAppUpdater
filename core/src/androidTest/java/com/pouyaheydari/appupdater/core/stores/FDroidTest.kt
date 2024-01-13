@@ -6,8 +6,9 @@ import androidx.test.espresso.intent.matcher.IntentMatchers
 import androidx.test.espresso.intent.rule.IntentsRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
-import com.pouyaheydari.appupdater.core.pojo.Store
-import com.pouyaheydari.appupdater.core.pojo.StoreListItem
+import com.pouyaheydari.appupdater.core.data.model.ShowStoreModel
+import com.pouyaheydari.appupdater.core.data.model.Store
+import com.pouyaheydari.appupdater.core.utils.showAppInSelectedStore
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -20,12 +21,11 @@ internal class FDroidTest {
     @Test
     fun whenCalling_setStoreData_then_intentGetsFiredCorrectly() {
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        val fDroid = FDroid()
         val packageName = appContext.packageName
         val url = "https://pouyaheydari.com"
+        val storeModel = ShowStoreModel(packageName, Store.FDROID, url)
 
-        fDroid.setStoreData(StoreListItem(store = Store.FDROID, packageName = packageName, url = url))
-        fDroid.showStore(appContext)
+        showAppInSelectedStore(appContext, storeModel)
 
         Intents.intended(IntentMatchers.hasData(Uri.parse("$FDROID_URL$packageName")))
         Intents.intended(IntentMatchers.hasPackage(FDROID_PACKAGE))

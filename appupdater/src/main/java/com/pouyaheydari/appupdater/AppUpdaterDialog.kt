@@ -18,11 +18,12 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import com.pouyaheydari.appupdater.adapters.DirectRecyclerAdapter
 import com.pouyaheydari.appupdater.adapters.StoresRecyclerAdapter
-import com.pouyaheydari.appupdater.core.pojo.Store.DIRECT_URL
-import com.pouyaheydari.appupdater.core.pojo.StoreListItem
-import com.pouyaheydari.appupdater.core.pojo.Theme
+import com.pouyaheydari.appupdater.core.data.model.Store.DIRECT_URL
+import com.pouyaheydari.appupdater.core.data.model.StoreListItem
+import com.pouyaheydari.appupdater.core.data.model.Theme
 import com.pouyaheydari.appupdater.core.utils.getApk
 import com.pouyaheydari.appupdater.core.utils.shouldShowStoresDivider
+import com.pouyaheydari.appupdater.core.utils.showAppInSelectedStore
 import com.pouyaheydari.appupdater.databinding.FragmentAppUpdaterDialogBinding
 import com.pouyaheydari.appupdater.mapper.mapToSelectedTheme
 import com.pouyaheydari.appupdater.pojo.DialogStates
@@ -98,7 +99,7 @@ class AppUpdaterDialog : DialogFragment() {
             .onEach {
                 when (it) {
                     is DialogStates.DownloadApk -> getApk(it.apkUrl, requireActivity())
-                    is DialogStates.OpenStore -> it.store?.showStore(requireContext())
+                    is DialogStates.OpenStore -> showAppInSelectedStore(context, it.store)
                     DialogStates.HideUpdateInProgress -> hideUpdateInProgressDialog()
                     DialogStates.ShowUpdateInProgress -> showUpdateInProgressDialog(theme)
                     DialogStates.Empty -> hideUpdateInProgressDialog()
@@ -209,7 +210,7 @@ class AppUpdaterDialog : DialogFragment() {
         /**
          * @param title Title of the dialog
          * @param description Description that is shown below the title
-         * @param storeList List of all stores that user can update your app from (including [com.pouyaheydari.appupdater.core.pojo.Store.DIRECT_URL])
+         * @param storeList List of all stores that user can update your app from (including [com.pouyaheydari.appupdater.core.data.model.Store.DIRECT_URL])
          * @param isForce Should the user be able to close the dialog?
          * @param typeface Typeface to be used in text views
          *

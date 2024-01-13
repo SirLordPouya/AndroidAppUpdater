@@ -1,8 +1,8 @@
 package com.pouyaheydari.appupdater.pojo
 
 import android.graphics.Typeface
-import com.pouyaheydari.appupdater.core.pojo.StoreListItem
-import com.pouyaheydari.appupdater.core.pojo.Theme
+import com.pouyaheydari.appupdater.core.data.model.StoreListItem
+import com.pouyaheydari.appupdater.core.data.model.Theme
 
 /**
  * This model is used to pass the data to dialog fragment via bundles

@@ -2,9 +2,10 @@ package com.pouyaheydari.appupdater
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.pouyaheydari.appupdater.core.data.model.ShowStoreModel
+import com.pouyaheydari.appupdater.core.data.model.Store
+import com.pouyaheydari.appupdater.core.data.model.StoreListItem
 import com.pouyaheydari.appupdater.core.interactors.GetIsUpdateInProgress
-import com.pouyaheydari.appupdater.core.pojo.Store
-import com.pouyaheydari.appupdater.core.pojo.StoreListItem
 import com.pouyaheydari.appupdater.core.utils.runWithDelay
 import com.pouyaheydari.appupdater.pojo.DialogStates
 import com.pouyaheydari.appupdater.utils.TypefaceHolder
@@ -26,8 +27,8 @@ internal class AppUpdaterViewModel : ViewModel() {
             }
 
             else -> viewModelScope.launch {
-                val store = item.store.provider?.newInstance()?.also { it.setStoreData(item) }
-                screenState.value = DialogStates.OpenStore(store)
+                val storeModel = ShowStoreModel(item.packageName, item.store, item.url)
+                screenState.value = DialogStates.OpenStore(storeModel)
                 runWithDelay {
                     screenState.value = DialogStates.HideUpdateInProgress
                 }

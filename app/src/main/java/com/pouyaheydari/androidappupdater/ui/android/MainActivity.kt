@@ -10,7 +10,7 @@ import com.pouyaheydari.androidappupdater.ui.compose.ComposeSampleActivity
 import com.pouyaheydari.androidappupdater.utils.getDSLList
 import com.pouyaheydari.androidappupdater.utils.getNormalList
 import com.pouyaheydari.appupdater.AppUpdaterDialog
-import com.pouyaheydari.appupdater.core.pojo.Theme
+import com.pouyaheydari.appupdater.core.data.model.Theme
 import com.pouyaheydari.appupdater.dsl.updateDialogBuilder
 import com.pouyaheydari.appupdater.pojo.UpdaterDialogData
 
@@ -21,7 +21,6 @@ private const val FONT_PATH = "fonts/vazir.ttf"
  * Main activity of the sample application
  */
 internal class MainActivity : AppCompatActivity() {
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)

@@ -16,8 +16,9 @@ import com.pouyaheydari.appupdater.compose.utils.getApkIfActivityIsNotNull
 import com.pouyaheydari.appupdater.compose.utils.isDarkThemeSelected
 import com.pouyaheydari.appupdater.compose.utils.previewDirectDownloadListData
 import com.pouyaheydari.appupdater.compose.utils.previewStoreListData
-import com.pouyaheydari.appupdater.core.pojo.Theme
-import com.pouyaheydari.appupdater.core.stores.Stores
+import com.pouyaheydari.appupdater.core.data.model.ShowStoreModel
+import com.pouyaheydari.appupdater.core.data.model.Theme
+import com.pouyaheydari.appupdater.core.utils.showAppInSelectedStore
 import com.pouyaheydari.appupdater.core.R as coreR
 
 /**
@@ -62,12 +63,12 @@ private fun SetupDirectApkDownload(url: String, shouldStartAPKDownload: Boolean)
 }
 
 @Composable
-private fun SetupStoreOpener(store: Stores?, shouldOpenStore: Boolean, onStoreOpenedListener: () -> Unit) {
-    val activity = LocalContext.current.getActivity()
+private fun SetupStoreOpener(store: ShowStoreModel, shouldOpenStore: Boolean, onStoreOpenedListener: () -> Unit) {
+    val context = LocalContext.current
 
     LaunchedEffect(key1 = store) {
         if (shouldOpenStore) {
-            store?.showStore(activity)
+            showAppInSelectedStore(context, store)
         }
         onStoreOpenedListener()
     }

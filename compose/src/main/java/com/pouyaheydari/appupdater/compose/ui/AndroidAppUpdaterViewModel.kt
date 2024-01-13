@@ -8,8 +8,9 @@ import com.pouyaheydari.appupdater.compose.data.mapper.UpdaterDialogUIMapper
 import com.pouyaheydari.appupdater.compose.ui.models.DialogScreenIntents
 import com.pouyaheydari.appupdater.compose.ui.models.DialogScreenState
 import com.pouyaheydari.appupdater.compose.ui.models.UpdaterViewModelData
+import com.pouyaheydari.appupdater.core.data.model.ShowStoreModel
+import com.pouyaheydari.appupdater.core.data.model.StoreListItem
 import com.pouyaheydari.appupdater.core.interactors.GetIsUpdateInProgress
-import com.pouyaheydari.appupdater.core.pojo.StoreListItem
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -43,8 +44,8 @@ internal class AndroidAppUpdaterViewModel(
 
     private fun showAppInSelectedStore(item: StoreListItem) {
         viewModelScope.launch {
-            val store = item.store.provider?.getDeclaredConstructor()?.newInstance()?.also { it.setStoreData(item) }
-            updateState { copy(selectedStore = store, shouldOpenStore = true) }
+            val storeModel = ShowStoreModel(item.packageName, item.store, item.url)
+            updateState { copy(selectedStore = storeModel, shouldOpenStore = true) }
         }
     }
 

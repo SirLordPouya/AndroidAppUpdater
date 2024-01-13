@@ -1,7 +1,7 @@
 package com.pouyaheydari.appupdater.core.utils
 
-import com.pouyaheydari.appupdater.core.pojo.Store
-import com.pouyaheydari.appupdater.core.pojo.StoreListItem
+import com.pouyaheydari.appupdater.core.data.model.Store
+import com.pouyaheydari.appupdater.core.data.model.StoreListItem
 
 /**
  * Checks if both [Store.DIRECT_URL] & any other stores available or not.

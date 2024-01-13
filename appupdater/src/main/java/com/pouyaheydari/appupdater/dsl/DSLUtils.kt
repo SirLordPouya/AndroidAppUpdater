@@ -1,7 +1,7 @@
 package com.pouyaheydari.appupdater.dsl
 
 import com.pouyaheydari.appupdater.AppUpdaterDialog
-import com.pouyaheydari.appupdater.core.pojo.StoreListItem
+import com.pouyaheydari.appupdater.core.data.model.StoreListItem
 import com.pouyaheydari.appupdater.pojo.UpdaterDialogData
 
 /**

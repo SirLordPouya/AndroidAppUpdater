@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.pouyaheydari.appupdater.core.pojo.StoreListItem
+import com.pouyaheydari.appupdater.core.data.model.StoreListItem
 import com.pouyaheydari.appupdater.databinding.DownloadStoresItemBinding
 import com.pouyaheydari.appupdater.pojo.UserSelectedTheme
 import com.pouyaheydari.appupdater.pojo.UserSelectedTheme.DARK
@@ -21,7 +21,6 @@ internal class StoresRecyclerAdapter(
     private val typeface: Typeface?,
     private val listener: (StoreListItem) -> Unit,
 ) : RecyclerView.Adapter<StoresRecyclerAdapter.SoresViewHolder>() {
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         DownloadStoresItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
             .run { SoresViewHolder(this) }
@@ -34,7 +33,6 @@ internal class StoresRecyclerAdapter(
      * ViewHolder for stores adapter
      */
     inner class SoresViewHolder(private val binding: DownloadStoresItemBinding) : RecyclerView.ViewHolder(binding.root) {
-
         /**
          * Binds data to view
          */

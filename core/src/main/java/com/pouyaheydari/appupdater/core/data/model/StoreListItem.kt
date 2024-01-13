@@ -1,4 +1,4 @@
-package com.pouyaheydari.appupdater.core.pojo
+package com.pouyaheydari.appupdater.core.data.model
 
 import android.os.Parcel
 import android.os.Parcelable
@@ -15,7 +15,7 @@ data class StoreListItem(
     var packageName: String = "",
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
-        Store.values()[parcel.readInt()],
+        Store.entries[parcel.readInt()],
         parcel.readString().orEmpty(),
         parcel.readInt(),
         parcel.readString().orEmpty(),

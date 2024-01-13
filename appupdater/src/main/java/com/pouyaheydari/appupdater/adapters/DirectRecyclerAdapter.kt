@@ -4,7 +4,7 @@ import android.graphics.Typeface
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.pouyaheydari.appupdater.core.pojo.StoreListItem
+import com.pouyaheydari.appupdater.core.data.model.StoreListItem
 import com.pouyaheydari.appupdater.databinding.DownloadDirectItemBinding
 
 /**
@@ -15,7 +15,6 @@ internal class DirectRecyclerAdapter(
     private val typeface: Typeface?,
     private val listener: (StoreListItem) -> Unit,
 ) : RecyclerView.Adapter<DirectRecyclerAdapter.SoresViewHolder>() {
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SoresViewHolder =
         DownloadDirectItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
             .run { SoresViewHolder(this) }
@@ -28,7 +27,6 @@ internal class DirectRecyclerAdapter(
      * Direct download ViewHolder
      */
     inner class SoresViewHolder(private val binding: DownloadDirectItemBinding) : RecyclerView.ViewHolder(binding.root) {
-
         /**
          * Binds data to layout
          */
