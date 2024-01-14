@@ -19,6 +19,8 @@ coroutines = "1.7.3"
 fragment = "1.6.2"
 androidxComposeBom = "2023.10.01"
 composeActivity = "1.8.2"
+mockito = "5.8.0"
+mockitoKotlin = "5.2.1"
 
 [libraries]
 agp = { module = "com.android.tools.build:gradle", version.ref = "agp" }
@@ -26,6 +28,8 @@ kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", v
 appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 constraintLayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintLayout" }
 junit4 = { group = "junit", name = "junit", version.ref = "junit4" }
+mockito = { group = "org.mockito", name = "mockito-core", version.ref = "mockito" }
+mockito-kotlin = { group = "org.mockito.kotlin", name = "mockito-kotlin", version.ref = "mockitoKotlin" }
 espresso-intents = { group = "androidx.test.espresso", name = "espresso-intents", version.ref = "androidTestEspresso" }
 androidTestJUnit = { group = "androidx.test.ext", name = "junit", version.ref = "androidTestJUnit" }
 androidTestRules = { group = "androidx.test", name = "rules", version.ref = "androidTestRules" }

@@ -7,11 +7,17 @@ plugins {
 android {
     compileSdk = libs.versions.compileSdkVersion.get().toInt()
     defaultConfig {
-        minSdk = libs.versions.minSdkVersion.get().toInt()
+        minSdk = 21
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"
     }
     publishing {
         singleVariant("release") {
@@ -28,6 +34,8 @@ dependencies {
     implementation(libs.coroutines)
     // testing dependency
     testImplementation(libs.junit4)
+    testImplementation(libs.mockito)
+    testImplementation(libs.mockito.kotlin)
     androidTestImplementation(libs.androidTestJUnit)
     androidTestImplementation(libs.androidTestRules)
     androidTestImplementation(libs.androidTestEspresso)
