@@ -1,7 +1,6 @@
 package com.pouyaheydari.appupdater.core.stores
 
-import android.content.Intent
-import android.net.Uri
+import com.pouyaheydari.appupdater.core.utils.AndroidIntentBuilder
 
 const val TENCENT_APP_STORE_URL = "tmast://appdetails?pname="
 
@@ -9,6 +8,7 @@ const val TENCENT_APP_STORE_URL = "tmast://appdetails?pname="
  * Opens application's page in [Tencent App Store](https://appstore.tencent.com/)
  */
 object TencentAppStore : AppStore {
-    override fun getIntent(packageName: String) =
-        Intent(Intent.ACTION_VIEW, Uri.parse("$TENCENT_APP_STORE_URL$packageName"))
+    override fun getIntent(packageName: String) = AndroidIntentBuilder
+        .addUriString("$TENCENT_APP_STORE_URL$packageName")
+        .build()
 }

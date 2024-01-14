@@ -1,7 +1,6 @@
 package com.pouyaheydari.appupdater.core.stores
 
-import android.content.Intent
-import android.net.Uri
+import com.pouyaheydari.appupdater.core.utils.AndroidIntentBuilder
 
 const val V_APP_STORE_URL = "vivoMarket://details?id="
 
@@ -9,6 +8,7 @@ const val V_APP_STORE_URL = "vivoMarket://details?id="
  * Opens application's page in [V-AppStore](https://developer.vivo.com/home)
  */
 object VAppStore : AppStore {
-    override fun getIntent(packageName: String) =
-        Intent(Intent.ACTION_VIEW, Uri.parse("$V_APP_STORE_URL$packageName"))
+    override fun getIntent(packageName: String) = AndroidIntentBuilder
+        .addUriString("$V_APP_STORE_URL$packageName")
+        .build()
 }

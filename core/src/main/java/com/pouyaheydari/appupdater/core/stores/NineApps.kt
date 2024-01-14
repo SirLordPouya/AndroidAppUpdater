@@ -1,7 +1,6 @@
 package com.pouyaheydari.appupdater.core.stores
 
-import android.content.Intent
-import android.net.Uri
+import com.pouyaheydari.appupdater.core.utils.AndroidIntentBuilder
 
 const val NINE_APPS_STORE_URL = "nineapps://AppDetail?id="
 const val NINE_APPS_PACKAGE = "com.gamefun.apk2u"
@@ -10,8 +9,8 @@ const val NINE_APPS_PACKAGE = "com.gamefun.apk2u"
  * Opens application's page in [9-Apps](https://www.9apps.com/)
  */
 object NineApps : AppStore {
-    override fun getIntent(packageName: String) =
-        Intent(Intent.ACTION_VIEW, Uri.parse("$NINE_APPS_STORE_URL$packageName")).run {
-            setPackage(NINE_APPS_PACKAGE)
-        }
+    override fun getIntent(packageName: String) = AndroidIntentBuilder
+        .addUriString("$NINE_APPS_STORE_URL$packageName")
+        .addPackage(NINE_APPS_PACKAGE)
+        .build()
 }

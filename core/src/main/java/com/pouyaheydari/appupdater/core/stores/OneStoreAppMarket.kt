@@ -1,7 +1,6 @@
 package com.pouyaheydari.appupdater.core.stores
 
-import android.content.Intent
-import android.net.Uri
+import com.pouyaheydari.appupdater.core.utils.AndroidIntentBuilder
 
 const val ONE_STORE_APP_MARKET_URL = "onestore://common/product/"
 
@@ -10,5 +9,7 @@ const val ONE_STORE_APP_MARKET_URL = "onestore://common/product/"
  */
 object OneStoreAppMarket : AppStore {
     override fun getIntent(packageName: String) =
-        Intent(Intent.ACTION_VIEW, Uri.parse("$ONE_STORE_APP_MARKET_URL$packageName"))
+        AndroidIntentBuilder
+            .addUriString("$ONE_STORE_APP_MARKET_URL$packageName")
+            .build()
 }
