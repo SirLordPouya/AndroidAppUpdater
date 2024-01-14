@@ -1,6 +1,6 @@
 package com.pouyaheydari.appupdater.core.stores
 
-import com.pouyaheydari.appupdater.core.utils.AndroidIntentBuilder
+import com.pouyaheydari.appupdater.core.utils.StoreIntentProvider
 
 const val PLAY_URL = "market://details?id="
 const val PLAY_PACKAGE = "com.android.vending"
@@ -9,8 +9,8 @@ const val PLAY_PACKAGE = "com.android.vending"
  * Opens application's page in [GooglePlay Store](https://play.google.com)
  */
 object GooglePlayStore : AppStore {
-    override fun getIntent(packageName: String) = AndroidIntentBuilder
-        .addUriString("$PLAY_URL$packageName")
-        .addPackage(PLAY_PACKAGE)
+    override fun getIntent(packageName: String) = StoreIntentProvider
+        .Builder("$PLAY_URL$packageName")
+        .withPackage(PLAY_PACKAGE)
         .build()
 }

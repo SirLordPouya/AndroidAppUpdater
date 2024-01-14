@@ -1,6 +1,6 @@
 package com.pouyaheydari.appupdater.core.stores
 
-import com.pouyaheydari.appupdater.core.utils.AndroidIntentBuilder
+import com.pouyaheydari.appupdater.core.utils.StoreIntentProvider
 
 const val AMAZON_APP_STORE_URL = "amzn://apps/android?p="
 const val AMAZON_PACKAGE = "com.amazon.venezia"
@@ -10,8 +10,8 @@ const val AMAZON_PACKAGE = "com.amazon.venezia"
  */
 object AmazonAppStore : AppStore {
     override fun getIntent(packageName: String) =
-        AndroidIntentBuilder
-            .addUriString("$AMAZON_APP_STORE_URL$packageName")
-            .addPackage(AMAZON_PACKAGE)
+        StoreIntentProvider
+            .Builder("$AMAZON_APP_STORE_URL$packageName")
+            .withPackage(AMAZON_PACKAGE)
             .build()
 }
