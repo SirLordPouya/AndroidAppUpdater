@@ -4,7 +4,7 @@ compileSdkVersion = "34"
 minSdkVersion = "16"
 composeMinSdkVersion = "21"
 targetSdkVersion = "34"
-agp = "8.2.0"
+agp = "8.2.2"
 kotlin = "1.9.21"
 appcompat = "1.6.1"
 constraintLayout = "2.1.4"
@@ -13,18 +13,19 @@ androidTestJUnit = "1.1.5"
 androidTestRules = "1.5.0"
 androidTestEspresso = "3.5.1"
 recyclerView = "1.3.2"
-compose = "1.5.7"
-lifecycle = "2.6.2"
+composeCompilerExtension = "1.5.7"
+lifecycle = "2.7.0"
 coroutines = "1.7.3"
 fragment = "1.6.2"
 androidxComposeBom = "2023.10.01"
 composeActivity = "1.8.2"
-mockito = "5.8.0"
+mockito = "5.10.0"
 mockitoKotlin = "5.2.1"
 
 [libraries]
 agp = { module = "com.android.tools.build:gradle", version.ref = "agp" }
 kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
+kotlin-reflect = { group = "org.jetbrains.kotlin", name = "kotlin-reflect", version.ref = "kotlin" }
 appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 constraintLayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintLayout" }
 junit4 = { group = "junit", name = "junit", version.ref = "junit4" }
