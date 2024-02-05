@@ -20,7 +20,7 @@ fun showAppInSelectedStore(context: Context?, storeModel: ShowStoreModel) {
 }
 
 private fun getStoreIntent(storeModel: ShowStoreModel) =
-    storeModel.store.provider?.getDeclaredConstructor()?.newInstance()?.getIntent(storeModel.packageName)
+    storeModel.store.provider?.kotlin?.objectInstance?.getIntent(storeModel.packageName)
 
 private fun showFallbackUrlOrCallErrorFallback(storeModel: ShowStoreModel, context: Context?) {
     if (storeModel.fallbackUrl.isNotEmpty()) {
