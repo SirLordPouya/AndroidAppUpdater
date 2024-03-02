@@ -2,9 +2,9 @@ package com.pouyaheydari.appupdater.compose.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.pouyaheydari.androidappupdater.directdownload.domain.GetIsUpdateInProgress
 import com.pouyaheydari.appupdater.compose.data.mapper.UpdaterViewModelDataMapper
 import com.pouyaheydari.appupdater.compose.ui.models.UpdaterDialogData
-import com.pouyaheydari.appupdater.core.interactors.GetIsUpdateInProgress
 
 internal class AndroidAppUpdaterViewModelFactory(
     private val dialogData: UpdaterDialogData,

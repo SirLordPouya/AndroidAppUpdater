@@ -4,13 +4,13 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.pouyaheydari.androidappupdater.directdownload.domain.GetIsUpdateInProgress
+import com.pouyaheydari.androidappupdater.store.model.ShowStoreModel
+import com.pouyaheydari.androidappupdater.store.model.StoreListItem
 import com.pouyaheydari.appupdater.compose.data.mapper.UpdaterDialogUIMapper
 import com.pouyaheydari.appupdater.compose.ui.models.DialogScreenIntents
 import com.pouyaheydari.appupdater.compose.ui.models.DialogScreenState
 import com.pouyaheydari.appupdater.compose.ui.models.UpdaterViewModelData
-import com.pouyaheydari.appupdater.core.data.model.ShowStoreModel
-import com.pouyaheydari.appupdater.core.data.model.StoreListItem
-import com.pouyaheydari.appupdater.core.interactors.GetIsUpdateInProgress
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -51,7 +51,7 @@ internal class AndroidAppUpdaterViewModel(
 
     private fun startDirectUrlApkDownload(item: StoreListItem) {
         observeUpdateProgress()
-        updateState { copy(shouldShowUpdateInProgress = true, shouldStartAPKDownload = true, downloadUrl = item.url) }
+        updateState { copy(shouldStartAPKDownload = true, downloadUrl = item.url) }
     }
 
     private fun observeUpdateProgress() {

@@ -6,11 +6,11 @@ import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.pouyaheydari.androidappupdater.R
+import com.pouyaheydari.androidappupdater.store.model.Theme
 import com.pouyaheydari.androidappupdater.ui.compose.ComposeSampleActivity
 import com.pouyaheydari.androidappupdater.utils.getDSLList
 import com.pouyaheydari.androidappupdater.utils.getNormalList
 import com.pouyaheydari.appupdater.AppUpdaterDialog
-import com.pouyaheydari.appupdater.core.data.model.Theme
 import com.pouyaheydari.appupdater.dsl.updateDialogBuilder
 import com.pouyaheydari.appupdater.pojo.UpdaterDialogData
 

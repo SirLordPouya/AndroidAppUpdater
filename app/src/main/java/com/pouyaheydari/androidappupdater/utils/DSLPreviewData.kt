@@ -2,13 +2,10 @@ package com.pouyaheydari.androidappupdater.utils
 
 import android.content.Context
 import com.pouyaheydari.androidappupdater.R
-import com.pouyaheydari.appupdater.core.data.model.Store
+import com.pouyaheydari.androidappupdater.store.model.Store
 import com.pouyaheydari.appupdater.dsl.store
 import com.pouyaheydari.appupdater.core.R as coreR
 
-/**
- * @return A list of [com.pouyaheydari.appupdater.core.data.model.StoreListItem] to be used in the dsl sample code
- */
 internal fun getDSLList(context: Context) = listOf(
     store {
         store = Store.DIRECT_URL

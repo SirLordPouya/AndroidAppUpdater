@@ -2,13 +2,10 @@ package com.pouyaheydari.androidappupdater.utils
 
 import android.content.Context
 import com.pouyaheydari.androidappupdater.R
-import com.pouyaheydari.appupdater.core.data.model.Store
-import com.pouyaheydari.appupdater.core.data.model.StoreListItem
+import com.pouyaheydari.androidappupdater.store.model.Store
+import com.pouyaheydari.androidappupdater.store.model.StoreListItem
 import com.pouyaheydari.appupdater.core.R as coreR
 
-/**
- * @return A list of [com.pouyaheydari.appupdater.core.data.model.StoreListItem] to be used in the compose and fragment sample codes
- */
 internal fun getNormalList(context: Context) = listOf(
     // direct download
     StoreListItem(

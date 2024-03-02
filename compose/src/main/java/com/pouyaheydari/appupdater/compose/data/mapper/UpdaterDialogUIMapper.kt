@@ -1,10 +1,10 @@
 package com.pouyaheydari.appupdater.compose.data.mapper
 
+import com.pouyaheydari.androidappupdater.store.model.Store
+import com.pouyaheydari.androidappupdater.store.shouldShowStoresDivider
 import com.pouyaheydari.appupdater.compose.ui.models.DialogHeaderModel
 import com.pouyaheydari.appupdater.compose.ui.models.UpdaterDialogUIData
 import com.pouyaheydari.appupdater.compose.ui.models.UpdaterViewModelData
-import com.pouyaheydari.appupdater.core.data.model.Store
-import com.pouyaheydari.appupdater.core.utils.shouldShowStoresDivider
 
 internal object UpdaterDialogUIMapper {
     fun map(viewModelData: UpdaterViewModelData): UpdaterDialogUIData = with(viewModelData) {

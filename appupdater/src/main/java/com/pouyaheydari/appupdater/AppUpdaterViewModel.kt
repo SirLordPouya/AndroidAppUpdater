@@ -2,13 +2,13 @@ package com.pouyaheydari.appupdater
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.pouyaheydari.appupdater.core.data.model.ShowStoreModel
-import com.pouyaheydari.appupdater.core.data.model.Store
-import com.pouyaheydari.appupdater.core.data.model.StoreListItem
-import com.pouyaheydari.appupdater.core.interactors.GetIsUpdateInProgress
-import com.pouyaheydari.appupdater.core.utils.runWithDelay
+import com.pouyaheydari.androidappupdater.directdownload.domain.GetIsUpdateInProgress
+import com.pouyaheydari.androidappupdater.store.model.ShowStoreModel
+import com.pouyaheydari.androidappupdater.store.model.Store
+import com.pouyaheydari.androidappupdater.store.model.StoreListItem
 import com.pouyaheydari.appupdater.pojo.DialogStates
 import com.pouyaheydari.appupdater.utils.TypefaceHolder
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -47,5 +47,10 @@ internal class AppUpdaterViewModel : ViewModel() {
     override fun onCleared() {
         TypefaceHolder.clear()
         super.onCleared()
+    }
+
+    private suspend fun runWithDelay(job: () -> Unit) {
+        delay(100)
+        job()
     }
 }

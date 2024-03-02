@@ -1,7 +1,7 @@
 package com.pouyaheydari.appupdater.compose.ui.models
 
-import com.pouyaheydari.appupdater.core.data.model.StoreListItem
-import com.pouyaheydari.appupdater.core.data.model.Theme
+import com.pouyaheydari.androidappupdater.store.model.StoreListItem
+import com.pouyaheydari.androidappupdater.store.model.Theme
 
 internal data class UpdaterViewModelData(
     val dialogTitle: String = "",

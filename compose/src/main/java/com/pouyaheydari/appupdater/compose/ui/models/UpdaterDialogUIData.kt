@@ -1,6 +1,6 @@
 package com.pouyaheydari.appupdater.compose.ui.models
 
-import com.pouyaheydari.appupdater.core.data.model.StoreListItem
+import com.pouyaheydari.androidappupdater.store.model.StoreListItem
 
 internal data class UpdaterDialogUIData(
     val dialogHeader: DialogHeaderModel = DialogHeaderModel(),

@@ -18,13 +18,13 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
+import com.pouyaheydari.androidappupdater.store.model.StoreListItem
 import com.pouyaheydari.appupdater.compose.ui.models.DialogHeaderModel
 import com.pouyaheydari.appupdater.compose.ui.models.UpdaterDialogUIData
 import com.pouyaheydari.appupdater.compose.ui.theme.AndroidAppUpdaterTheme
 import com.pouyaheydari.appupdater.compose.utils.previewDirectDownloadListData
 import com.pouyaheydari.appupdater.compose.utils.previewStoreListData
 import com.pouyaheydari.appupdater.core.R
-import com.pouyaheydari.appupdater.core.data.model.StoreListItem
 
 @Composable
 internal fun AppUpdaterDialog(

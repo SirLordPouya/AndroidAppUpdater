@@ -4,7 +4,7 @@ import android.graphics.Typeface
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.pouyaheydari.appupdater.core.data.model.StoreListItem
+import com.pouyaheydari.androidappupdater.store.model.StoreListItem
 import com.pouyaheydari.appupdater.databinding.DownloadDirectItemBinding
 
 /**

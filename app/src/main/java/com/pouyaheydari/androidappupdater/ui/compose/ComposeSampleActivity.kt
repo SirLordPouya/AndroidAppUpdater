@@ -17,13 +17,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.pouyaheydari.androidappupdater.R
+import com.pouyaheydari.androidappupdater.store.model.Theme
 import com.pouyaheydari.androidappupdater.ui.compose.theme.AndroidAppUpdaterTheme
 import com.pouyaheydari.androidappupdater.utils.directDownloadList
 import com.pouyaheydari.androidappupdater.utils.getNormalList
 import com.pouyaheydari.androidappupdater.utils.storeList
 import com.pouyaheydari.appupdater.compose.ui.AndroidAppUpdater
 import com.pouyaheydari.appupdater.compose.ui.models.UpdaterDialogData
-import com.pouyaheydari.appupdater.core.data.model.Theme
 import com.pouyaheydari.appupdater.core.R as coreR
 
 /**

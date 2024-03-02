@@ -1,7 +1,7 @@
 package com.pouyaheydari.appupdater.compose.utils
 
-import com.pouyaheydari.appupdater.core.data.model.Store
-import com.pouyaheydari.appupdater.core.data.model.StoreListItem
+import com.pouyaheydari.androidappupdater.store.model.Store
+import com.pouyaheydari.androidappupdater.store.model.StoreListItem
 import com.pouyaheydari.appupdater.core.R as coreR
 
 private const val CUSTOM_URL = "https://cafebazaar.ir/download/bazaar.apk"

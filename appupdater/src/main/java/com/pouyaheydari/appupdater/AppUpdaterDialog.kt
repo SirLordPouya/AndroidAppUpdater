@@ -16,14 +16,13 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
+import com.pouyaheydari.androidappupdater.directdownload.utils.getApk
+import com.pouyaheydari.androidappupdater.store.domain.showAppInSelectedStore
+import com.pouyaheydari.androidappupdater.store.model.Store.DIRECT_URL
+import com.pouyaheydari.androidappupdater.store.model.StoreListItem
+import com.pouyaheydari.androidappupdater.store.shouldShowStoresDivider
 import com.pouyaheydari.appupdater.adapters.DirectRecyclerAdapter
 import com.pouyaheydari.appupdater.adapters.StoresRecyclerAdapter
-import com.pouyaheydari.appupdater.core.data.model.Store.DIRECT_URL
-import com.pouyaheydari.appupdater.core.data.model.StoreListItem
-import com.pouyaheydari.appupdater.core.data.model.Theme
-import com.pouyaheydari.appupdater.core.utils.getApk
-import com.pouyaheydari.appupdater.core.utils.shouldShowStoresDivider
-import com.pouyaheydari.appupdater.core.utils.showAppInSelectedStore
 import com.pouyaheydari.appupdater.databinding.FragmentAppUpdaterDialogBinding
 import com.pouyaheydari.appupdater.mapper.mapToSelectedTheme
 import com.pouyaheydari.appupdater.pojo.DialogStates
@@ -207,37 +206,6 @@ class AppUpdaterDialog : DialogFragment() {
     }
 
     companion object {
-        /**
-         * @param title Title of the dialog
-         * @param description Description that is shown below the title
-         * @param storeList List of all stores that user can update your app from (including [com.pouyaheydari.appupdater.core.data.model.Store.DIRECT_URL])
-         * @param isForce Should the user be able to close the dialog?
-         * @param typeface Typeface to be used in text views
-         *
-         * @return a new instance of [AppUpdaterDialog]
-         */
-        @Deprecated(
-            message = "This function is deprecated and will be removed in the next version. Use getInstance with UpdaterDialogData input parameter instead.",
-            replaceWith = ReplaceWith("this.getInstance(UpdaterDialogData())", "com.pouyaheydari.appupdater.pojo.UpdaterDialogData"),
-        )
-        fun getInstance(
-            title: String,
-            description: String,
-            storeList: List<StoreListItem>,
-            isForce: Boolean = false,
-            typeface: Typeface? = null,
-            theme: Theme = Theme.SYSTEM_DEFAULT,
-        ): AppUpdaterDialog = getInstance(
-            UpdaterDialogData(
-                title = title,
-                description = description,
-                storeList = storeList,
-                isForceUpdate = isForce,
-                typeface = typeface,
-                theme = theme,
-            ),
-        )
-
         /**
          * @param dialogData Data to be shown in the dialog
          *

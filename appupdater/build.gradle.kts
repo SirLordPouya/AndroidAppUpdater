@@ -31,7 +31,9 @@ android {
 
 dependencies {
 
-    api(project(":core"))
+    api(project(":store"))
+    api(project(":directdownload"))
+
     // support dependency
     implementation(libs.appcompat)
     implementation(libs.constraintLayout)

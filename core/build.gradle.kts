@@ -28,19 +28,8 @@ android {
     namespace = "com.pouyaheydari.appupdater.core"
 }
 dependencies {
-
     implementation(libs.appcompat)
     implementation(libs.coroutines)
-    implementation(libs.kotlin.reflect)
-
-    // testing
-    testImplementation(libs.junit4)
-    testImplementation(libs.mockito)
-    testImplementation(libs.mockito.kotlin)
-    androidTestImplementation(libs.androidTestJUnit)
-    androidTestImplementation(libs.androidTestRules)
-    androidTestImplementation(libs.androidTestEspresso)
-    androidTestImplementation(libs.espresso.intents)
 }
 
 afterEvaluate {
