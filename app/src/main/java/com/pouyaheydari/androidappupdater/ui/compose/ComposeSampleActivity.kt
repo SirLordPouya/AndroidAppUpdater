@@ -10,19 +10,20 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.pouyaheydari.androidappupdater.R
 import com.pouyaheydari.androidappupdater.ui.compose.theme.AndroidAppUpdaterTheme
-import com.pouyaheydari.androidappupdater.utils.getNormalList
-import com.pouyaheydari.appupdater.compose.AndroidAppUpdater
-import com.pouyaheydari.appupdater.compose.pojo.UpdaterDialogData
-import com.pouyaheydari.appupdater.compose.utils.storeList
-import com.pouyaheydari.appupdater.core.pojo.Theme
+import com.pouyaheydari.androidappupdater.utils.directDownloadList
+import com.pouyaheydari.androidappupdater.utils.storeList
+import com.pouyaheydari.appupdater.compose.ui.AndroidAppUpdater
+import com.pouyaheydari.appupdater.compose.ui.models.UpdaterDialogData
+import com.pouyaheydari.appupdater.core.model.Theme
 import com.pouyaheydari.appupdater.core.R as coreR
 
 /**
@@ -35,7 +36,7 @@ internal class ComposeSampleActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             AndroidAppUpdaterTheme {
-                var state by remember { mutableStateOf(false) }
+                var state by rememberSaveable { mutableStateOf(false) }
 
                 Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                     Button(onClick = { state = true }) {
@@ -47,7 +48,8 @@ internal class ComposeSampleActivity : ComponentActivity() {
                         UpdaterDialogData(
                             dialogTitle = stringResource(id = coreR.string.appupdater_app_name),
                             dialogDescription = stringResource(id = R.string.library_description),
-                            storeList = getNormalList(this),
+                            storeList = storeList(this),
+                            directDownloadList = directDownloadList(this),
                             theme = Theme.SYSTEM_DEFAULT,
                             onDismissRequested = { state = false },
                         ),
@@ -66,7 +68,8 @@ private fun DefaultPreview() {
             UpdaterDialogData(
                 dialogTitle = stringResource(id = coreR.string.appupdater_app_name),
                 dialogDescription = stringResource(id = R.string.library_description),
-                storeList = storeList,
+                storeList = storeList(LocalContext.current),
+                directDownloadList = directDownloadList(LocalContext.current),
                 theme = Theme.DARK,
             ),
         )

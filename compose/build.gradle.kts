@@ -22,14 +22,19 @@ android {
     }
     namespace = "com.pouyaheydari.appupdater.compose"
 
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"
     }
     buildFeatures {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.compose.get()
+        kotlinCompilerExtensionVersion = libs.versions.composeCompilerExtension.get()
     }
     packaging {
         resources {
@@ -40,7 +45,8 @@ android {
 
 dependencies {
 
-    api(project(":core"))
+    api(project(":store"))
+    api(project(":directdownload"))
 
     // compose
     val composeBom = platform(libs.androidx.compose.bom)
@@ -53,8 +59,8 @@ dependencies {
 
     // testing
     testImplementation(libs.junit4)
-    androidTestImplementation(libs.androidTestJUnit)
-    androidTestImplementation(libs.androidTestEspresso)
+    androidTestImplementation(libs.androidx.test.junit)
+    androidTestImplementation(libs.androidx.test.ui.espresso.core)
     androidTestImplementation(composeBom)
 }
 

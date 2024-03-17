@@ -10,8 +10,14 @@ android {
         minSdk = libs.versions.minSdkVersion.get().toInt()
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"
     }
     publishing {
         singleVariant("release") {
@@ -22,16 +28,8 @@ android {
     namespace = "com.pouyaheydari.appupdater.core"
 }
 dependencies {
-
-    // support dependency
-    implementation(libs.appcompat)
+    implementation(libs.androidx.appcompat)
     implementation(libs.coroutines)
-    // testing dependency
-    testImplementation(libs.junit4)
-    androidTestImplementation(libs.androidTestJUnit)
-    androidTestImplementation(libs.androidTestRules)
-    androidTestImplementation(libs.androidTestEspresso)
-    androidTestImplementation(libs.espresso.intents)
 }
 
 afterEvaluate {

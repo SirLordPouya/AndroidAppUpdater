@@ -1,1 +1,1 @@
-include(":app", ":appupdater", ":core", ":compose")
+include(":app", ":appupdater", ":core", ":compose", ":store", ":directdownload")
