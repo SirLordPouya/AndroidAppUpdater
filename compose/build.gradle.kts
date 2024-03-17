@@ -59,8 +59,8 @@ dependencies {
 
     // testing
     testImplementation(libs.junit4)
-    androidTestImplementation(libs.androidTestJUnit)
-    androidTestImplementation(libs.androidTestEspresso)
+    androidTestImplementation(libs.androidx.test.junit)
+    androidTestImplementation(libs.androidx.test.ui.espresso.core)
     androidTestImplementation(composeBom)
 }
 

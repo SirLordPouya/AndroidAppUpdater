@@ -9,6 +9,7 @@ internal object UpdaterViewModelDataMapper {
             dialogTitle = dialogTitle,
             dialogDescription = dialogDescription,
             storeList = storeList,
+            directDownloadList = directDownloadList,
             onDismissRequested = onDismissRequested,
             theme = theme,
         )

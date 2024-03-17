@@ -29,17 +29,17 @@ android {
 
 dependencies {
     api(project(":core"))
-    implementation(libs.appcompat)
+    implementation(libs.androidx.appcompat)
     implementation(libs.coroutines)
 
     // testing
     testImplementation(libs.junit4)
     testImplementation(libs.mockito)
     testImplementation(libs.mockito.kotlin)
-    androidTestImplementation(libs.androidTestJUnit)
-    androidTestImplementation(libs.androidTestRules)
-    androidTestImplementation(libs.androidTestEspresso)
-    androidTestImplementation(libs.espresso.intents)
+    androidTestImplementation(libs.androidx.test.junit)
+    androidTestImplementation(libs.androidx.test.rules)
+    androidTestImplementation(libs.androidx.test.ui.espresso.core)
+    androidTestImplementation(libs.androidx.test.ui.espresso.intents)
 }
 
 afterEvaluate {

@@ -16,11 +16,10 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
+import com.pouyaheydari.androidappupdater.directdownload.data.model.DirectDownloadListItem
 import com.pouyaheydari.androidappupdater.directdownload.utils.getApk
+import com.pouyaheydari.androidappupdater.store.domain.StoreListItem
 import com.pouyaheydari.androidappupdater.store.domain.showAppInSelectedStore
-import com.pouyaheydari.androidappupdater.store.model.Store.DIRECT_URL
-import com.pouyaheydari.androidappupdater.store.model.StoreListItem
-import com.pouyaheydari.androidappupdater.store.shouldShowStoresDivider
 import com.pouyaheydari.appupdater.adapters.DirectRecyclerAdapter
 import com.pouyaheydari.appupdater.adapters.StoresRecyclerAdapter
 import com.pouyaheydari.appupdater.databinding.FragmentAppUpdaterDialogBinding
@@ -110,12 +109,13 @@ class AppUpdaterDialog : DialogFragment() {
         val data = arguments?.parcelable(UPDATE_DIALOG_KEY) ?: UpdaterFragmentModel.EMPTY
         val title = data.title
         val description = data.description
-        val list = data.storeList
+        val storeList = data.storeList
+        val directDownloadList = data.directDownloadList
         val theme = mapToSelectedTheme(data.theme, requireContext())
         setTheme(theme)
         val typeface = TypefaceHolder.typeface
         setTypeface(typeface)
-        setUpProperties(title, description, list, theme, typeface)
+        setUpProperties(title, description, storeList, directDownloadList, theme, typeface)
         subscribeToUpdateInProgressDialog(theme)
     }
 
@@ -146,35 +146,36 @@ class AppUpdaterDialog : DialogFragment() {
     private fun setUpProperties(
         title: String?,
         description: String?,
-        list: List<StoreListItem>,
+        storeList: List<StoreListItem>,
+        directDownloadList: List<DirectDownloadListItem>,
         theme: UserSelectedTheme,
         typeface: Typeface?,
     ) {
         binding.txtTitle.text = title
         binding.txtDescription.text = description
 
-        val directLinks = list.filter { it.store == DIRECT_URL }
-        val storeList = list.filterNot { it.store == DIRECT_URL }
+        hideOrLayoutIfNeeded(shouldShowStoresDivider(directDownloadList, storeList))
 
-        hideOrLayoutIfNeeded(shouldShowStoresDivider(directLinks, storeList))
-
-        setUpBothRecyclers(directLinks, storeList, theme, typeface)
+        setUpBothRecyclers(directDownloadList, storeList, theme, typeface)
     }
 
+    private fun shouldShowStoresDivider(directDownloadList: List<DirectDownloadListItem>, storeList: List<StoreListItem>): Boolean =
+        directDownloadList.isNotEmpty() && storeList.isNotEmpty()
+
     private fun setUpBothRecyclers(
-        directDownloadList: List<StoreListItem>,
+        directDownloadList: List<DirectDownloadListItem>,
         storeList: List<StoreListItem>,
         theme: UserSelectedTheme,
         typeface: Typeface?,
     ) {
         if (directDownloadList.isNotEmpty()) {
-            binding.recyclerDirect.adapter = DirectRecyclerAdapter(directDownloadList, typeface) { viewModel.onListListener(it) }
+            binding.recyclerDirect.adapter = DirectRecyclerAdapter(directDownloadList, typeface) { viewModel.onDirectDownloadLinkClicked(it) }
         }
 
         if (storeList.isNotEmpty()) {
             val spanCount = if (storeList.size > 1) 2 else 1
             binding.recyclerStores.layoutManager = GridLayoutManager(requireContext(), spanCount)
-            binding.recyclerStores.adapter = StoresRecyclerAdapter(storeList, theme, typeface) { viewModel.onListListener(it) }
+            binding.recyclerStores.adapter = StoresRecyclerAdapter(storeList, theme, typeface) { viewModel.onStoreCLicked(it) }
         }
     }
 
@@ -213,7 +214,7 @@ class AppUpdaterDialog : DialogFragment() {
          */
         fun getInstance(dialogData: UpdaterDialogData): AppUpdaterDialog = with(dialogData) {
             val fragment = AppUpdaterDialog()
-            val data = UpdaterFragmentModel(title, description, storeList, !isForceUpdate, theme)
+            val data = UpdaterFragmentModel(title, description, storeList, directDownloadList, !isForceUpdate, theme)
 
             TypefaceHolder.typeface = typeface
             // bundle to add data to our dialog

@@ -6,11 +6,13 @@ import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.pouyaheydari.androidappupdater.R
-import com.pouyaheydari.androidappupdater.store.model.Theme
 import com.pouyaheydari.androidappupdater.ui.compose.ComposeSampleActivity
-import com.pouyaheydari.androidappupdater.utils.getDSLList
-import com.pouyaheydari.androidappupdater.utils.getNormalList
+import com.pouyaheydari.androidappupdater.utils.directDownloadList
+import com.pouyaheydari.androidappupdater.utils.getDSLStoreList
+import com.pouyaheydari.androidappupdater.utils.getDslDirectDownloadLink
+import com.pouyaheydari.androidappupdater.utils.storeList
 import com.pouyaheydari.appupdater.AppUpdaterDialog
+import com.pouyaheydari.appupdater.core.model.Theme
 import com.pouyaheydari.appupdater.dsl.updateDialogBuilder
 import com.pouyaheydari.appupdater.pojo.UpdaterDialogData
 
@@ -48,9 +50,10 @@ internal class MainActivity : AppCompatActivity() {
             title = getString(R.string.library_title)
             description = getString(R.string.library_description)
             isForceUpdate = false
+            storeList = getDSLStoreList(context = this@MainActivity)
+            directDownloadList = getDslDirectDownloadLink(context = this@MainActivity)
             typeface = Typeface.createFromAsset(assets, FONT_PATH)
             theme = Theme.SYSTEM_DEFAULT
-            storeList = getDSLList(this@MainActivity)
         }.show(supportFragmentManager, TAG)
     }
 
@@ -60,14 +63,13 @@ internal class MainActivity : AppCompatActivity() {
      * core and appupdater
      */
     private fun kotlinSample() {
-        //   make a list of stores
-        val list = getNormalList(this)
         // creating update dialog
         AppUpdaterDialog.getInstance(
             UpdaterDialogData(
                 title = getString(R.string.library_title),
                 description = getString(R.string.library_description),
-                storeList = list,
+                storeList = storeList(this),
+                directDownloadList = directDownloadList(this),
                 isForceUpdate = false,
                 typeface = Typeface.createFromAsset(assets, FONT_PATH),
                 theme = Theme.LIGHT,

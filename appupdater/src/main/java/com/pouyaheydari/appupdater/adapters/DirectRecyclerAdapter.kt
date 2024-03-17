@@ -4,16 +4,16 @@ import android.graphics.Typeface
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.pouyaheydari.androidappupdater.store.model.StoreListItem
+import com.pouyaheydari.androidappupdater.directdownload.data.model.DirectDownloadListItem
 import com.pouyaheydari.appupdater.databinding.DownloadDirectItemBinding
 
 /**
  * Adapter to show Direct download links
  */
 internal class DirectRecyclerAdapter(
-    private val list: List<StoreListItem>,
+    private val list: List<DirectDownloadListItem>,
     private val typeface: Typeface?,
-    private val listener: (StoreListItem) -> Unit,
+    private val listener: (DirectDownloadListItem) -> Unit,
 ) : RecyclerView.Adapter<DirectRecyclerAdapter.SoresViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SoresViewHolder =
         DownloadDirectItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -30,7 +30,7 @@ internal class DirectRecyclerAdapter(
         /**
          * Binds data to layout
          */
-        fun onBind(item: StoreListItem) {
+        fun onBind(item: DirectDownloadListItem) {
             val txtDirect = binding.txtDirect
             txtDirect.text = item.title
             typeface?.let { txtDirect.typeface = it }

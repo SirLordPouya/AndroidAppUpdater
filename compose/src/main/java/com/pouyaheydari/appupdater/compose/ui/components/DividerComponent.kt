@@ -3,7 +3,7 @@ package com.pouyaheydari.appupdater.compose.ui.components
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Divider
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -26,7 +26,7 @@ internal fun DividerComponent(modifier: Modifier = Modifier) {
             .fillMaxWidth()
             .padding(top = 16.dp),
     ) {
-        Divider(
+        HorizontalDivider(
             color = MaterialTheme.colorScheme.background,
             modifier = Modifier
                 .weight(1F)
@@ -35,7 +35,7 @@ internal fun DividerComponent(modifier: Modifier = Modifier) {
         Text(
             text = stringResource(id = coreR.string.appupdater_or),
         )
-        Divider(
+        HorizontalDivider(
             color = MaterialTheme.colorScheme.background,
             modifier = Modifier
                 .weight(1F)

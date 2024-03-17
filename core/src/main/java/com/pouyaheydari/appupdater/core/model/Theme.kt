@@ -1,4 +1,4 @@
-package com.pouyaheydari.androidappupdater.store.model
+package com.pouyaheydari.appupdater.core.model
 
 /**
  * Specifies the theme of dialog

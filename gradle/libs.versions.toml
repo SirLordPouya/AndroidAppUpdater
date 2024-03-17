@@ -7,6 +7,7 @@ targetSdkVersion = "34"
 agp = "8.3.0"
 kotlin = "1.9.22"
 appcompat = "1.6.1"
+androidXCore = "1.12.0"
 constraintLayout = "2.1.4"
 junit4 = "4.13.2"
 androidTestJUnit = "1.1.5"
@@ -26,16 +27,11 @@ mockitoKotlin = "5.2.1"
 agp = { module = "com.android.tools.build:gradle", version.ref = "agp" }
 kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 kotlin-reflect = { group = "org.jetbrains.kotlin", name = "kotlin-reflect", version.ref = "kotlin" }
-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
-constraintLayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintLayout" }
-junit4 = { group = "junit", name = "junit", version.ref = "junit4" }
-mockito = { group = "org.mockito", name = "mockito-core", version.ref = "mockito" }
-mockito-kotlin = { group = "org.mockito.kotlin", name = "mockito-kotlin", version.ref = "mockitoKotlin" }
-espresso-intents = { group = "androidx.test.espresso", name = "espresso-intents", version.ref = "androidTestEspresso" }
-androidTestJUnit = { group = "androidx.test.ext", name = "junit", version.ref = "androidTestJUnit" }
-androidTestRules = { group = "androidx.test", name = "rules", version.ref = "androidTestRules" }
-androidTestEspresso = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "androidTestEspresso" }
-recyclerView = { group = "androidx.recyclerview", name = "recyclerview", version.ref = "recyclerView" }
+androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+androidx-constraintLayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintLayout" }
+androidx-recyclerView = { group = "androidx.recyclerview", name = "recyclerview", version.ref = "recyclerView" }
+androidx-core = { group = "androidx.core", name = "core", version.ref = "androidXCore" }
+androidx-fragment = { group = "androidx.fragment", name = "fragment-ktx", version.ref = "fragment" }
 androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "androidxComposeBom" }
 androidx-compose-foundation = { group = "androidx.compose.foundation", name = "foundation" }
 androidx-compose-viewModel = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "lifecycle" }
@@ -43,5 +39,11 @@ androidx-compose-material = { group = "androidx.compose.material3", name = "mate
 androidx-compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
 androidx-compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
 androidx-compose-activity = { group = "androidx.activity", name = "activity-compose", version.ref = "composeActivity" }
+junit4 = { group = "junit", name = "junit", version.ref = "junit4" }
+mockito = { group = "org.mockito", name = "mockito-core", version.ref = "mockito" }
+mockito-kotlin = { group = "org.mockito.kotlin", name = "mockito-kotlin", version.ref = "mockitoKotlin" }
+androidx-test-ui-espresso-intents = { group = "androidx.test.espresso", name = "espresso-intents", version.ref = "androidTestEspresso" }
+androidx-test-junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidTestJUnit" }
+androidx-test-rules = { group = "androidx.test", name = "rules", version.ref = "androidTestRules" }
+androidx-test-ui-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "androidTestEspresso" }
 coroutines = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutines" }
-androidx-fragment = { group = "androidx.fragment", name = "fragment-ktx", version.ref = "fragment" }

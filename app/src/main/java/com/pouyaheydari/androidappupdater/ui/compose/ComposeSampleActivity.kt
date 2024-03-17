@@ -14,16 +14,16 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.pouyaheydari.androidappupdater.R
-import com.pouyaheydari.androidappupdater.store.model.Theme
 import com.pouyaheydari.androidappupdater.ui.compose.theme.AndroidAppUpdaterTheme
 import com.pouyaheydari.androidappupdater.utils.directDownloadList
-import com.pouyaheydari.androidappupdater.utils.getNormalList
 import com.pouyaheydari.androidappupdater.utils.storeList
 import com.pouyaheydari.appupdater.compose.ui.AndroidAppUpdater
 import com.pouyaheydari.appupdater.compose.ui.models.UpdaterDialogData
+import com.pouyaheydari.appupdater.core.model.Theme
 import com.pouyaheydari.appupdater.core.R as coreR
 
 /**
@@ -48,7 +48,8 @@ internal class ComposeSampleActivity : ComponentActivity() {
                         UpdaterDialogData(
                             dialogTitle = stringResource(id = coreR.string.appupdater_app_name),
                             dialogDescription = stringResource(id = R.string.library_description),
-                            storeList = getNormalList(this),
+                            storeList = storeList(this),
+                            directDownloadList = directDownloadList(this),
                             theme = Theme.SYSTEM_DEFAULT,
                             onDismissRequested = { state = false },
                         ),
@@ -67,7 +68,8 @@ private fun DefaultPreview() {
             UpdaterDialogData(
                 dialogTitle = stringResource(id = coreR.string.appupdater_app_name),
                 dialogDescription = stringResource(id = R.string.library_description),
-                storeList = directDownloadList + storeList,
+                storeList = storeList(LocalContext.current),
+                directDownloadList = directDownloadList(LocalContext.current),
                 theme = Theme.DARK,
             ),
         )

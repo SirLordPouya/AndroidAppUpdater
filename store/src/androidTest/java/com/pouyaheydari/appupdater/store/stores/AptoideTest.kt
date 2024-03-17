@@ -6,9 +6,9 @@ import androidx.test.espresso.intent.matcher.IntentMatchers
 import androidx.test.espresso.intent.rule.IntentsRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
+import com.pouyaheydari.androidappupdater.store.ShowStoreModel
+import com.pouyaheydari.androidappupdater.store.domain.StoreFactory
 import com.pouyaheydari.androidappupdater.store.domain.showAppInSelectedStore
-import com.pouyaheydari.androidappupdater.store.model.ShowStoreModel
-import com.pouyaheydari.androidappupdater.store.model.Store
 import com.pouyaheydari.androidappupdater.store.stores.APTOIDE_PACKAGE
 import com.pouyaheydari.androidappupdater.store.stores.APTOIDE_URL
 import org.junit.Rule
@@ -25,7 +25,7 @@ internal class AptoideTest {
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
         val packageName = appContext.packageName
         val url = "https://pouyaheydari.com"
-        val storeModel = ShowStoreModel(packageName, Store.APTOIDE, url)
+        val storeModel = ShowStoreModel(StoreFactory.getAptoideStore(packageName), url)
 
         showAppInSelectedStore(appContext, storeModel)
 

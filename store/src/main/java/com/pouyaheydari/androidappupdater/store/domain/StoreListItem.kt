@@ -1,38 +1,35 @@
-package com.pouyaheydari.androidappupdater.store.model
+package com.pouyaheydari.androidappupdater.store.domain
 
 import android.os.Parcel
 import android.os.Parcelable
+import androidx.core.os.ParcelCompat
+import com.pouyaheydari.androidappupdater.store.stores.AppStore
 import com.pouyaheydari.appupdater.core.R as coreR
 
 /**
  * The model that we are using for list of stores
  */
 data class StoreListItem(
-    var store: Store = Store.DIRECT_URL,
+    var store: AppStore = StoreFactory.getGooglePlayStore(""),
     var title: String = "",
     var icon: Int = coreR.drawable.appupdater_ic_cloud,
     var url: String = "",
-    var packageName: String = "",
 ) : Parcelable {
-    constructor(parcel: Parcel) : this(
-        Store.entries[parcel.readInt()],
+    private constructor(parcel: Parcel) : this(
+        ParcelCompat.readParcelable(parcel, AppStore::class.java.classLoader, AppStore::class.java)!!,
         parcel.readString().orEmpty(),
         parcel.readInt(),
-        parcel.readString().orEmpty(),
         parcel.readString().orEmpty(),
     )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeInt(store.ordinal)
+        parcel.writeParcelable(store, flags)
         parcel.writeString(title)
         parcel.writeInt(icon)
         parcel.writeString(url)
-        parcel.writeString(packageName)
     }
 
-    override fun describeContents(): Int {
-        return 0
-    }
+    override fun describeContents(): Int = 0
 
     companion object CREATOR : Parcelable.Creator<StoreListItem> {
         override fun createFromParcel(parcel: Parcel): StoreListItem {

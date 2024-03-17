@@ -1,7 +1,8 @@
 package com.pouyaheydari.androidappupdater.store.stores
 
 import android.content.Intent
+import android.os.Parcelable
 
-interface AppStore {
-    fun getIntent(packageName: String): Intent
+sealed interface AppStore : Parcelable {
+    fun getIntent(): Intent
 }

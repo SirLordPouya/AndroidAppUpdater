@@ -35,17 +35,17 @@ dependencies {
     api(project(":directdownload"))
 
     // support dependency
-    implementation(libs.appcompat)
-    implementation(libs.constraintLayout)
-    implementation(libs.recyclerView)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.constraintLayout)
+    implementation(libs.androidx.recyclerView)
     implementation(libs.coroutines)
     implementation(libs.androidx.fragment)
 
     // testing dependency
     testImplementation(libs.junit4)
-    androidTestImplementation(libs.androidTestJUnit)
-    androidTestImplementation(libs.androidTestRules)
-    androidTestImplementation(libs.androidTestEspresso)
+    androidTestImplementation(libs.androidx.test.junit)
+    androidTestImplementation(libs.androidx.test.rules)
+    androidTestImplementation(libs.androidx.test.ui.espresso.core)
 }
 
 afterEvaluate {

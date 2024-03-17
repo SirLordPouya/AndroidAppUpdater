@@ -4,9 +4,10 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.pouyaheydari.androidappupdater.directdownload.data.model.DirectDownloadListItem
 import com.pouyaheydari.androidappupdater.directdownload.domain.GetIsUpdateInProgress
-import com.pouyaheydari.androidappupdater.store.model.ShowStoreModel
-import com.pouyaheydari.androidappupdater.store.model.StoreListItem
+import com.pouyaheydari.androidappupdater.store.ShowStoreModel
+import com.pouyaheydari.androidappupdater.store.domain.StoreListItem
 import com.pouyaheydari.appupdater.compose.data.mapper.UpdaterDialogUIMapper
 import com.pouyaheydari.appupdater.compose.ui.models.DialogScreenIntents
 import com.pouyaheydari.appupdater.compose.ui.models.DialogScreenState
@@ -44,12 +45,12 @@ internal class AndroidAppUpdaterViewModel(
 
     private fun showAppInSelectedStore(item: StoreListItem) {
         viewModelScope.launch {
-            val storeModel = ShowStoreModel(item.packageName, item.store, item.url)
+            val storeModel = ShowStoreModel(item.store, item.url)
             updateState { copy(selectedStore = storeModel, shouldOpenStore = true) }
         }
     }
 
-    private fun startDirectUrlApkDownload(item: StoreListItem) {
+    private fun startDirectUrlApkDownload(item: DirectDownloadListItem) {
         observeUpdateProgress()
         updateState { copy(shouldStartAPKDownload = true, downloadUrl = item.url) }
     }

@@ -6,13 +6,13 @@ import android.content.Intent
 import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
 import android.net.Uri
 import android.util.Log
-import com.pouyaheydari.androidappupdater.store.model.ShowStoreModel
+import com.pouyaheydari.androidappupdater.store.ShowStoreModel
 import com.pouyaheydari.appupdater.core.utils.ANDROID_APP_UPDATER_DEBUG_TAG
 import java.util.Locale
 
 fun showAppInSelectedStore(context: Context?, storeModel: ShowStoreModel) {
     try {
-        val intent = getStoreIntent(storeModel)
+        val intent = storeModel.store.getIntent()
         context?.startActivity(intent)
     } catch (e: ActivityNotFoundException) {
         e.printStackTrace()
@@ -20,14 +20,11 @@ fun showAppInSelectedStore(context: Context?, storeModel: ShowStoreModel) {
     }
 }
 
-private fun getStoreIntent(storeModel: ShowStoreModel) =
-    storeModel.store.provider?.kotlin?.objectInstance?.getIntent(storeModel.packageName)
-
 private fun showFallbackUrlOrCallErrorFallback(storeModel: ShowStoreModel, context: Context?) {
     if (storeModel.fallbackUrl.isNotEmpty()) {
         showFallbackUrlInDefaultBrowser(context, storeModel)
     } else {
-        handleError(storeModel.store.name, storeModel.errorCallBack)
+        handleError(storeModel.store.javaClass.name, storeModel.errorCallBack)
     }
 }
 
@@ -39,7 +36,7 @@ private fun showFallbackUrlInDefaultBrowser(context: Context?, storeModel: ShowS
         context?.startActivity(webViewIntent)
     } catch (e: ActivityNotFoundException) {
         e.printStackTrace()
-        handleError(storeModel.store.name, storeModel.errorCallBack)
+        handleError(storeModel.store.javaClass.name, storeModel.errorCallBack)
     }
 }
 

@@ -2,8 +2,9 @@ package com.pouyaheydari.appupdater.pojo
 
 import android.os.Parcel
 import android.os.Parcelable
-import com.pouyaheydari.androidappupdater.store.model.StoreListItem
-import com.pouyaheydari.androidappupdater.store.model.Theme
+import com.pouyaheydari.androidappupdater.directdownload.data.model.DirectDownloadListItem
+import com.pouyaheydari.androidappupdater.store.domain.StoreListItem
+import com.pouyaheydari.appupdater.core.model.Theme
 
 /**
  * This model is used to pass the data to dialog fragment via bundles
@@ -12,6 +13,7 @@ data class UpdaterFragmentModel(
     var title: String = "",
     var description: String = "",
     var storeList: List<StoreListItem> = listOf(),
+    var directDownloadList: List<DirectDownloadListItem> = listOf(),
     var isForceUpdate: Boolean = false,
     var theme: Theme = Theme.SYSTEM_DEFAULT,
 ) : Parcelable {
@@ -19,6 +21,7 @@ data class UpdaterFragmentModel(
         parcel.readString().orEmpty(),
         parcel.readString().orEmpty(),
         parcel.createTypedArrayList(StoreListItem).orEmpty(),
+        parcel.createTypedArrayList(DirectDownloadListItem).orEmpty(),
         parcel.readByte() != 0.toByte(),
         Theme.entries[parcel.readInt()],
     )

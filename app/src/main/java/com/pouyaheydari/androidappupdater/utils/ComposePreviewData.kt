@@ -1,91 +1,102 @@
 package com.pouyaheydari.androidappupdater.utils
 
-import com.pouyaheydari.androidappupdater.store.model.Store
-import com.pouyaheydari.androidappupdater.store.model.StoreListItem
+import android.content.Context
+import com.pouyaheydari.androidappupdater.R
+import com.pouyaheydari.androidappupdater.directdownload.data.model.DirectDownloadListItem
+import com.pouyaheydari.androidappupdater.store.domain.StoreFactory
+import com.pouyaheydari.androidappupdater.store.domain.StoreListItem
 import com.pouyaheydari.appupdater.core.R as coreR
 
-internal val directDownloadList = listOf(
-    StoreListItem(
-        store = Store.DIRECT_URL,
-        title = "Direct Download 1",
-        icon = coreR.drawable.appupdater_ic_cloud,
+internal fun directDownloadList(context: Context) = listOf(
+    DirectDownloadListItem(
+        title = context.getString(R.string.direct_download, "1"),
         url = APK_URL,
-        packageName = SAMPLE_PACKAGE_NAME,
     ),
-    StoreListItem(
-        store = Store.DIRECT_URL,
-        title = "Direct Download 2",
-        icon = coreR.drawable.appupdater_ic_cloud,
+    DirectDownloadListItem(
+        title = context.getString(R.string.direct_download, "2"),
         url = APK_URL,
-        packageName = SAMPLE_PACKAGE_NAME,
     ),
 )
 
-internal val storeList = listOf(
+internal fun storeList(context: Context) = listOf(
     StoreListItem(
-        Store.GOOGLE_PLAY,
-        "Google Play",
-        packageName = SAMPLE_PACKAGE_NAME,
+        StoreFactory.getGooglePlayStore(SAMPLE_PACKAGE_NAME),
+        context.getString(R.string.play),
         icon = coreR.drawable.appupdater_ic_google_play,
     ),
     StoreListItem(
-        Store.CAFE_BAZAAR,
-        "Cafe Bazaar",
-        packageName = SAMPLE_PACKAGE_NAME,
+        StoreFactory.getCafeBazaarStore(SAMPLE_PACKAGE_NAME),
+        context.getString(R.string.bazaar),
         icon = coreR.drawable.appupdater_ic_bazar,
     ),
     StoreListItem(
-        Store.MYKET,
-        "Myket",
-        packageName = SAMPLE_PACKAGE_NAME,
+        StoreFactory.getMyketStore(SAMPLE_PACKAGE_NAME),
+        context.getString(R.string.myket),
         icon = coreR.drawable.appupdater_ic_myket,
     ),
     StoreListItem(
-        Store.HUAWEI_APP_GALLERY,
-        "App Gallery",
-        packageName = SAMPLE_PACKAGE_NAME,
+        StoreFactory.getHuaweiAppGalleryStore(SAMPLE_PACKAGE_NAME),
+        context.getString(R.string.app_gallery),
         icon = coreR.drawable.appupdater_ic_app_gallery,
     ),
     StoreListItem(
-        Store.SAMSUNG_GALAXY_STORE,
-        "Galaxy Store",
-        packageName = SAMPLE_PACKAGE_NAME,
+        StoreFactory.getSamsungGalaxyStore(SAMPLE_PACKAGE_NAME),
+        context.getString(R.string.galaxy_store),
         icon = coreR.drawable.appupdater_ic_galaxy_store,
     ),
     StoreListItem(
-        Store.AMAZON_APP_STORE,
-        "Amazon App Store",
-        packageName = SAMPLE_PACKAGE_NAME,
+        StoreFactory.getAmazonAppStore(SAMPLE_PACKAGE_NAME),
+        context.getString(R.string.amazon_store),
         icon = coreR.drawable.appupdater_ic_amazon_app_store,
     ),
     StoreListItem(
-        Store.APTOIDE,
-        "Aptoide",
-        packageName = SAMPLE_PACKAGE_NAME,
+        StoreFactory.getAptoideStore(SAMPLE_PACKAGE_NAME),
+        context.getString(R.string.aptoide),
         icon = coreR.drawable.appupdater_ic_aptoide,
     ),
     StoreListItem(
-        Store.FDROID,
-        "FDroid",
-        packageName = FDROID_SAMPLE_PACKAGE_NAME,
+        StoreFactory.getOppoAppMarketStore(SAMPLE_PACKAGE_NAME),
+        context.getString(R.string.oppo_app_market),
+        icon = coreR.drawable.appupdater_ic_oppo_app_market,
+    ),
+    StoreListItem(
+        StoreFactory.getVAppStore(SAMPLE_PACKAGE_NAME),
+        context.getString(R.string.v_app_store),
+        icon = coreR.drawable.appupdater_ic_v_app_store,
+    ),
+    StoreListItem(
+        StoreFactory.getNineAppsStore(SAMPLE_PACKAGE_NAME),
+        context.getString(R.string.nine_apps),
+        icon = coreR.drawable.appupdater_ic_nine_apps,
+    ),
+    StoreListItem(
+        StoreFactory.getTencentAppStore(SAMPLE_PACKAGE_NAME),
+        context.getString(R.string.tencent_app_store),
+        icon = coreR.drawable.appupdater_ic_tencent_app_store,
+    ),
+    StoreListItem(
+        StoreFactory.getZTEStore(SAMPLE_PACKAGE_NAME),
+        context.getString(R.string.zte_app_store),
+        icon = coreR.drawable.appupdater_ic_zte_app_center,
+    ),
+    StoreListItem(
+        StoreFactory.getLenovoAppCenterStore(SAMPLE_PACKAGE_NAME),
+        context.getString(R.string.lenovo_app_center),
+        icon = coreR.drawable.appupdater_ic_zte_app_center,
+    ),
+    StoreListItem(
+        StoreFactory.getFdroidStore(FDROID_SAMPLE_PACKAGE_NAME),
+        context.getString(R.string.fdroid),
         icon = coreR.drawable.appupdater_ic_fdroid,
     ),
     StoreListItem(
-        Store.MI_GET_APP_STORE,
-        "Mi GetApp",
-        packageName = GET_APP_SAMPLE_PACKAGE_NAME,
+        StoreFactory.getMiStore(GET_APP_SAMPLE_PACKAGE_NAME),
+        context.getString(R.string.mi_get_app),
         icon = coreR.drawable.appupdater_ic_get_app_store,
     ),
     StoreListItem(
-        Store.ONE_STORE_APP_MARKET,
-        "One Store",
-        packageName = ONE_STORE_SAMPLE_PACKAGE_NAME,
+        StoreFactory.getOneStore(ONE_STORE_SAMPLE_PACKAGE_NAME),
+        context.getString(R.string.one_store),
         icon = coreR.drawable.appupdater_ic_one_store,
-    ),
-    StoreListItem(
-        Store.OPPO_APP_MARKET,
-        "Oppo App Market",
-        packageName = SAMPLE_PACKAGE_NAME,
-        icon = coreR.drawable.appupdater_ic_oppo_app_market,
     ),
 )

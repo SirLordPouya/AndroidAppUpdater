@@ -28,7 +28,7 @@ android {
     namespace = "com.pouyaheydari.appupdater.core"
 }
 dependencies {
-    implementation(libs.appcompat)
+    implementation(libs.androidx.appcompat)
     implementation(libs.coroutines)
 }
 

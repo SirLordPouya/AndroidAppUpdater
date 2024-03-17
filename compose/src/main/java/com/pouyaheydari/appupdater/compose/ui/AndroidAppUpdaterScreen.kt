@@ -6,9 +6,8 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.pouyaheydari.androidappupdater.store.ShowStoreModel
 import com.pouyaheydari.androidappupdater.store.domain.showAppInSelectedStore
-import com.pouyaheydari.androidappupdater.store.model.ShowStoreModel
-import com.pouyaheydari.androidappupdater.store.model.Theme
 import com.pouyaheydari.appupdater.compose.ui.components.AppUpdaterDialog
 import com.pouyaheydari.appupdater.compose.ui.components.UpdateInProgressDialogComponent
 import com.pouyaheydari.appupdater.compose.ui.models.DialogScreenIntents
@@ -19,6 +18,7 @@ import com.pouyaheydari.appupdater.compose.utils.getApkIfActivityIsNotNull
 import com.pouyaheydari.appupdater.compose.utils.isDarkThemeSelected
 import com.pouyaheydari.appupdater.compose.utils.previewDirectDownloadListData
 import com.pouyaheydari.appupdater.compose.utils.previewStoreListData
+import com.pouyaheydari.appupdater.core.model.Theme
 import com.pouyaheydari.appupdater.core.R as coreR
 
 /**
@@ -82,7 +82,8 @@ private fun LightPreview() {
             UpdaterDialogData(
                 dialogTitle = stringResource(id = coreR.string.appupdater_app_name),
                 dialogDescription = stringResource(id = coreR.string.appupdater_download_notification_desc),
-                storeList = previewDirectDownloadListData + previewStoreListData,
+                storeList = previewStoreListData,
+                directDownloadList = previewDirectDownloadListData,
                 theme = Theme.LIGHT,
             ),
         )
@@ -112,7 +113,8 @@ private fun LightPreviewSingleDirectLinkItem() {
             UpdaterDialogData(
                 dialogTitle = stringResource(id = coreR.string.appupdater_app_name),
                 dialogDescription = stringResource(id = coreR.string.appupdater_download_notification_desc),
-                storeList = previewDirectDownloadListData.subList(0, 1),
+                storeList = listOf(),
+                directDownloadList = previewDirectDownloadListData.subList(0, 1),
                 theme = Theme.LIGHT,
             ),
         )
@@ -127,7 +129,8 @@ private fun DarkPreview() {
             UpdaterDialogData(
                 dialogTitle = stringResource(id = coreR.string.appupdater_app_name),
                 dialogDescription = stringResource(id = coreR.string.appupdater_download_notification_desc),
-                storeList = previewDirectDownloadListData + previewStoreListData,
+                storeList = previewStoreListData,
+                directDownloadList = previewDirectDownloadListData,
                 theme = Theme.DARK,
             ),
         )

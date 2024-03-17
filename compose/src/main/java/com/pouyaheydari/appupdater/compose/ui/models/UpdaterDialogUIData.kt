@@ -1,10 +1,11 @@
 package com.pouyaheydari.appupdater.compose.ui.models
 
-import com.pouyaheydari.androidappupdater.store.model.StoreListItem
+import com.pouyaheydari.androidappupdater.directdownload.data.model.DirectDownloadListItem
+import com.pouyaheydari.androidappupdater.store.domain.StoreListItem
 
 internal data class UpdaterDialogUIData(
     val dialogHeader: DialogHeaderModel = DialogHeaderModel(),
-    val directDownloadList: List<StoreListItem> = emptyList(),
+    val directDownloadList: List<DirectDownloadListItem> = emptyList(),
     val storeList: List<StoreListItem> = emptyList(),
     val shouldShowDividers: Boolean = false,
     inline val onDismissRequested: () -> Unit = {},

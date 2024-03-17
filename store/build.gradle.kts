@@ -35,15 +35,16 @@ dependencies {
     api(project(":core"))
 
     implementation(libs.kotlin.reflect)
+    implementation(libs.androidx.core)
 
     // testing
     testImplementation(libs.junit4)
     testImplementation(libs.mockito)
     testImplementation(libs.mockito.kotlin)
-    androidTestImplementation(libs.androidTestJUnit)
-    androidTestImplementation(libs.androidTestRules)
-    androidTestImplementation(libs.androidTestEspresso)
-    androidTestImplementation(libs.espresso.intents)
+    androidTestImplementation(libs.androidx.test.junit)
+    androidTestImplementation(libs.androidx.test.rules)
+    androidTestImplementation(libs.androidx.test.ui.espresso.core)
+    androidTestImplementation(libs.androidx.test.ui.espresso.intents)
 }
 
 afterEvaluate {
