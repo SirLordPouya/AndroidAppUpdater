@@ -48,7 +48,7 @@ private fun installAPKForNtoO(context: Context, apk: File) {
 
 private fun getFileUri(context: Context, apk: File): Uri = FileProvider.getUriForFile(
     context,
-    "${context.packageName}.fileProvider.GenericFileProvider",
+    "${context.packageName}.fileprovider",
     apk,
 )
 

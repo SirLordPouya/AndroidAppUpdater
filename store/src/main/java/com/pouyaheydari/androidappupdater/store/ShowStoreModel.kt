@@ -5,6 +5,5 @@ import com.pouyaheydari.androidappupdater.store.stores.AppStore
 
 data class ShowStoreModel(
     val store: AppStore = StoreFactory.getGooglePlayStore(""),
-    val fallbackUrl: String = "",
-    val errorCallBack: () -> Unit = {},
+    val errorCallBack: (String) -> Unit = {},
 )

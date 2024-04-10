@@ -1,16 +1,20 @@
 package com.pouyaheydari.appupdater.compose.ui
 
+import android.app.Activity
+import android.content.Context
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewFontScale
+import androidx.compose.ui.tooling.preview.PreviewScreenSizes
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.pouyaheydari.androidappupdater.store.ShowStoreModel
 import com.pouyaheydari.androidappupdater.store.domain.showAppInSelectedStore
 import com.pouyaheydari.appupdater.compose.ui.components.AppUpdaterDialog
 import com.pouyaheydari.appupdater.compose.ui.components.UpdateInProgressDialogComponent
 import com.pouyaheydari.appupdater.compose.ui.models.DialogScreenIntents
+import com.pouyaheydari.appupdater.compose.ui.models.ErrorWhileOpeningStore
 import com.pouyaheydari.appupdater.compose.ui.models.UpdaterDialogData
 import com.pouyaheydari.appupdater.compose.ui.theme.AndroidAppUpdaterTheme
 import com.pouyaheydari.appupdater.compose.utils.getActivity
@@ -29,9 +33,11 @@ import com.pouyaheydari.appupdater.core.R as coreR
 @Composable
 fun AndroidAppUpdater(dialogData: UpdaterDialogData) {
     val viewModel: AndroidAppUpdaterViewModel = viewModel(factory = AndroidAppUpdaterViewModelFactory(dialogData))
-    val state = viewModel.uiState.value
+    val state = viewModel.uiState.collectAsStateWithLifecycle().value
 
     AndroidAppUpdaterTheme(darkTheme = isDarkThemeSelected(dialogData.theme)) {
+        val activity = LocalContext.current.getActivity()
+
         if (state.shouldShowDialog) {
             AppUpdaterDialog(
                 dialogContent = state.dialogContent,
@@ -40,41 +46,60 @@ fun AndroidAppUpdater(dialogData: UpdaterDialogData) {
                 typeface = dialogData.typeface,
             )
         }
-        if (state.shouldShowUpdateInProgress) {
-            UpdateInProgressDialogComponent()
+
+        UpdateInProgressDialogComponent(isUpdateInProgress = state.shouldShowUpdateInProgress)
+
+        setupErrorCallback(state.errorWhileOpeningStore, dialogData.errorWhileOpeningStoreCallback) {
+            viewModel.handleIntent(DialogScreenIntents.OnErrorCallbackExecuted)
         }
 
-        SetupStoreOpener(state.selectedStore, state.shouldOpenStore) {
+        setupStoreOpener(state.selectedStore, state.shouldOpenStore, activity) {
             viewModel.handleIntent(DialogScreenIntents.OnStoreOpened)
         }
-        SetupDirectApkDownload(state.downloadUrl, state.shouldStartAPKDownload)
+
+        setupDirectApkDownload(
+            state.downloadUrl,
+            state.shouldStartAPKDownload,
+            activity,
+            { viewModel.handleIntent(DialogScreenIntents.OnApkDownloadRequested) },
+            { viewModel.handleIntent(DialogScreenIntents.OnApkDownloadStarted) },
+        )
     }
 }
 
-@Composable
-private fun SetupDirectApkDownload(url: String, shouldStartAPKDownload: Boolean) {
-    val activity = LocalContext.current.getActivity()
-
-    LaunchedEffect(key1 = url) {
-        if (shouldStartAPKDownload) {
-            getApkIfActivityIsNotNull(activity, url)
-        }
+private fun setupErrorCallback(
+    errorWhileOpeningStore: ErrorWhileOpeningStore,
+    callback: (String) -> Unit,
+    onCallbackCalledListener: () -> Unit,
+) {
+    if (errorWhileOpeningStore.shouldNotifyCaller) {
+        callback(errorWhileOpeningStore.storeName)
+        onCallbackCalledListener()
     }
 }
 
-@Composable
-private fun SetupStoreOpener(store: ShowStoreModel, shouldOpenStore: Boolean, onStoreOpenedListener: () -> Unit) {
-    val context = LocalContext.current
+private fun setupDirectApkDownload(
+    url: String,
+    shouldStartAPKDownload: Boolean,
+    activity: Activity?,
+    onDownloadApkRequested: () -> Unit,
+    onDownloadingApkStarted: () -> Unit,
+) {
+    if (shouldStartAPKDownload) {
+        getApkIfActivityIsNotNull(activity, url, onDownloadingApkStarted)
+        onDownloadApkRequested()
+    }
+}
 
-    LaunchedEffect(key1 = store) {
-        if (shouldOpenStore) {
-            showAppInSelectedStore(context, store)
-        }
+private fun setupStoreOpener(store: ShowStoreModel, shouldOpenStore: Boolean, context: Context?, onStoreOpenedListener: () -> Unit) {
+    if (shouldOpenStore) {
+        showAppInSelectedStore(context, store)
         onStoreOpenedListener()
     }
 }
 
-@Preview(showBackground = true)
+@PreviewFontScale
+@PreviewScreenSizes
 @Composable
 private fun LightPreview() {
     AndroidAppUpdaterTheme {
@@ -90,7 +115,8 @@ private fun LightPreview() {
     }
 }
 
-@Preview(showBackground = true)
+@PreviewFontScale
+@PreviewScreenSizes
 @Composable
 private fun LightPreviewSingleStoreItem() {
     AndroidAppUpdaterTheme {
@@ -105,7 +131,8 @@ private fun LightPreviewSingleStoreItem() {
     }
 }
 
-@Preview(showBackground = true)
+@PreviewFontScale
+@PreviewScreenSizes
 @Composable
 private fun LightPreviewSingleDirectLinkItem() {
     AndroidAppUpdaterTheme {
@@ -121,7 +148,8 @@ private fun LightPreviewSingleDirectLinkItem() {
     }
 }
 
-@Preview(showBackground = true)
+@PreviewFontScale
+@PreviewScreenSizes
 @Composable
 private fun DarkPreview() {
     AndroidAppUpdaterTheme {

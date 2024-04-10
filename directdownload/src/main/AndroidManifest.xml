@@ -4,8 +4,8 @@
 
     <application tools:ignore="MissingApplicationIcon">
         <provider
-            android:name=".data.fileprovider.GenericFileProvider"
-            android:authorities="${applicationId}.data.fileProvider.GenericFileProvider"
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data

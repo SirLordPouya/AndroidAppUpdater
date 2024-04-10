@@ -11,4 +11,5 @@ sealed interface DialogStates {
     data object HideUpdateInProgress : DialogStates
     data class OpenStore(val store: ShowStoreModel) : DialogStates
     data class DownloadApk(val apkUrl: String) : DialogStates
+    data class ExecuteErrorCallback(val storeName: String) : DialogStates
 }

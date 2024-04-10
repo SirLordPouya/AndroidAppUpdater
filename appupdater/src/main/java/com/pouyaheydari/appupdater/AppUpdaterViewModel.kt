@@ -7,6 +7,7 @@ import com.pouyaheydari.androidappupdater.directdownload.domain.GetIsUpdateInPro
 import com.pouyaheydari.androidappupdater.store.ShowStoreModel
 import com.pouyaheydari.androidappupdater.store.domain.StoreListItem
 import com.pouyaheydari.appupdater.pojo.DialogStates
+import com.pouyaheydari.appupdater.utils.ErrorCallbackHolder
 import com.pouyaheydari.appupdater.utils.TypefaceHolder
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -19,19 +20,31 @@ import kotlinx.coroutines.launch
 internal class AppUpdaterViewModel : ViewModel() {
     val screenState = MutableStateFlow<DialogStates>(DialogStates.HideUpdateInProgress)
 
-    fun onStoreCLicked(item: StoreListItem) {
+    fun onStoreClicked(item: StoreListItem) {
         viewModelScope.launch {
-            val storeModel = ShowStoreModel(item.store, item.url)
+            val storeModel = ShowStoreModel(item.store, ::onErrorWhileOpeningStore)
             screenState.value = DialogStates.OpenStore(storeModel)
             runWithDelay {
-                screenState.value = DialogStates.HideUpdateInProgress
+                screenState.value = DialogStates.Empty
             }
         }
     }
 
     fun onDirectDownloadLinkClicked(item: DirectDownloadListItem) {
-        observeUpdateInProgressStatus()
         screenState.value = DialogStates.DownloadApk(item.url)
+    }
+
+    fun onDownloadStarted() {
+        observeUpdateInProgressStatus()
+    }
+
+    private fun onErrorWhileOpeningStore(storeName: String) {
+        viewModelScope.launch {
+            screenState.value = DialogStates.ExecuteErrorCallback(storeName)
+            runWithDelay {
+                screenState.value = DialogStates.Empty
+            }
+        }
     }
 
     private fun observeUpdateInProgressStatus() {
@@ -44,6 +57,7 @@ internal class AppUpdaterViewModel : ViewModel() {
 
     override fun onCleared() {
         TypefaceHolder.clear()
+        ErrorCallbackHolder.clear()
         super.onCleared()
     }
 

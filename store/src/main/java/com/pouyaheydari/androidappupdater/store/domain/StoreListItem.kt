@@ -16,7 +16,7 @@ data class StoreListItem(
     var url: String = "",
 ) : Parcelable {
     private constructor(parcel: Parcel) : this(
-        ParcelCompat.readParcelable(parcel, AppStore::class.java.classLoader, AppStore::class.java)!!,
+        ParcelCompat.readParcelable(parcel, AppStore::class.java.classLoader, AppStore::class.java) ?: StoreFactory.getGooglePlayStore(""),
         parcel.readString().orEmpty(),
         parcel.readInt(),
         parcel.readString().orEmpty(),

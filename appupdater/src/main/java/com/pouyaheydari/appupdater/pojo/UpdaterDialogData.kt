@@ -15,5 +15,6 @@ data class UpdaterDialogData(
     var directDownloadList: List<DirectDownloadListItem> = listOf(),
     var isForceUpdate: Boolean = false,
     var typeface: Typeface? = null,
+    var errorWhileOpeningStoreCallback: ((String) -> Unit)? = null,
     var theme: Theme = Theme.SYSTEM_DEFAULT,
 )

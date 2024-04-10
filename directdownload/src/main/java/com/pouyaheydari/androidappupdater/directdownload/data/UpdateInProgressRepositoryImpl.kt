@@ -4,6 +4,7 @@ import com.pouyaheydari.androidappupdater.directdownload.domain.UpdateInProgress
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.flow.onStart
 import java.util.concurrent.atomic.AtomicLong
 
 private const val NO_REQUEST_ID = -10L
@@ -18,7 +19,9 @@ internal object UpdateInProgressRepositoryImpl : UpdateInProgressRepository {
         requestId.set(id)
     }
 
-    override fun getUpdateInProgressFlow(): Flow<Boolean> = shouldShowUpdateInProgressDialog.asSharedFlow()
+    override fun getUpdateInProgressFlow(): Flow<Boolean> = shouldShowUpdateInProgressDialog.asSharedFlow().onStart {
+        emit(true)
+    }
 
     override suspend fun updateApkDownloadProgress(isInProgress: Boolean) {
         shouldShowUpdateInProgressDialog.emit(isInProgress)

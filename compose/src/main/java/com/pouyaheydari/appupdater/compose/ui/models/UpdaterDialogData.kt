@@ -14,6 +14,7 @@ data class UpdaterDialogData(
     val storeList: List<StoreListItem> = listOf(),
     val directDownloadList: List<DirectDownloadListItem> = listOf(),
     val onDismissRequested: () -> Unit = {},
+    val errorWhileOpeningStoreCallback: (String) -> Unit = {},
     val typeface: Typeface? = null,
     val theme: Theme = Theme.SYSTEM_DEFAULT,
 )

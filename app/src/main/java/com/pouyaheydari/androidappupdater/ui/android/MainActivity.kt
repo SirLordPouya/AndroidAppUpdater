@@ -4,6 +4,7 @@ import android.content.Intent
 import android.graphics.Typeface
 import android.os.Bundle
 import android.widget.Button
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.pouyaheydari.androidappupdater.R
 import com.pouyaheydari.androidappupdater.ui.compose.ComposeSampleActivity
@@ -54,6 +55,9 @@ internal class MainActivity : AppCompatActivity() {
             directDownloadList = getDslDirectDownloadLink(context = this@MainActivity)
             typeface = Typeface.createFromAsset(assets, FONT_PATH)
             theme = Theme.SYSTEM_DEFAULT
+            errorWhileOpeningStoreCallback = {
+                Toast.makeText(this@MainActivity, getString(R.string.store_is_not_installed, it), Toast.LENGTH_SHORT).show()
+            }
         }.show(supportFragmentManager, TAG)
     }
 
@@ -73,6 +77,9 @@ internal class MainActivity : AppCompatActivity() {
                 isForceUpdate = false,
                 typeface = Typeface.createFromAsset(assets, FONT_PATH),
                 theme = Theme.LIGHT,
+                errorWhileOpeningStoreCallback = {
+                    Toast.makeText(this@MainActivity, getString(R.string.store_is_not_installed, it), Toast.LENGTH_SHORT).show()
+                },
             ),
         ).show(supportFragmentManager, TAG)
     }

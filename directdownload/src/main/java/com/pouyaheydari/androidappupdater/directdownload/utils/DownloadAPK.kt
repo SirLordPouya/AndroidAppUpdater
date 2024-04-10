@@ -15,20 +15,17 @@ import com.pouyaheydari.appupdater.core.utils.APK_NAME
 /**
  * Checks for needed permissions and tries to download the apk
  */
-suspend fun getApk(url: String, activity: Activity) {
+fun getApk(url: String, activity: Activity, onDownloadingApkStarted: () -> Unit) {
     if (checkAndRequestRequiredPermissionsBasedOnOsVersion(activity, Build.VERSION.SDK_INT)) {
         prepareToDownloadApk(url, activity)
+        onDownloadingApkStarted()
     }
 }
 
-private suspend fun prepareToDownloadApk(url: String, context: Context) {
-    // Show update in Progress alert dialog to the user
-    showUpdateInProgress()
-
+private fun prepareToDownloadApk(url: String, context: Context) {
     // Delete APK if user downloaded the apk before
     deleteExistingApkIfAvailable(context)
 
-    // Start downloading the APK
     startDownloadManagerToDownloadNewApk(url, context)
 }
 
@@ -37,10 +34,6 @@ private fun deleteExistingApkIfAvailable(context: Context) {
     if (file.exists()) {
         file.delete()
     }
-}
-
-private suspend fun showUpdateInProgress() {
-    com.pouyaheydari.androidappupdater.directdownload.domain.SetIsUpdateInProgress().invoke(true)
 }
 
 private fun startDownloadManagerToDownloadNewApk(url: String, context: Context) {

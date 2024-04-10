@@ -1,6 +1,7 @@
 package com.pouyaheydari.androidappupdater.ui.compose
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Box
@@ -52,6 +53,9 @@ internal class ComposeSampleActivity : ComponentActivity() {
                             directDownloadList = directDownloadList(this),
                             theme = Theme.SYSTEM_DEFAULT,
                             onDismissRequested = { state = false },
+                            errorWhileOpeningStoreCallback = {
+                                Toast.makeText(this@ComposeSampleActivity, getString(R.string.store_is_not_installed, it), Toast.LENGTH_LONG).show()
+                            },
                         ),
                     )
                 }

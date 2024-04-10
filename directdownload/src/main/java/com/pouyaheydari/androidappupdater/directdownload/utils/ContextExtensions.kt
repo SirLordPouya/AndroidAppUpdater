@@ -8,4 +8,4 @@ import java.io.File
 /**
  * @return a File to the previously downloaded APK file if present.
  */
-internal fun Context.getExistingApk() = File("${this.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS)}/$APK_NAME")
+internal fun Context.getExistingApk() = File("${getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS)}/$APK_NAME")

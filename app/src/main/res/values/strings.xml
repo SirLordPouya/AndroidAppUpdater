@@ -23,6 +23,7 @@
     <string name="zte_app_store">ZTE App Store</string>
     <string name="lenovo_app_center">Lenovo App Center</string>
     <string name="show_compose_dialog">Show Compose Dialog</string>
+    <string name="store_is_not_installed">%s Store is not installed</string>
     <!--<string name="appupdater_please_wait">لطفا صبر کنید</string>-->
     <!--<string name="appupdater_downloading_new_version">درحال دانلود آخرین نسخه...</string>-->
     <!--<string name="appupdater_or">یا</string>-->

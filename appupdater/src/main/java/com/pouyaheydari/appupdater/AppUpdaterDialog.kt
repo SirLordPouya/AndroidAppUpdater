@@ -30,6 +30,7 @@ import com.pouyaheydari.appupdater.pojo.UpdaterFragmentModel
 import com.pouyaheydari.appupdater.pojo.UserSelectedTheme
 import com.pouyaheydari.appupdater.pojo.UserSelectedTheme.DARK
 import com.pouyaheydari.appupdater.pojo.UserSelectedTheme.LIGHT
+import com.pouyaheydari.appupdater.utils.ErrorCallbackHolder
 import com.pouyaheydari.appupdater.utils.TypefaceHolder
 import com.pouyaheydari.appupdater.utils.getDialogWidth
 import com.pouyaheydari.appupdater.utils.parcelable
@@ -96,8 +97,12 @@ class AppUpdaterDialog : DialogFragment() {
             .distinctUntilChanged()
             .onEach {
                 when (it) {
-                    is DialogStates.DownloadApk -> getApk(it.apkUrl, requireActivity())
+                    is DialogStates.DownloadApk -> getApk(it.apkUrl, requireActivity()) {
+                        viewModel.onDownloadStarted()
+                    }
+
                     is DialogStates.OpenStore -> showAppInSelectedStore(context, it.store)
+                    is DialogStates.ExecuteErrorCallback -> ErrorCallbackHolder.callback?.invoke(it.storeName)
                     DialogStates.HideUpdateInProgress -> hideUpdateInProgressDialog()
                     DialogStates.ShowUpdateInProgress -> showUpdateInProgressDialog(theme)
                     DialogStates.Empty -> hideUpdateInProgressDialog()
@@ -175,7 +180,7 @@ class AppUpdaterDialog : DialogFragment() {
         if (storeList.isNotEmpty()) {
             val spanCount = if (storeList.size > 1) 2 else 1
             binding.recyclerStores.layoutManager = GridLayoutManager(requireContext(), spanCount)
-            binding.recyclerStores.adapter = StoresRecyclerAdapter(storeList, theme, typeface) { viewModel.onStoreCLicked(it) }
+            binding.recyclerStores.adapter = StoresRecyclerAdapter(storeList, theme, typeface) { viewModel.onStoreClicked(it) }
         }
     }
 
@@ -217,6 +222,7 @@ class AppUpdaterDialog : DialogFragment() {
             val data = UpdaterFragmentModel(title, description, storeList, directDownloadList, !isForceUpdate, theme)
 
             TypefaceHolder.typeface = typeface
+            ErrorCallbackHolder.callback = errorWhileOpeningStoreCallback
             // bundle to add data to our dialog
             val bundle = Bundle().apply { putParcelable(UPDATE_DIALOG_KEY, data) }
             fragment.arguments = bundle
