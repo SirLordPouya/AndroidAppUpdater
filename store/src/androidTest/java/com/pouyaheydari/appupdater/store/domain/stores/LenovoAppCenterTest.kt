@@ -1,4 +1,4 @@
-package com.pouyaheydari.appupdater.store.stores
+package com.pouyaheydari.appupdater.store.domain.stores
 
 import android.net.Uri
 import androidx.test.espresso.intent.Intents

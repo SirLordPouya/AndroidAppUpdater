@@ -1,4 +1,4 @@
-package com.pouyaheydari.appupdater.store.stores
+package com.pouyaheydari.appupdater.store.domain.stores
 
 import android.net.Uri
 import androidx.test.espresso.intent.Intents
@@ -9,14 +9,13 @@ import androidx.test.platform.app.InstrumentationRegistry
 import com.pouyaheydari.androidappupdater.store.domain.ShowStoreModel
 import com.pouyaheydari.androidappupdater.store.domain.StoreFactory
 import com.pouyaheydari.androidappupdater.store.domain.showAppInSelectedStore
-import com.pouyaheydari.androidappupdater.store.domain.stores.MYKET_PACKAGE
-import com.pouyaheydari.androidappupdater.store.domain.stores.MYKET_URL
+import com.pouyaheydari.androidappupdater.store.domain.stores.SAMSUNG_GALAXY_STORE_URL
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
-internal class MyketStoreTest {
+internal class SamsungGalaxyStoreTest {
     @get:Rule
     val intentsTestRule = IntentsRule()
 
@@ -24,11 +23,10 @@ internal class MyketStoreTest {
     fun whenCalling_setStoreData_then_intentGetsFiredCorrectly() {
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
         val packageName = appContext.packageName
-        val storeModel = ShowStoreModel(StoreFactory.getMyketStore(packageName))
+        val storeModel = ShowStoreModel(StoreFactory.getSamsungGalaxyStore(packageName))
 
         showAppInSelectedStore(appContext, storeModel)
 
-        Intents.intended(IntentMatchers.hasPackage(MYKET_PACKAGE))
-        Intents.intended(IntentMatchers.hasData(Uri.parse("$MYKET_URL$packageName")))
+        Intents.intended(IntentMatchers.hasData(Uri.parse("$SAMSUNG_GALAXY_STORE_URL$packageName")))
     }
 }

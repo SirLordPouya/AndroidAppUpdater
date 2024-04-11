@@ -1,4 +1,4 @@
-package com.pouyaheydari.appupdater.store.stores
+package com.pouyaheydari.appupdater.store.domain.stores
 
 import android.net.Uri
 import androidx.test.espresso.intent.Intents
@@ -9,14 +9,13 @@ import androidx.test.platform.app.InstrumentationRegistry
 import com.pouyaheydari.androidappupdater.store.domain.ShowStoreModel
 import com.pouyaheydari.androidappupdater.store.domain.StoreFactory
 import com.pouyaheydari.androidappupdater.store.domain.showAppInSelectedStore
-import com.pouyaheydari.androidappupdater.store.domain.stores.PLAY_PACKAGE
-import com.pouyaheydari.androidappupdater.store.domain.stores.PLAY_URL
+import com.pouyaheydari.androidappupdater.store.domain.stores.TENCENT_APP_STORE_URL
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
-internal class GooglePlayStoreTest {
+internal class TencentStoreTest {
     @get:Rule
     val intentsTestRule = IntentsRule()
 
@@ -24,11 +23,10 @@ internal class GooglePlayStoreTest {
     fun whenCalling_setStoreData_then_intentGetsFiredCorrectly() {
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
         val packageName = appContext.packageName
-        val storeModel = ShowStoreModel(StoreFactory.getGooglePlayStore(packageName))
+        val tencentStoreModel = ShowStoreModel(StoreFactory.getTencentAppStore(packageName))
 
-        showAppInSelectedStore(appContext, storeModel)
+        showAppInSelectedStore(appContext, tencentStoreModel)
 
-        Intents.intended(IntentMatchers.hasPackage(PLAY_PACKAGE))
-        Intents.intended(IntentMatchers.hasData(Uri.parse("$PLAY_URL$packageName")))
+        Intents.intended(IntentMatchers.hasData(Uri.parse("$TENCENT_APP_STORE_URL$packageName")))
     }
 }

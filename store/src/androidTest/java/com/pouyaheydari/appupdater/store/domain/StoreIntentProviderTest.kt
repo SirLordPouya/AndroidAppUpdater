@@ -1,4 +1,4 @@
-package com.pouyaheydari.appupdater.store.utils
+package com.pouyaheydari.appupdater.store.domain
 
 import android.content.Intent
 import android.net.Uri
