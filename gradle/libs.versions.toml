@@ -42,6 +42,7 @@ androidx-compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-toolin
 androidx-compose-activity = { group = "androidx.activity", name = "activity-compose", version.ref = "composeActivity" }
 junit4 = { group = "junit", name = "junit", version.ref = "junit4" }
 mockito = { group = "org.mockito", name = "mockito-core", version.ref = "mockito" }
+mockito-android = {group = "org.mockito", name = "mockito-android", version.ref = "mockito"}
 mockito-kotlin = { group = "org.mockito.kotlin", name = "mockito-kotlin", version.ref = "mockitoKotlin" }
 androidx-test-ui-espresso-intents = { group = "androidx.test.espresso", name = "espresso-intents", version.ref = "androidTestEspresso" }
 androidx-test-junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidTestJUnit" }
