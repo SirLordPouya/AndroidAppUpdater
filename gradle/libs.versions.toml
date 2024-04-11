@@ -21,7 +21,7 @@ fragment = "1.6.2"
 androidxComposeBom = "2024.04.00"
 composeActivity = "1.8.2"
 mockito = "5.11.0"
-mockitoKotlin = "5.2.1"
+mockitoKotlin = "5.3.1"
 
 [libraries]
 agp = { module = "com.android.tools.build:gradle", version.ref = "agp" }
