@@ -34,13 +34,10 @@ java {
 dependencies {
     api(project(":core"))
 
-    implementation(libs.kotlin.reflect)
     implementation(libs.androidx.core)
 
     // testing
     testImplementation(libs.junit4)
-    testImplementation(libs.mockito)
-    testImplementation(libs.mockito.kotlin)
     androidTestImplementation(libs.mockito.kotlin)
     androidTestImplementation(libs.mockito.android)
     androidTestImplementation(libs.androidx.test.junit)
