@@ -1,4 +1,4 @@
-package com.pouyaheydari.androidappupdater.store.stores
+package com.pouyaheydari.androidappupdater.store.domain.stores
 
 import android.os.Parcel
 import android.os.Parcelable

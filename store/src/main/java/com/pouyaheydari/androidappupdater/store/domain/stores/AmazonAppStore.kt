@@ -1,11 +1,11 @@
-package com.pouyaheydari.androidappupdater.store.stores
+package com.pouyaheydari.androidappupdater.store.domain.stores
 
 import android.os.Parcel
 import android.os.Parcelable
 import com.pouyaheydari.androidappupdater.store.domain.StoreIntentProvider
 
-const val AMAZON_APP_STORE_URL = "amzn://apps/android?p="
-const val AMAZON_PACKAGE = "com.amazon.venezia"
+internal const val AMAZON_APP_STORE_URL = "amzn://apps/android?p="
+internal const val AMAZON_PACKAGE = "com.amazon.venezia"
 
 /**
  * Opens application's page in [Amazon App Store](https://www.amazon.com/gp/mas/get/amazonapp)

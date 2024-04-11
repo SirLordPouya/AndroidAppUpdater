@@ -3,7 +3,6 @@ package com.pouyaheydari.androidappupdater.store.domain
 import android.content.ActivityNotFoundException
 import android.content.Context
 import android.util.Log
-import com.pouyaheydari.androidappupdater.store.ShowStoreModel
 import com.pouyaheydari.appupdater.core.utils.ANDROID_APP_UPDATER_DEBUG_TAG
 import java.util.Locale
 

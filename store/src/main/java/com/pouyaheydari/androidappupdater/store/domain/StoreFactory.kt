@@ -1,21 +1,21 @@
 package com.pouyaheydari.androidappupdater.store.domain
 
-import com.pouyaheydari.androidappupdater.store.stores.AmazonAppStore
-import com.pouyaheydari.androidappupdater.store.stores.Aptoide
-import com.pouyaheydari.androidappupdater.store.stores.CafeBazaarStore
-import com.pouyaheydari.androidappupdater.store.stores.FDroid
-import com.pouyaheydari.androidappupdater.store.stores.GooglePlayStore
-import com.pouyaheydari.androidappupdater.store.stores.HuaweiAppGallery
-import com.pouyaheydari.androidappupdater.store.stores.LenovoAppCenter
-import com.pouyaheydari.androidappupdater.store.stores.MiGetAppStore
-import com.pouyaheydari.androidappupdater.store.stores.MyketStore
-import com.pouyaheydari.androidappupdater.store.stores.NineApps
-import com.pouyaheydari.androidappupdater.store.stores.OneStoreAppMarket
-import com.pouyaheydari.androidappupdater.store.stores.OppoAppMarket
-import com.pouyaheydari.androidappupdater.store.stores.SamsungGalaxyStore
-import com.pouyaheydari.androidappupdater.store.stores.TencentAppStore
-import com.pouyaheydari.androidappupdater.store.stores.VAppStore
-import com.pouyaheydari.androidappupdater.store.stores.ZTEAppCenter
+import com.pouyaheydari.androidappupdater.store.domain.stores.AmazonAppStore
+import com.pouyaheydari.androidappupdater.store.domain.stores.Aptoide
+import com.pouyaheydari.androidappupdater.store.domain.stores.CafeBazaarStore
+import com.pouyaheydari.androidappupdater.store.domain.stores.FDroid
+import com.pouyaheydari.androidappupdater.store.domain.stores.GooglePlayStore
+import com.pouyaheydari.androidappupdater.store.domain.stores.HuaweiAppGallery
+import com.pouyaheydari.androidappupdater.store.domain.stores.LenovoAppCenter
+import com.pouyaheydari.androidappupdater.store.domain.stores.MiGetAppStore
+import com.pouyaheydari.androidappupdater.store.domain.stores.MyketStore
+import com.pouyaheydari.androidappupdater.store.domain.stores.NineApps
+import com.pouyaheydari.androidappupdater.store.domain.stores.OneStoreAppMarket
+import com.pouyaheydari.androidappupdater.store.domain.stores.OppoAppMarket
+import com.pouyaheydari.androidappupdater.store.domain.stores.SamsungGalaxyStore
+import com.pouyaheydari.androidappupdater.store.domain.stores.TencentAppStore
+import com.pouyaheydari.androidappupdater.store.domain.stores.VAppStore
+import com.pouyaheydari.androidappupdater.store.domain.stores.ZTEAppCenter
 
 /**
  * Enum class to select type of market

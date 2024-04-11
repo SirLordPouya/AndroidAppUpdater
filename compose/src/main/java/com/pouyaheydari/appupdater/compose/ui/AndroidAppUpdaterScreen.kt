@@ -9,7 +9,7 @@ import androidx.compose.ui.tooling.preview.PreviewFontScale
 import androidx.compose.ui.tooling.preview.PreviewScreenSizes
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.pouyaheydari.androidappupdater.store.ShowStoreModel
+import com.pouyaheydari.androidappupdater.store.domain.ShowStoreModel
 import com.pouyaheydari.androidappupdater.store.domain.showAppInSelectedStore
 import com.pouyaheydari.appupdater.compose.ui.components.AppUpdaterDialog
 import com.pouyaheydari.appupdater.compose.ui.components.UpdateInProgressDialogComponent

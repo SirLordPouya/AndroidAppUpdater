@@ -1,6 +1,6 @@
 package com.pouyaheydari.appupdater.pojo
 
-import com.pouyaheydari.androidappupdater.store.ShowStoreModel
+import com.pouyaheydari.androidappupdater.store.domain.ShowStoreModel
 
 /**
  * Represents UI states of the update dialog

@@ -3,7 +3,7 @@ package com.pouyaheydari.androidappupdater.store.domain
 import android.os.Parcel
 import android.os.Parcelable
 import androidx.core.os.ParcelCompat
-import com.pouyaheydari.androidappupdater.store.stores.AppStore
+import com.pouyaheydari.androidappupdater.store.domain.stores.AppStore
 import com.pouyaheydari.appupdater.core.R as coreR
 
 /**

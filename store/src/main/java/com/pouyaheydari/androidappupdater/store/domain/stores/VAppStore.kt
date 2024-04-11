@@ -1,10 +1,10 @@
-package com.pouyaheydari.androidappupdater.store.stores
+package com.pouyaheydari.androidappupdater.store.domain.stores
 
 import android.os.Parcel
 import android.os.Parcelable
 import com.pouyaheydari.androidappupdater.store.domain.StoreIntentProvider
 
-const val V_APP_STORE_URL = "vivoMarket://details?id="
+internal const val V_APP_STORE_URL = "vivoMarket://details?id="
 
 /**
  * Opens application's page in [V-AppStore](https://developer.vivo.com/home)

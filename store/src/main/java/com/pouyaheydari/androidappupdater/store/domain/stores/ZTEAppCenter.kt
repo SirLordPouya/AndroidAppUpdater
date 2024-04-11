@@ -1,10 +1,10 @@
-package com.pouyaheydari.androidappupdater.store.stores
+package com.pouyaheydari.androidappupdater.store.domain.stores
 
 import android.os.Parcel
 import android.os.Parcelable
 import com.pouyaheydari.androidappupdater.store.domain.StoreIntentProvider
 
-const val ZTE_APP_CENTER_URL = "zte_market://appdetails?pname="
+internal const val ZTE_APP_CENTER_URL = "zte_market://appdetails?pname="
 
 /**
  * Opens application's page in [ZTE App Store](https://apps.ztems.com/)

@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.pouyaheydari.androidappupdater.directdownload.data.model.DirectDownloadListItem
 import com.pouyaheydari.androidappupdater.directdownload.domain.GetIsUpdateInProgress
-import com.pouyaheydari.androidappupdater.store.ShowStoreModel
+import com.pouyaheydari.androidappupdater.store.domain.ShowStoreModel
 import com.pouyaheydari.androidappupdater.store.domain.StoreListItem
 import com.pouyaheydari.appupdater.compose.data.mapper.UpdaterDialogUIMapper
 import com.pouyaheydari.appupdater.compose.ui.models.DialogScreenIntents

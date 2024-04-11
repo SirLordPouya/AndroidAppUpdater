@@ -1,10 +1,10 @@
-package com.pouyaheydari.androidappupdater.store.stores
+package com.pouyaheydari.androidappupdater.store.domain.stores
 
 import android.os.Parcel
 import android.os.Parcelable
 import com.pouyaheydari.androidappupdater.store.domain.StoreIntentProvider
 
-const val TENCENT_APP_STORE_URL = "tmast://appdetails?pname="
+internal const val TENCENT_APP_STORE_URL = "tmast://appdetails?pname="
 
 /**
  * Opens application's page in [Tencent App Store](https://appstore.tencent.com/)

@@ -1,6 +1,6 @@
 package com.pouyaheydari.appupdater.compose.ui.models
 
-import com.pouyaheydari.androidappupdater.store.ShowStoreModel
+import com.pouyaheydari.androidappupdater.store.domain.ShowStoreModel
 
 internal data class DialogScreenState(
     val shouldShowDialog: Boolean = true,
