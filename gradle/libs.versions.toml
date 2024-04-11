@@ -20,7 +20,7 @@ coroutines = "1.7.3"
 fragment = "1.6.2"
 androidxComposeBom = "2024.02.01"
 composeActivity = "1.8.2"
-mockito = "5.10.0"
+mockito = "5.11.0"
 mockitoKotlin = "5.2.1"
 
 [libraries]
