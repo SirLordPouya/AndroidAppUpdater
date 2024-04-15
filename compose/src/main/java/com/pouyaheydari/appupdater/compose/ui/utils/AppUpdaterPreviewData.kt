@@ -1,4 +1,4 @@
-package com.pouyaheydari.appupdater.compose.utils
+package com.pouyaheydari.appupdater.compose.ui.utils
 
 import com.pouyaheydari.androidappupdater.directdownload.data.model.DirectDownloadListItem
 import com.pouyaheydari.androidappupdater.store.domain.StoreFactory
