@@ -1,8 +1,7 @@
 [versions]
 appVersion = "1000"
 compileSdkVersion = "34"
-minSdkVersion = "16"
-composeMinSdkVersion = "23"
+minSdkVersion = "23"
 targetSdkVersion = "34"
 agp = "8.3.2"
 kotlin = "1.9.23"

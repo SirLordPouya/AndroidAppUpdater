@@ -7,7 +7,7 @@ android {
     compileSdk = libs.versions.compileSdkVersion.get().toInt()
     defaultConfig {
         applicationId = "com.pouyaheydari.androidappupdater"
-        minSdk = libs.versions.composeMinSdkVersion.get().toInt()
+        minSdk = libs.versions.minSdkVersion.get().toInt()
         targetSdk = libs.versions.targetSdkVersion.get().toInt()
         versionCode = libs.versions.appVersion.get().toInt()
         versionName = libs.versions.appVersion.get()
