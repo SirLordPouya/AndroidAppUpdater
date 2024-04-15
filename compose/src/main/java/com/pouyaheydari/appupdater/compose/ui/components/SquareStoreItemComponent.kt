@@ -31,7 +31,7 @@ internal fun SquareStoreItemComponent(
         horizontalAlignment = CenterHorizontally,
     ) {
         Image(
-            modifier = Modifier.size(80.dp),
+            modifier = Modifier.size(64.dp),
             painter = painterResource(id = icon),
             contentDescription = null,
         )
