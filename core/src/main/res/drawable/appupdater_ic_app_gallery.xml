@@ -1,0 +1,40 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="64dp"
+    android:height="64dp"
+    android:viewportWidth="36"
+    android:viewportHeight="36">
+    <path
+        android:fillType="evenOdd"
+        android:pathData="M10.101,0C2.705,0 0,2.705 0,10.099V25.901C0,33.295 2.705,36 10.101,36H25.894C33.29,36 36,33.295 36,25.901V10.099C36,2.705 33.295,0 25.899,0Z"
+        android:strokeWidth="1"
+        android:strokeColor="#00000000">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:endX="18"
+                android:endY="36"
+                android:startX="18"
+                android:startY="0"
+                android:type="linear">
+                <item
+                    android:color="#FFFB6361"
+                    android:offset="0" />
+                <item
+                    android:color="#FFED3E45"
+                    android:offset="1" />
+            </gradient>
+        </aapt:attr>
+    </path>
+    <path
+        android:fillColor="#ffffff"
+        android:fillType="evenOdd"
+        android:pathData="m15.703,20.879h1.445l-0.725,-1.686zM15.347,21.729 L14.918,22.71h-0.976l2.076,-4.71h0.844l2.068,4.71L17.927,22.71l-0.423,-0.981zM31.056,22.707L32,22.707L32,18h-0.944zM27.301,20.685h1.739v-0.858h-1.739v-0.965h2.525v-0.858h-3.468v4.706h3.559v-0.858L27.301,21.851ZM23.552,21.241 L22.482,18h-0.781l-1.07,3.241 -1.041,-3.238h-1.018l1.643,4.71h0.791l1.071,-3.094 1.071,3.094h0.798l1.639,-4.71L24.595,18.003ZM12.502,20.698c0,0.766 -0.38,1.176 -1.071,1.176 -0.695,0 -1.077,-0.421 -1.077,-1.208L10.353,18.003L9.397,18.003v2.695c0,1.325 0.737,2.086 2.02,2.086 1.297,0 2.04,-0.775 2.04,-2.125v-2.658h-0.955zM7.115,18h0.956v4.713L7.115,22.713L7.115,20.799L4.956,20.799v1.914L4,22.713v-4.713h0.956v1.901h2.159z"
+        android:strokeWidth="1"
+        android:strokeColor="#00000000" />
+    <path
+        android:fillColor="#ffffff"
+        android:fillType="evenOdd"
+        android:pathData="M18,12C14.691,12 12,9.308 12,6h0.848c0,2.841 2.312,5.152 5.152,5.152 2.841,0 5.152,-2.311 5.152,-5.152H24c0,3.308 -2.692,6 -6,6"
+        android:strokeWidth="1"
+        android:strokeColor="#00000000" />
+</vector>
