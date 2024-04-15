@@ -5,12 +5,14 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.PreviewFontScale
 import androidx.compose.ui.tooling.preview.PreviewScreenSizes
 import androidx.compose.ui.unit.dp
@@ -28,10 +30,17 @@ internal fun SquareStoreItemComponent(
         modifier = modifier.clickable { onClickListener() },
         horizontalAlignment = CenterHorizontally,
     ) {
-        Image(painter = painterResource(id = icon), contentDescription = null)
+        Image(
+            modifier = Modifier.size(80.dp),
+            painter = painterResource(id = icon),
+            contentDescription = null,
+        )
+
         Text(
             modifier = Modifier.padding(top = 8.dp),
             text = title,
+            maxLines = 1,
+            overflow = TextOverflow.Ellipsis,
             style = MaterialTheme.typography.bodyMedium,
             color = MaterialTheme.colorScheme.onSurface,
         )
