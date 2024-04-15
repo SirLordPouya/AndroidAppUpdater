@@ -16,6 +16,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewFontScale
+import androidx.compose.ui.tooling.preview.PreviewScreenSizes
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import com.pouyaheydari.androidappupdater.directdownload.data.model.DirectDownloadListItem
@@ -29,7 +31,7 @@ import com.pouyaheydari.appupdater.core.R
 
 @Composable
 internal fun AppUpdaterDialog(
-    dialogContent: UpdaterDialogUIData,
+    dialogContent: UpdaterDialogUIData = UpdaterDialogUIData(),
     onStoreClickListener: (StoreListItem) -> Unit = {},
     onDirectLinkClickListener: (DirectDownloadListItem) -> Unit = {},
     typeface: Typeface? = null,
@@ -104,7 +106,8 @@ private fun Preview() {
     }
 }
 
-@Preview(showBackground = true)
+@PreviewFontScale
+@PreviewScreenSizes
 @Composable
 private fun PreviewSingleStoreItem() {
     AndroidAppUpdaterTheme {
@@ -123,7 +126,8 @@ private fun PreviewSingleStoreItem() {
     }
 }
 
-@Preview(showBackground = true)
+@PreviewFontScale
+@PreviewScreenSizes
 @Composable
 private fun PreviewSingleDirectLinkItem() {
     AndroidAppUpdaterTheme {

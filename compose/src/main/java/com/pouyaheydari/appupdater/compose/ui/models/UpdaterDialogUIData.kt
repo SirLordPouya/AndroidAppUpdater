@@ -8,5 +8,5 @@ internal data class UpdaterDialogUIData(
     val directDownloadList: List<DirectDownloadListItem> = emptyList(),
     val storeList: List<StoreListItem> = emptyList(),
     val shouldShowDividers: Boolean = false,
-    inline val onDismissRequested: () -> Unit = {},
+    val onDismissRequested: () -> Unit = {},
 )

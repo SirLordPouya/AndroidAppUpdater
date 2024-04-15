@@ -11,7 +11,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewFontScale
+import androidx.compose.ui.tooling.preview.PreviewScreenSizes
 import androidx.compose.ui.unit.dp
 import com.pouyaheydari.appupdater.compose.ui.theme.AndroidAppUpdaterTheme
 import com.pouyaheydari.appupdater.core.R
@@ -19,8 +20,8 @@ import com.pouyaheydari.appupdater.core.R
 @Composable
 internal fun SquareStoreItemComponent(
     modifier: Modifier = Modifier,
-    title: String,
-    @DrawableRes icon: Int,
+    title: String = "",
+    @DrawableRes icon: Int = R.drawable.appupdater_ic_google_play,
     onClickListener: () -> Unit = {},
 ) {
     Column(
@@ -37,7 +38,8 @@ internal fun SquareStoreItemComponent(
     }
 }
 
-@Preview
+@PreviewFontScale
+@PreviewScreenSizes
 @Composable
 private fun Preview() {
     AndroidAppUpdaterTheme {
