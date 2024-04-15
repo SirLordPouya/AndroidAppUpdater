@@ -15,7 +15,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewFontScale
 import androidx.compose.ui.tooling.preview.PreviewScreenSizes
 import androidx.compose.ui.unit.dp
@@ -76,7 +75,7 @@ private fun DialogContent(
 
                 storeList.forEach {
                     item(span = { getStoreListGridItemSpan(storeList.size, maxLineSpan) }) {
-                        SquareStoreItemComponent(title = it.title, icon = it.icon) { onStoreClickListener(it) }
+                        SquareStoreItemComponent(modifier = Modifier.padding(8.dp), title = it.title, icon = it.icon) { onStoreClickListener(it) }
                     }
                 }
             }
@@ -87,7 +86,8 @@ private fun DialogContent(
 private fun getStoreListGridItemSpan(storeListSize: Int, maxLineSpan: Int) =
     if (storeListSize > 1) GridItemSpan(1) else GridItemSpan(maxLineSpan)
 
-@Preview(showBackground = true)
+@PreviewFontScale
+@PreviewScreenSizes
 @Composable
 private fun Preview() {
     AndroidAppUpdaterTheme {
