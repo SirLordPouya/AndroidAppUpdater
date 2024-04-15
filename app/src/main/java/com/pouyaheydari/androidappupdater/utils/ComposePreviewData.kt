@@ -82,7 +82,7 @@ internal fun storeList(context: Context) = listOf(
     StoreListItem(
         StoreFactory.getLenovoAppCenterStore(SAMPLE_PACKAGE_NAME),
         context.getString(R.string.lenovo_app_center),
-        icon = coreR.drawable.appupdater_ic_zte_app_center,
+        icon = coreR.drawable.appupdater_ic_lenovo_app_center,
     ),
     StoreListItem(
         StoreFactory.getFdroidStore(FDROID_SAMPLE_PACKAGE_NAME),
