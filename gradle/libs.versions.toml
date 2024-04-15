@@ -2,7 +2,7 @@
 appVersion = "1000"
 compileSdkVersion = "34"
 minSdkVersion = "16"
-composeMinSdkVersion = "21"
+composeMinSdkVersion = "23"
 targetSdkVersion = "34"
 agp = "8.3.2"
 kotlin = "1.9.23"
@@ -31,7 +31,7 @@ androidx-constraintLayout = { group = "androidx.constraintlayout", name = "const
 androidx-recyclerView = { group = "androidx.recyclerview", name = "recyclerview", version.ref = "recyclerView" }
 androidx-core = { group = "androidx.core", name = "core", version.ref = "androidXCore" }
 androidx-fragment = { group = "androidx.fragment", name = "fragment-ktx", version.ref = "fragment" }
-androidx-lifecycle = {group = "androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "lifecycle"}
+androidx-lifecycle = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "lifecycle" }
 androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "androidxComposeBom" }
 androidx-compose-foundation = { group = "androidx.compose.foundation", name = "foundation" }
 androidx-compose-viewModel = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "lifecycle" }
@@ -39,9 +39,11 @@ androidx-compose-material = { group = "androidx.compose.material3", name = "mate
 androidx-compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
 androidx-compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
 androidx-compose-activity = { group = "androidx.activity", name = "activity-compose", version.ref = "composeActivity" }
+androidx-compose-ui-test-junit = { group = "androidx.compose.ui", name = "ui-test-junit4" }
+androidx-compose-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 junit4 = { group = "junit", name = "junit", version.ref = "junit4" }
 mockito = { group = "org.mockito", name = "mockito-core", version.ref = "mockito" }
-mockito-android = {group = "org.mockito", name = "mockito-android", version.ref = "mockito"}
+mockito-android = { group = "org.mockito", name = "mockito-android", version.ref = "mockito" }
 mockito-kotlin = { group = "org.mockito.kotlin", name = "mockito-kotlin", version.ref = "mockitoKotlin" }
 androidx-test-ui-espresso-intents = { group = "androidx.test.espresso", name = "espresso-intents", version.ref = "androidTestEspresso" }
 androidx-test-junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidTestJUnit" }

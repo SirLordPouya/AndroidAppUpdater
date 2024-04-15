@@ -23,9 +23,7 @@ import com.pouyaheydari.appupdater.core.R as coreR
 internal fun DividerComponent(modifier: Modifier = Modifier) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
-        modifier = modifier
-            .fillMaxWidth()
-            .padding(top = 16.dp),
+        modifier = modifier.fillMaxWidth(),
     ) {
         HorizontalDivider(
             color = MaterialTheme.colorScheme.background,
@@ -33,9 +31,9 @@ internal fun DividerComponent(modifier: Modifier = Modifier) {
                 .weight(1F)
                 .padding(start = 16.dp, end = 8.dp),
         )
-        Text(
-            text = stringResource(id = coreR.string.appupdater_or),
-        )
+
+        Text(text = stringResource(id = coreR.string.appupdater_or))
+
         HorizontalDivider(
             color = MaterialTheme.colorScheme.background,
             modifier = Modifier
