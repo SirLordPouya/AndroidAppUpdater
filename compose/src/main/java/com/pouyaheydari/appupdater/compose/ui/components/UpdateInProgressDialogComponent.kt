@@ -25,7 +25,12 @@ import com.pouyaheydari.appupdater.core.R as coreR
  * Update in progress dialog is not dismissible by the user.
  */
 @Composable
-internal fun UpdateInProgressDialogComponent(modifier: Modifier = Modifier, isUpdateInProgress: Boolean = false) {
+internal fun UpdateInProgressDialogComponent(
+    modifier: Modifier = Modifier,
+    isUpdateInProgress: Boolean = false,
+    dialogTitle: String = "",
+    dialogDescription: String = "",
+) {
     AnimatedVisibility(visible = isUpdateInProgress) {
         Dialog(onDismissRequest = { /* Do nothing */ }) {
             Card(
@@ -40,12 +45,12 @@ internal fun UpdateInProgressDialogComponent(modifier: Modifier = Modifier, isUp
                         .padding(vertical = 16.dp, horizontal = 8.dp),
                 ) {
                     Text(
-                        text = stringResource(id = (coreR.string.appupdater_please_wait)),
+                        text = dialogTitle,
                         style = MaterialTheme.typography.titleLarge,
                         modifier = Modifier.padding(horizontal = 8.dp),
                     )
                     Text(
-                        text = stringResource(id = (coreR.string.appupdater_downloading_new_version)),
+                        text = dialogDescription,
                         style = MaterialTheme.typography.bodyLarge,
                         modifier = Modifier.padding(all = 8.dp),
                     )
@@ -62,6 +67,10 @@ internal fun UpdateInProgressDialogComponent(modifier: Modifier = Modifier, isUp
 @Composable
 private fun UpdateInProgressDialogPreview() {
     AndroidAppUpdaterTheme {
-        UpdateInProgressDialogComponent(isUpdateInProgress = true)
+        UpdateInProgressDialogComponent(
+            isUpdateInProgress = true,
+            dialogTitle = stringResource(id = (coreR.string.appupdater_please_wait)),
+            dialogDescription = stringResource(id = (coreR.string.appupdater_downloading_new_version)),
+        )
     }
 }

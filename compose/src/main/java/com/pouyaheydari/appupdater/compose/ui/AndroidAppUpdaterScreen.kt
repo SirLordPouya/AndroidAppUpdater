@@ -49,7 +49,11 @@ fun AndroidAppUpdater(dialogData: UpdaterDialogData) {
             )
         }
 
-        UpdateInProgressDialogComponent(isUpdateInProgress = state.shouldShowUpdateInProgress)
+        UpdateInProgressDialogComponent(
+            isUpdateInProgress = state.shouldShowUpdateInProgress,
+            dialogTitle = stringResource(id = (coreR.string.appupdater_please_wait)),
+            dialogDescription = stringResource(id = (coreR.string.appupdater_downloading_new_version)),
+        )
 
         setupErrorCallback(state.errorWhileOpeningStore, dialogData.errorWhileOpeningStoreCallback) {
             viewModel.handleIntent(DialogScreenIntents.OnErrorCallbackExecuted)
