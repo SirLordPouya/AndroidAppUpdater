@@ -3,6 +3,7 @@ package com.pouyaheydari.appupdater.compose.ui.components
 import android.Manifest
 import android.content.Context
 import androidx.compose.ui.test.assertIsDisplayed
+import androidx.compose.ui.test.assertTextEquals
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithText
 import androidx.test.platform.app.InstrumentationRegistry.getInstrumentation
@@ -24,15 +25,15 @@ internal class DividerComponentTest {
     }
 
     @Test
-    fun test_orTextIsDisplayed() {
+    fun test_whenComponentIsCalled_thenCorrectTextIsDisplayed() {
         val context: Context = getInstrumentation().targetContext
 
         composeTestRule.setContent {
             DividerComponent()
         }
 
-        composeTestRule
-            .onNodeWithText(context.resources.getString(coreR.string.appupdater_or))
+        composeTestRule.onNodeWithText(context.resources.getString(coreR.string.appupdater_or))
             .assertIsDisplayed()
+            .assertTextEquals(context.resources.getString(coreR.string.appupdater_or))
     }
 }
