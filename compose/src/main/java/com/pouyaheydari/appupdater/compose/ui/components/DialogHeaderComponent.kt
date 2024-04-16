@@ -12,6 +12,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontFamily
@@ -39,7 +40,8 @@ internal fun DialogHeaderComponent(
         Image(
             modifier = Modifier
                 .width(100.dp)
-                .height(100.dp),
+                .height(100.dp)
+                .testTag(content.dialogIcon.toString()),
             painter = painterResource(id = content.dialogIcon),
             contentDescription = null,
         )
