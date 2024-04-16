@@ -15,13 +15,13 @@ import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewScreenSizes
 import androidx.compose.ui.unit.dp
 import com.pouyaheydari.appupdater.compose.ui.theme.AndroidAppUpdaterTheme
-import com.pouyaheydari.appupdater.core.R as coreR
+import com.pouyaheydari.appupdater.core.R
 
 /**
  * Shows a divider between direct download links and stores
  */
 @Composable
-internal fun DividerComponent(modifier: Modifier = Modifier) {
+internal fun DividerComponent(modifier: Modifier = Modifier, dividerText: String = "") {
     Row(
         verticalAlignment = Alignment.CenterVertically,
         modifier = modifier.fillMaxWidth(),
@@ -33,7 +33,7 @@ internal fun DividerComponent(modifier: Modifier = Modifier) {
                 .padding(start = 16.dp, end = 8.dp),
         )
 
-        Text(text = stringResource(id = coreR.string.appupdater_or))
+        Text(text = dividerText)
 
         HorizontalDivider(
             color = MaterialTheme.colorScheme.background,
@@ -50,6 +50,6 @@ internal fun DividerComponent(modifier: Modifier = Modifier) {
 @Composable
 private fun Preview() {
     AndroidAppUpdaterTheme {
-        DividerComponent()
+        DividerComponent(dividerText = stringResource(id = R.string.appupdater_or))
     }
 }

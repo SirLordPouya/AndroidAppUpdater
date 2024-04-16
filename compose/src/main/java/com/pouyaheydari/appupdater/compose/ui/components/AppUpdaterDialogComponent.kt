@@ -70,7 +70,7 @@ private fun DialogContent(
                     }
                 }
                 if (shouldShowDividers) {
-                    item(span = { GridItemSpan(maxLineSpan) }) { DividerComponent() }
+                    item(span = { GridItemSpan(maxLineSpan) }) { DividerComponent(dividerText = stringResource(id = R.string.appupdater_or)) }
                 }
 
                 storeList.forEach {
