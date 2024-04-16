@@ -66,16 +66,23 @@ private fun DialogContent(
                 }
                 directDownloadList.forEach {
                     item(span = { GridItemSpan(maxLineSpan) }) {
-                        DirectDownloadLinkComponent(title = it.title) { onDirectLinkClickListener(it) }
+                        DirectDownloadLinkComponent(title = it.title, typeface = typeface) { onDirectLinkClickListener(it) }
                     }
                 }
                 if (shouldShowDividers) {
-                    item(span = { GridItemSpan(maxLineSpan) }) { DividerComponent(dividerText = stringResource(id = R.string.appupdater_or)) }
+                    item(span = { GridItemSpan(maxLineSpan) }) {
+                        DividerComponent(dividerText = stringResource(id = R.string.appupdater_or), typeface = typeface)
+                    }
                 }
 
                 storeList.forEach {
                     item(span = { getStoreListGridItemSpan(storeList.size, maxLineSpan) }) {
-                        SquareStoreItemComponent(modifier = Modifier.padding(8.dp), title = it.title, icon = it.icon) { onStoreClickListener(it) }
+                        SquareStoreItemComponent(
+                            modifier = Modifier.padding(8.dp),
+                            title = it.title,
+                            icon = it.icon,
+                            typeface = typeface,
+                        ) { onStoreClickListener(it) }
                     }
                 }
             }

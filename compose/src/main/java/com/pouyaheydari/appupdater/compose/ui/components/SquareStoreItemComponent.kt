@@ -1,5 +1,6 @@
 package com.pouyaheydari.appupdater.compose.ui.components
 
+import android.graphics.Typeface
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -13,6 +14,7 @@ import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.PreviewFontScale
 import androidx.compose.ui.tooling.preview.PreviewLightDark
@@ -26,6 +28,7 @@ internal fun SquareStoreItemComponent(
     modifier: Modifier = Modifier,
     title: String = "",
     @DrawableRes icon: Int = R.drawable.appupdater_ic_google_play,
+    typeface: Typeface? = null,
     onClickListener: () -> Unit = {},
 ) {
     Column(
@@ -47,6 +50,7 @@ internal fun SquareStoreItemComponent(
             overflow = TextOverflow.Ellipsis,
             style = MaterialTheme.typography.bodyMedium,
             color = MaterialTheme.colorScheme.onSurface,
+            fontFamily = typeface?.let { FontFamily(it) },
         )
     }
 }

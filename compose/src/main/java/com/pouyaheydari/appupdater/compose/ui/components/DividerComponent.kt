@@ -1,5 +1,6 @@
 package com.pouyaheydari.appupdater.compose.ui.components
 
+import android.graphics.Typeface
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -10,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.tooling.preview.PreviewFontScale
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewScreenSizes
@@ -21,7 +23,11 @@ import com.pouyaheydari.appupdater.core.R
  * Shows a divider between direct download links and stores
  */
 @Composable
-internal fun DividerComponent(modifier: Modifier = Modifier, dividerText: String = "") {
+internal fun DividerComponent(
+    modifier: Modifier = Modifier,
+    dividerText: String = "",
+    typeface: Typeface? = null,
+) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
         modifier = modifier.fillMaxWidth(),
@@ -33,7 +39,7 @@ internal fun DividerComponent(modifier: Modifier = Modifier, dividerText: String
                 .padding(start = 16.dp, end = 8.dp),
         )
 
-        Text(text = dividerText)
+        Text(text = dividerText, fontFamily = typeface?.let { FontFamily(it) })
 
         HorizontalDivider(
             color = MaterialTheme.colorScheme.background,

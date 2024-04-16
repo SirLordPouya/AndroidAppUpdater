@@ -1,10 +1,12 @@
 package com.pouyaheydari.appupdater.compose.ui.components
 
+import android.graphics.Typeface
 import androidx.compose.foundation.clickable
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.PreviewFontScale
 import androidx.compose.ui.tooling.preview.PreviewLightDark
@@ -16,6 +18,7 @@ import com.pouyaheydari.appupdater.compose.ui.theme.Blue
 internal fun DirectDownloadLinkComponent(
     modifier: Modifier = Modifier,
     title: String = "",
+    typeface: Typeface? = null,
     onClickListener: () -> Unit = {},
 ) {
     Text(
@@ -24,6 +27,7 @@ internal fun DirectDownloadLinkComponent(
         textAlign = TextAlign.Center,
         color = Blue,
         style = MaterialTheme.typography.bodyLarge,
+        fontFamily = typeface?.let { FontFamily(it) },
     )
 }
 

@@ -1,5 +1,6 @@
 package com.pouyaheydari.appupdater.compose.ui.components
 
+import android.graphics.Typeface
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -14,6 +15,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.tooling.preview.PreviewFontScale
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewScreenSizes
@@ -30,6 +32,7 @@ internal fun UpdateInProgressDialogComponent(
     isUpdateInProgress: Boolean = false,
     dialogTitle: String = "",
     dialogDescription: String = "",
+    typeface: Typeface? = null,
 ) {
     AnimatedVisibility(visible = isUpdateInProgress) {
         Dialog(onDismissRequest = { /* Do nothing */ }) {
@@ -50,11 +53,13 @@ internal fun UpdateInProgressDialogComponent(
                         text = dialogTitle,
                         style = MaterialTheme.typography.titleLarge,
                         modifier = Modifier.padding(horizontal = 8.dp),
+                        fontFamily = typeface?.let { FontFamily(it) },
                     )
                     Text(
                         text = dialogDescription,
                         style = MaterialTheme.typography.bodyLarge,
                         modifier = Modifier.padding(all = 8.dp),
+                        fontFamily = typeface?.let { FontFamily(it) },
                     )
                     LinearProgressIndicator(modifier = Modifier.fillMaxWidth().padding(all = 8.dp))
                 }

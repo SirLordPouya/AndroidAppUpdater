@@ -53,6 +53,7 @@ fun AndroidAppUpdater(dialogData: UpdaterDialogData) {
             isUpdateInProgress = state.shouldShowUpdateInProgress,
             dialogTitle = stringResource(id = (coreR.string.appupdater_please_wait)),
             dialogDescription = stringResource(id = (coreR.string.appupdater_downloading_new_version)),
+            typeface = dialogData.typeface,
         )
 
         setupErrorCallback(state.errorWhileOpeningStore, dialogData.errorWhileOpeningStoreCallback) {
