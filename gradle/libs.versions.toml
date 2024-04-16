@@ -21,6 +21,7 @@ androidxComposeBom = "2024.04.00"
 composeActivity = "1.8.2"
 mockito = "5.11.0"
 mockitoKotlin = "5.3.1"
+roboelectric = "4.12.1"
 
 [libraries]
 agp = { module = "com.android.tools.build:gradle", version.ref = "agp" }
@@ -41,6 +42,7 @@ androidx-compose-activity = { group = "androidx.activity", name = "activity-comp
 androidx-compose-ui-test-junit = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 androidx-compose-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 junit4 = { group = "junit", name = "junit", version.ref = "junit4" }
+roboelectric = { group = "org.robolectric", name = "robolectric", version.ref = "roboelectric" }
 mockito = { group = "org.mockito", name = "mockito-core", version.ref = "mockito" }
 mockito-android = { group = "org.mockito", name = "mockito-android", version.ref = "mockito" }
 mockito-kotlin = { group = "org.mockito.kotlin", name = "mockito-kotlin", version.ref = "mockitoKotlin" }

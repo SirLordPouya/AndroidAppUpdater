@@ -22,11 +22,15 @@ android {
     }
     namespace = "com.pouyaheydari.appupdater.compose"
 
+    testOptions {
+        unitTests {
+            isIncludeAndroidResources = true
+        }
+    }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
-
     kotlinOptions {
         jvmTarget = "17"
     }
@@ -60,6 +64,10 @@ dependencies {
 
     // testing
     testImplementation(libs.junit4)
+    testImplementation(libs.androidx.compose.ui.test.junit)
+    testImplementation(libs.mockito.kotlin)
+    testImplementation(libs.roboelectric)
+    androidTestImplementation(libs.androidx.test.rules)
     androidTestImplementation(libs.androidx.test.junit)
     androidTestImplementation(libs.androidx.test.ui.espresso.core)
     androidTestImplementation(libs.androidx.compose.ui.test.junit)
