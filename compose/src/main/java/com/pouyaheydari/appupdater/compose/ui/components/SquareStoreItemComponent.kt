@@ -15,6 +15,7 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.PreviewFontScale
+import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewScreenSizes
 import androidx.compose.ui.unit.dp
 import com.pouyaheydari.appupdater.compose.ui.theme.AndroidAppUpdaterTheme
@@ -50,6 +51,7 @@ internal fun SquareStoreItemComponent(
     }
 }
 
+@PreviewLightDark
 @PreviewFontScale
 @PreviewScreenSizes
 @Composable

@@ -14,6 +14,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewFontScale
+import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewScreenSizes
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
@@ -48,17 +49,14 @@ internal fun UpdateInProgressDialogComponent(modifier: Modifier = Modifier, isUp
                         style = MaterialTheme.typography.bodyLarge,
                         modifier = Modifier.padding(all = 8.dp),
                     )
-                    LinearProgressIndicator(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(all = 8.dp),
-                    )
+                    LinearProgressIndicator(modifier = Modifier.fillMaxWidth().padding(all = 8.dp))
                 }
             }
         }
     }
 }
 
+@PreviewLightDark
 @PreviewFontScale
 @PreviewScreenSizes
 @Composable

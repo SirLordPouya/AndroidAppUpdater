@@ -7,6 +7,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.PreviewFontScale
+import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewScreenSizes
 import com.pouyaheydari.appupdater.compose.ui.theme.AndroidAppUpdaterTheme
 import com.pouyaheydari.appupdater.compose.ui.theme.Blue
@@ -26,6 +27,7 @@ internal fun DirectDownloadLinkComponent(
     )
 }
 
+@PreviewLightDark
 @PreviewFontScale
 @PreviewScreenSizes
 @Composable

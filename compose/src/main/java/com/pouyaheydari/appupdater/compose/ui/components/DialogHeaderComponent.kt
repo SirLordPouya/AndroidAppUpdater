@@ -17,6 +17,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.PreviewFontScale
+import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewScreenSizes
 import androidx.compose.ui.unit.dp
 import com.pouyaheydari.appupdater.compose.ui.models.DialogHeaderModel
@@ -65,6 +66,7 @@ internal fun DialogHeaderComponent(
     }
 }
 
+@PreviewLightDark
 @PreviewFontScale
 @PreviewScreenSizes
 @Composable
