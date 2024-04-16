@@ -40,7 +40,7 @@ internal fun DialogHeaderComponent(
             modifier = Modifier
                 .width(100.dp)
                 .height(100.dp),
-            painter = painterResource(id = coreR.drawable.appupdater_ic_cloud),
+            painter = painterResource(id = content.dialogIcon),
             contentDescription = null,
         )
         Text(
