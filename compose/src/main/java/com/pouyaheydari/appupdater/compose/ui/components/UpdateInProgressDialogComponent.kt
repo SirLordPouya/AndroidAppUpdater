@@ -12,6 +12,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewFontScale
 import androidx.compose.ui.tooling.preview.PreviewLightDark
@@ -21,9 +22,8 @@ import androidx.compose.ui.window.Dialog
 import com.pouyaheydari.appupdater.compose.ui.theme.AndroidAppUpdaterTheme
 import com.pouyaheydari.appupdater.core.R as coreR
 
-/**
- * Update in progress dialog is not dismissible by the user.
- */
+internal const val DIALOG_TEST_TAG = "DialogTestTag"
+
 @Composable
 internal fun UpdateInProgressDialogComponent(
     modifier: Modifier = Modifier,
@@ -34,7 +34,9 @@ internal fun UpdateInProgressDialogComponent(
     AnimatedVisibility(visible = isUpdateInProgress) {
         Dialog(onDismissRequest = { /* Do nothing */ }) {
             Card(
-                modifier = modifier.fillMaxWidth(),
+                modifier = modifier
+                    .fillMaxWidth()
+                    .testTag(DIALOG_TEST_TAG),
                 shape = RoundedCornerShape(12.dp),
                 elevation = CardDefaults.cardElevation(8.dp),
                 colors = CardDefaults.cardColors(MaterialTheme.colorScheme.surface),
