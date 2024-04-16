@@ -16,6 +16,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewFontScale
+import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewScreenSizes
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
@@ -93,6 +94,7 @@ private fun DialogContent(
 private fun getStoreListGridItemSpan(storeListSize: Int, maxLineSpan: Int) =
     if (storeListSize > 1) GridItemSpan(1) else GridItemSpan(maxLineSpan)
 
+@PreviewLightDark
 @PreviewFontScale
 @PreviewScreenSizes
 @Composable
@@ -113,6 +115,7 @@ private fun Preview() {
     }
 }
 
+@PreviewLightDark
 @PreviewFontScale
 @PreviewScreenSizes
 @Composable
@@ -133,6 +136,7 @@ private fun PreviewSingleStoreItem() {
     }
 }
 
+@PreviewLightDark
 @PreviewFontScale
 @PreviewScreenSizes
 @Composable
