@@ -16,7 +16,7 @@ import org.robolectric.RobolectricTestRunner
 import com.pouyaheydari.appupdater.core.R as coreR
 
 @RunWith(RobolectricTestRunner::class)
-class SquareStoreItemComponentTest {
+internal class SquareStoreItemComponentTest {
     @get:Rule
     val composeTestRule = createComposeRule()
 

@@ -12,7 +12,7 @@ import org.mockito.kotlin.verify
 import org.robolectric.RobolectricTestRunner
 
 @RunWith(RobolectricTestRunner::class)
-class DirectDownloadLinkComponentTest {
+internal class DirectDownloadLinkComponentTest {
     @get:Rule
     val composeTestRule = createComposeRule()
 
