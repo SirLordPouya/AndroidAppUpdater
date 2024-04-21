@@ -41,12 +41,7 @@ fun AndroidAppUpdater(dialogData: UpdaterDialogData) {
         val activity = LocalContext.current.getActivity()
 
         if (state.shouldShowDialog) {
-            AppUpdaterDialogComponent(
-                dialogContent = state.dialogContent,
-                onStoreClickListener = { viewModel.handleIntent(DialogScreenIntents.OnStoreClicked(it)) },
-                onDirectLinkClickListener = { viewModel.handleIntent(DialogScreenIntents.OnDirectLinkClicked(it)) },
-                typeface = dialogData.typeface,
-            )
+            AppUpdaterDialogComponent(dialogContent = state.dialogContent, typeface = dialogData.typeface)
         }
 
         UpdateInProgressDialogComponent(

@@ -20,8 +20,6 @@ import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewScreenSizes
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
-import com.pouyaheydari.androidappupdater.directdownload.data.model.DirectDownloadListItem
-import com.pouyaheydari.androidappupdater.store.domain.StoreListItem
 import com.pouyaheydari.appupdater.compose.ui.models.DialogHeaderModel
 import com.pouyaheydari.appupdater.compose.ui.models.UpdaterDialogUIData
 import com.pouyaheydari.appupdater.compose.ui.theme.AndroidAppUpdaterTheme
@@ -32,20 +30,16 @@ import com.pouyaheydari.appupdater.core.R
 @Composable
 internal fun AppUpdaterDialogComponent(
     dialogContent: UpdaterDialogUIData = UpdaterDialogUIData(),
-    onStoreClickListener: (StoreListItem) -> Unit = {},
-    onDirectLinkClickListener: (DirectDownloadListItem) -> Unit = {},
     typeface: Typeface? = null,
 ) {
     Dialog(onDismissRequest = { dialogContent.onDismissRequested() }) {
-        DialogContent(dialogContent, onStoreClickListener, onDirectLinkClickListener, typeface)
+        DialogContent(dialogContent, typeface)
     }
 }
 
 @Composable
 private fun DialogContent(
     dialogContent: UpdaterDialogUIData,
-    onStoreClickListener: (StoreListItem) -> Unit,
-    onDirectLinkClickListener: (DirectDownloadListItem) -> Unit,
     typeface: Typeface?,
 ) {
     Card(
@@ -72,7 +66,7 @@ private fun DialogContent(
                 }
                 if (shouldShowDividers) {
                     item(span = { GridItemSpan(maxLineSpan) }) {
-                        DividerComponent(dividerText = stringResource(id = R.string.appupdater_or), typeface = typeface)
+                        DividerComponent(dividerText = dialogContent.dividerText, typeface = typeface)
                     }
                 }
 

@@ -49,6 +49,7 @@ internal class ComposeSampleActivity : ComponentActivity() {
                         UpdaterDialogData(
                             dialogTitle = stringResource(id = coreR.string.appupdater_app_name),
                             dialogDescription = stringResource(id = R.string.library_description),
+                            dividerText = stringResource(coreR.string.appupdater_or),
                             storeList = storeList(this),
                             directDownloadList = directDownloadList(this),
                             theme = Theme.SYSTEM_DEFAULT,
@@ -72,6 +73,7 @@ private fun DefaultPreview() {
             UpdaterDialogData(
                 dialogTitle = stringResource(id = coreR.string.appupdater_app_name),
                 dialogDescription = stringResource(id = R.string.library_description),
+                dividerText = stringResource(coreR.string.appupdater_or),
                 storeList = storeList(LocalContext.current),
                 directDownloadList = directDownloadList(LocalContext.current),
                 theme = Theme.DARK,

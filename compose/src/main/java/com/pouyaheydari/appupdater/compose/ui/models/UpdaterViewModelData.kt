@@ -7,6 +7,7 @@ import com.pouyaheydari.appupdater.core.model.Theme
 internal data class UpdaterViewModelData(
     val dialogTitle: String = "",
     val dialogDescription: String = "",
+    val dividerText: String = "",
     val storeList: List<StoreListItem> = listOf(),
     val directDownloadList: List<DirectDownloadListItem> = listOf(),
     val onDismissRequested: () -> Unit = {},

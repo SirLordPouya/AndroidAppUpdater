@@ -33,7 +33,11 @@ internal class AndroidAppUpdaterViewModel(
     }
 
     private fun showUpdaterDialog(viewModelData: UpdaterViewModelData) {
-        val dialogContent = UpdaterDialogUIMapper.map(viewModelData)
+        val dialogContent = UpdaterDialogUIMapper.map(
+            viewModelData,
+            { handleIntent(DialogScreenIntents.OnStoreClicked(it)) },
+            { handleIntent(DialogScreenIntents.OnDirectLinkClicked(it)) },
+        )
         _uiState.update { it.copy(shouldShowDialog = true, dialogContent = dialogContent) }
     }
 
