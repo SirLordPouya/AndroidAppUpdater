@@ -15,7 +15,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.pouyaheydari.androidappupdater.directdownload.utils.getApk
 import com.pouyaheydari.androidappupdater.store.domain.ShowStoreModel
 import com.pouyaheydari.androidappupdater.store.domain.showAppInSelectedStore
-import com.pouyaheydari.appupdater.compose.ui.components.AppUpdaterDialog
+import com.pouyaheydari.appupdater.compose.ui.components.AppUpdaterDialogComponent
 import com.pouyaheydari.appupdater.compose.ui.components.UpdateInProgressDialogComponent
 import com.pouyaheydari.appupdater.compose.ui.models.DialogScreenIntents
 import com.pouyaheydari.appupdater.compose.ui.models.ErrorWhileOpeningStore
@@ -41,7 +41,7 @@ fun AndroidAppUpdater(dialogData: UpdaterDialogData) {
         val activity = LocalContext.current.getActivity()
 
         if (state.shouldShowDialog) {
-            AppUpdaterDialog(
+            AppUpdaterDialogComponent(
                 dialogContent = state.dialogContent,
                 onStoreClickListener = { viewModel.handleIntent(DialogScreenIntents.OnStoreClicked(it)) },
                 onDirectLinkClickListener = { viewModel.handleIntent(DialogScreenIntents.OnDirectLinkClicked(it)) },

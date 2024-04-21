@@ -30,7 +30,7 @@ import com.pouyaheydari.appupdater.compose.ui.utils.previewStoreListData
 import com.pouyaheydari.appupdater.core.R
 
 @Composable
-internal fun AppUpdaterDialog(
+internal fun AppUpdaterDialogComponent(
     dialogContent: UpdaterDialogUIData = UpdaterDialogUIData(),
     onStoreClickListener: (StoreListItem) -> Unit = {},
     onDirectLinkClickListener: (DirectDownloadListItem) -> Unit = {},
@@ -100,7 +100,7 @@ private fun getStoreListGridItemSpan(storeListSize: Int, maxLineSpan: Int) =
 @Composable
 private fun Preview() {
     AndroidAppUpdaterTheme {
-        AppUpdaterDialog(
+        AppUpdaterDialogComponent(
             dialogContent = UpdaterDialogUIData(
                 dialogHeader = DialogHeaderModel(
                     dialogTitle = stringResource(id = R.string.appupdater_app_name),
@@ -121,7 +121,7 @@ private fun Preview() {
 @Composable
 private fun PreviewSingleStoreItem() {
     AndroidAppUpdaterTheme {
-        AppUpdaterDialog(
+        AppUpdaterDialogComponent(
             dialogContent = UpdaterDialogUIData(
                 dialogHeader = DialogHeaderModel(
                     dialogTitle = stringResource(id = R.string.appupdater_app_name),
@@ -142,7 +142,7 @@ private fun PreviewSingleStoreItem() {
 @Composable
 private fun PreviewSingleDirectLinkItem() {
     AndroidAppUpdaterTheme {
-        AppUpdaterDialog(
+        AppUpdaterDialogComponent(
             dialogContent = UpdaterDialogUIData(
                 dialogHeader = DialogHeaderModel(
                     dialogTitle = stringResource(id = R.string.appupdater_app_name),
