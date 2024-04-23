@@ -22,6 +22,7 @@ composeActivity = "1.9.0"
 mockito = "5.11.0"
 mockitoKotlin = "5.3.1"
 roboelectric = "4.12.1"
+uiautomator = "2.3.0"
 
 [libraries]
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
@@ -49,6 +50,7 @@ androidx-test-junit = { group = "androidx.test.ext", name = "junit", version.ref
 androidx-test-rules = { group = "androidx.test", name = "rules", version.ref = "androidTestRules" }
 androidx-test-ui-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "androidTestEspresso" }
 coroutines = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutines" }
+androidx-uiautomator = { group = "androidx.test.uiautomator", name = "uiautomator", version.ref = "uiautomator" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

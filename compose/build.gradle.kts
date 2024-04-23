@@ -70,6 +70,7 @@ dependencies {
     androidTestImplementation(libs.androidx.compose.ui.test.junit)
     androidTestImplementation(libs.mockito.android)
     androidTestImplementation(libs.mockito.kotlin)
+    androidTestImplementation(libs.androidx.uiautomator)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
 }
 
