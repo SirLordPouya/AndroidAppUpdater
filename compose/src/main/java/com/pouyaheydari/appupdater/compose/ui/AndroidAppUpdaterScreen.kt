@@ -4,12 +4,14 @@ import android.app.Activity
 import android.content.Context
 import android.content.ContextWrapper
 import android.util.Log
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewFontScale
 import androidx.compose.ui.tooling.preview.PreviewScreenSizes
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.pouyaheydari.androidappupdater.directdownload.utils.getApk
@@ -28,19 +30,22 @@ import com.pouyaheydari.appupdater.core.utils.ANDROID_APP_UPDATER_DEBUG_TAG
 import com.pouyaheydari.appupdater.core.R as coreR
 
 /**
- * Shows the compose dialog
- *
- * @param dialogData Data to be shown in the dialog
+ * Use this composable to show the updater dialog.
  */
 @Composable
-fun AndroidAppUpdater(dialogData: UpdaterDialogData) {
-    val viewModel: AndroidAppUpdaterViewModel = viewModel(factory = AndroidAppUpdaterViewModelFactory(dialogData))
+fun AndroidAppUpdater(
+    dialogData: UpdaterDialogData,
+    viewModel: ViewModel = viewModel<AndroidAppUpdaterViewModel>(factory = AndroidAppUpdaterViewModelFactory(dialogData)),
+) {
+    // As we want to keep AndroidAppUpdaterViewModel internal, we need to upcast it at the compose function and then use smart cast here
+    viewModel as? AndroidAppUpdaterViewModel ?: throw IllegalStateException("ViewModel must be of type AndroidAppUpdaterViewModel")
+
     val state = viewModel.uiState.collectAsStateWithLifecycle().value
 
-    AndroidAppUpdaterTheme(darkTheme = isDarkThemeSelected(dialogData.theme)) {
+    AndroidAppUpdaterTheme(darkTheme = isDarkThemeSelected(dialogData.theme, isSystemInDarkTheme())) {
         val activity = LocalContext.current.getActivity()
 
-        if (state.shouldShowDialog) {
+        AnimatedVisibility(state.shouldShowDialog) {
             AppUpdaterDialogComponent(dialogContent = state.dialogContent, typeface = dialogData.typeface)
         }
 
@@ -69,11 +74,10 @@ fun AndroidAppUpdater(dialogData: UpdaterDialogData) {
     }
 }
 
-@Composable
-private fun isDarkThemeSelected(theme: Theme): Boolean = when (theme) {
+private fun isDarkThemeSelected(theme: Theme, isSystemDefaultInDarkTheme: Boolean): Boolean = when (theme) {
     Theme.DARK -> true
     Theme.LIGHT -> false
-    Theme.SYSTEM_DEFAULT -> isSystemInDarkTheme()
+    Theme.SYSTEM_DEFAULT -> isSystemDefaultInDarkTheme
 }
 
 private fun setupErrorCallback(
