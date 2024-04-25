@@ -2,14 +2,14 @@ package com.pouyaheydari.appupdater.compose.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.pouyaheydari.androidappupdater.directdownload.data.model.DirectDownloadListItem
-import com.pouyaheydari.androidappupdater.directdownload.domain.GetIsUpdateInProgress
-import com.pouyaheydari.androidappupdater.store.domain.ShowStoreModel
-import com.pouyaheydari.androidappupdater.store.domain.StoreListItem
 import com.pouyaheydari.appupdater.compose.data.mapper.UpdaterDialogUIMapper
 import com.pouyaheydari.appupdater.compose.ui.models.DialogScreenIntents
 import com.pouyaheydari.appupdater.compose.ui.models.DialogScreenState
 import com.pouyaheydari.appupdater.compose.ui.models.UpdaterViewModelData
+import com.pouyaheydari.appupdater.directdownload.data.model.DirectDownloadListItem
+import com.pouyaheydari.appupdater.directdownload.domain.GetIsUpdateInProgress
+import com.pouyaheydari.appupdater.store.domain.ShowStoreModel
+import com.pouyaheydari.appupdater.store.domain.StoreListItem
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow

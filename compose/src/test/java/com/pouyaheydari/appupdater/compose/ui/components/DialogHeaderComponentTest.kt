@@ -9,7 +9,7 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
-import com.pouyaheydari.appupdater.core.R as coreR
+import com.pouyaheydari.appupdater.store.R as storeR
 
 @RunWith(RobolectricTestRunner::class)
 internal class DialogHeaderComponentTest {
@@ -20,7 +20,7 @@ internal class DialogHeaderComponentTest {
     fun test_whenComponentIsCalled_thenCorrectUiIsBeingDisplayed() {
         val dialogTitle = "Title"
         val dialogDescription = "Description"
-        val dialogIcon = coreR.drawable.appupdater_ic_google_play
+        val dialogIcon = storeR.drawable.appupdater_ic_google_play
         composeTestRule.setContent {
             DialogHeaderComponent(
                 content = DialogHeaderModel(

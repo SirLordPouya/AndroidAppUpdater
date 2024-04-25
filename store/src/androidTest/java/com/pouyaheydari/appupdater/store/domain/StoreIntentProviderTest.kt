@@ -3,7 +3,6 @@ package com.pouyaheydari.appupdater.store.domain
 import android.content.Intent
 import android.net.Uri
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import com.pouyaheydari.androidappupdater.store.domain.StoreIntentProvider
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNull
 import org.junit.Assert.assertThrows

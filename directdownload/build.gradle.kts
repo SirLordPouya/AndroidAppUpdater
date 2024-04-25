@@ -24,7 +24,7 @@ android {
             withJavadocJar()
         }
     }
-    namespace = "com.pouyaheydari.androidappupdater.directdownload"
+    namespace = "com.pouyaheydari.appupdater.directdownload"
 }
 
 dependencies {

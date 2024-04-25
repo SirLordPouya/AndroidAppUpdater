@@ -21,13 +21,13 @@ import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewScreenSizes
 import androidx.compose.ui.unit.dp
 import com.pouyaheydari.appupdater.compose.ui.theme.AndroidAppUpdaterTheme
-import com.pouyaheydari.appupdater.core.R
+import com.pouyaheydari.appupdater.store.R as storeR
 
 @Composable
 internal fun SquareStoreItemComponent(
     modifier: Modifier = Modifier,
     title: String = "",
-    @DrawableRes icon: Int = R.drawable.appupdater_ic_google_play,
+    @DrawableRes icon: Int = storeR.drawable.appupdater_ic_google_play,
     typeface: Typeface? = null,
     onClickListener: () -> Unit = {},
 ) {
@@ -61,6 +61,6 @@ internal fun SquareStoreItemComponent(
 @Composable
 private fun Preview() {
     AndroidAppUpdaterTheme {
-        SquareStoreItemComponent(title = "Google Play", icon = R.drawable.appupdater_ic_google_play)
+        SquareStoreItemComponent(title = "Google Play", icon = storeR.drawable.appupdater_ic_google_play)
     }
 }

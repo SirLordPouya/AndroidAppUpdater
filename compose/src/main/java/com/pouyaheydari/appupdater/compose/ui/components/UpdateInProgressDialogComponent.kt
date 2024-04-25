@@ -22,7 +22,7 @@ import androidx.compose.ui.tooling.preview.PreviewScreenSizes
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import com.pouyaheydari.appupdater.compose.ui.theme.AndroidAppUpdaterTheme
-import com.pouyaheydari.appupdater.core.R as coreR
+import com.pouyaheydari.appupdater.directdownload.R as directDownloadR
 
 internal const val DIALOG_TEST_TAG = "DialogTestTag"
 
@@ -76,8 +76,8 @@ private fun UpdateInProgressDialogPreview() {
     AndroidAppUpdaterTheme {
         UpdateInProgressDialogComponent(
             isUpdateInProgress = true,
-            dialogTitle = stringResource(id = (coreR.string.appupdater_please_wait)),
-            dialogDescription = stringResource(id = (coreR.string.appupdater_downloading_new_version)),
+            dialogTitle = stringResource(id = (directDownloadR.string.appupdater_please_wait)),
+            dialogDescription = stringResource(id = (directDownloadR.string.appupdater_downloading_new_version)),
         )
     }
 }

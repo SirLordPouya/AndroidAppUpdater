@@ -26,7 +26,7 @@ android {
             withJavadocJar()
         }
     }
-    namespace = "com.pouyaheydari.appupdater"
+    namespace = "com.pouyaheydari.appupdater.main"
 }
 
 dependencies {

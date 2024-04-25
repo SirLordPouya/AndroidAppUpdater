@@ -17,7 +17,7 @@ import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewScreenSizes
 import androidx.compose.ui.unit.dp
 import com.pouyaheydari.appupdater.compose.ui.theme.AndroidAppUpdaterTheme
-import com.pouyaheydari.appupdater.core.R
+import com.pouyaheydari.appupdater.directdownload.R as directDownloadR
 
 /**
  * Shows a divider between direct download links and stores
@@ -56,6 +56,6 @@ internal fun DividerComponent(
 @Composable
 private fun Preview() {
     AndroidAppUpdaterTheme {
-        DividerComponent(dividerText = stringResource(id = R.string.appupdater_or))
+        DividerComponent(dividerText = stringResource(id = directDownloadR.string.appupdater_or))
     }
 }

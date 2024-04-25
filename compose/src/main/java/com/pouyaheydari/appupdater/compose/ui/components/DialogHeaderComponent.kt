@@ -23,7 +23,7 @@ import androidx.compose.ui.tooling.preview.PreviewScreenSizes
 import androidx.compose.ui.unit.dp
 import com.pouyaheydari.appupdater.compose.ui.models.DialogHeaderModel
 import com.pouyaheydari.appupdater.compose.ui.theme.AndroidAppUpdaterTheme
-import com.pouyaheydari.appupdater.core.R as coreR
+import com.pouyaheydari.appupdater.directdownload.R as directDownloadR
 
 /**
  * Shows header icon, title and description
@@ -76,8 +76,8 @@ private fun Preview() {
     AndroidAppUpdaterTheme {
         DialogHeaderComponent(
             content = DialogHeaderModel(
-                dialogTitle = stringResource(id = coreR.string.appupdater_app_name),
-                dialogDescription = stringResource(id = coreR.string.appupdater_download_notification_desc),
+                dialogTitle = stringResource(id = directDownloadR.string.appupdater_app_name),
+                dialogDescription = stringResource(id = directDownloadR.string.appupdater_download_notification_desc),
             ),
         )
     }

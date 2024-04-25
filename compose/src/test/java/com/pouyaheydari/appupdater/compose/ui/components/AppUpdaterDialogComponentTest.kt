@@ -5,18 +5,18 @@ import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
-import com.pouyaheydari.androidappupdater.directdownload.data.model.DirectDownloadListItem
-import com.pouyaheydari.androidappupdater.store.domain.StoreFactory
-import com.pouyaheydari.androidappupdater.store.domain.StoreListItem
 import com.pouyaheydari.appupdater.compose.ui.models.DialogHeaderModel
 import com.pouyaheydari.appupdater.compose.ui.models.UpdaterDialogUIData
+import com.pouyaheydari.appupdater.directdownload.data.model.DirectDownloadListItem
+import com.pouyaheydari.appupdater.store.domain.StoreFactory
+import com.pouyaheydari.appupdater.store.domain.StoreListItem
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.kotlin.mock
 import org.mockito.kotlin.verify
 import org.robolectric.RobolectricTestRunner
-import com.pouyaheydari.appupdater.core.R as coreR
+import com.pouyaheydari.appupdater.store.R as storeR
 
 @RunWith(RobolectricTestRunner::class)
 internal class AppUpdaterDialogComponentTest {
@@ -29,7 +29,7 @@ internal class AppUpdaterDialogComponentTest {
             dialogHeader = DialogHeaderModel(
                 dialogTitle = "Title",
                 dialogDescription = "Description",
-                dialogIcon = coreR.drawable.appupdater_ic_google_play,
+                dialogIcon = storeR.drawable.appupdater_ic_google_play,
             ),
         )
 
@@ -61,7 +61,7 @@ internal class AppUpdaterDialogComponentTest {
         val storeItem = StoreListItem(
             store = StoreFactory.getSamsungGalaxyStore(""),
             title = "Store",
-            icon = coreR.drawable.appupdater_ic_galaxy_store,
+            icon = storeR.drawable.appupdater_ic_galaxy_store,
         )
 
         val dialogContent = UpdaterDialogUIData(
@@ -82,7 +82,7 @@ internal class AppUpdaterDialogComponentTest {
         val storeItem = StoreListItem(
             store = StoreFactory.getSamsungGalaxyStore(""),
             title = "Store",
-            icon = coreR.drawable.appupdater_ic_galaxy_store,
+            icon = storeR.drawable.appupdater_ic_galaxy_store,
         )
         val dialogContent = UpdaterDialogUIData(
             storeList = listOf(storeItem),

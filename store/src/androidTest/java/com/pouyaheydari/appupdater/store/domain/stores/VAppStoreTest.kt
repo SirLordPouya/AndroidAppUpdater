@@ -6,10 +6,9 @@ import androidx.test.espresso.intent.matcher.IntentMatchers
 import androidx.test.espresso.intent.rule.IntentsRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
-import com.pouyaheydari.androidappupdater.store.domain.ShowStoreModel
-import com.pouyaheydari.androidappupdater.store.domain.StoreFactory
-import com.pouyaheydari.androidappupdater.store.domain.showAppInSelectedStore
-import com.pouyaheydari.androidappupdater.store.domain.stores.V_APP_STORE_URL
+import com.pouyaheydari.appupdater.store.domain.ShowStoreModel
+import com.pouyaheydari.appupdater.store.domain.StoreFactory
+import com.pouyaheydari.appupdater.store.domain.showAppInSelectedStore
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith

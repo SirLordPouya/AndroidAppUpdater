@@ -14,9 +14,6 @@ import androidx.compose.ui.tooling.preview.PreviewScreenSizes
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.pouyaheydari.androidappupdater.directdownload.utils.getApk
-import com.pouyaheydari.androidappupdater.store.domain.ShowStoreModel
-import com.pouyaheydari.androidappupdater.store.domain.showAppInSelectedStore
 import com.pouyaheydari.appupdater.compose.ui.components.AppUpdaterDialogComponent
 import com.pouyaheydari.appupdater.compose.ui.components.UpdateInProgressDialogComponent
 import com.pouyaheydari.appupdater.compose.ui.models.DialogScreenIntents
@@ -27,7 +24,10 @@ import com.pouyaheydari.appupdater.compose.ui.utils.previewDirectDownloadListDat
 import com.pouyaheydari.appupdater.compose.ui.utils.previewStoreListData
 import com.pouyaheydari.appupdater.core.model.Theme
 import com.pouyaheydari.appupdater.core.utils.ANDROID_APP_UPDATER_DEBUG_TAG
-import com.pouyaheydari.appupdater.core.R as coreR
+import com.pouyaheydari.appupdater.directdownload.utils.getApk
+import com.pouyaheydari.appupdater.store.domain.ShowStoreModel
+import com.pouyaheydari.appupdater.store.domain.showAppInSelectedStore
+import com.pouyaheydari.appupdater.directdownload.R as directDownloadR
 
 /**
  * Use this composable to show the updater dialog.
@@ -51,8 +51,8 @@ fun AndroidAppUpdater(
 
         UpdateInProgressDialogComponent(
             isUpdateInProgress = state.shouldShowUpdateInProgress,
-            dialogTitle = stringResource(id = (coreR.string.appupdater_please_wait)),
-            dialogDescription = stringResource(id = (coreR.string.appupdater_downloading_new_version)),
+            dialogTitle = stringResource(id = (directDownloadR.string.appupdater_please_wait)),
+            dialogDescription = stringResource(id = (directDownloadR.string.appupdater_downloading_new_version)),
             typeface = dialogData.typeface,
         )
 
@@ -132,8 +132,8 @@ private fun LightPreview() {
     AndroidAppUpdaterTheme {
         AndroidAppUpdater(
             UpdaterDialogData(
-                dialogTitle = stringResource(id = coreR.string.appupdater_app_name),
-                dialogDescription = stringResource(id = coreR.string.appupdater_download_notification_desc),
+                dialogTitle = stringResource(id = directDownloadR.string.appupdater_app_name),
+                dialogDescription = stringResource(id = directDownloadR.string.appupdater_download_notification_desc),
                 storeList = previewStoreListData,
                 directDownloadList = previewDirectDownloadListData,
                 theme = Theme.LIGHT,
@@ -149,8 +149,8 @@ private fun LightPreviewSingleStoreItem() {
     AndroidAppUpdaterTheme {
         AndroidAppUpdater(
             UpdaterDialogData(
-                dialogTitle = stringResource(id = coreR.string.appupdater_app_name),
-                dialogDescription = stringResource(id = coreR.string.appupdater_download_notification_desc),
+                dialogTitle = stringResource(id = directDownloadR.string.appupdater_app_name),
+                dialogDescription = stringResource(id = directDownloadR.string.appupdater_download_notification_desc),
                 storeList = previewStoreListData.subList(0, 1),
                 theme = Theme.LIGHT,
             ),
@@ -165,8 +165,8 @@ private fun LightPreviewSingleDirectLinkItem() {
     AndroidAppUpdaterTheme {
         AndroidAppUpdater(
             UpdaterDialogData(
-                dialogTitle = stringResource(id = coreR.string.appupdater_app_name),
-                dialogDescription = stringResource(id = coreR.string.appupdater_download_notification_desc),
+                dialogTitle = stringResource(id = directDownloadR.string.appupdater_app_name),
+                dialogDescription = stringResource(id = directDownloadR.string.appupdater_download_notification_desc),
                 storeList = listOf(),
                 directDownloadList = previewDirectDownloadListData.subList(0, 1),
                 theme = Theme.LIGHT,
@@ -182,8 +182,8 @@ private fun DarkPreview() {
     AndroidAppUpdaterTheme {
         AndroidAppUpdater(
             UpdaterDialogData(
-                dialogTitle = stringResource(id = coreR.string.appupdater_app_name),
-                dialogDescription = stringResource(id = coreR.string.appupdater_download_notification_desc),
+                dialogTitle = stringResource(id = directDownloadR.string.appupdater_app_name),
+                dialogDescription = stringResource(id = directDownloadR.string.appupdater_download_notification_desc),
                 storeList = previewStoreListData,
                 directDownloadList = previewDirectDownloadListData,
                 theme = Theme.DARK,

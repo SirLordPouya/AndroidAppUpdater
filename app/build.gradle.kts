@@ -6,7 +6,7 @@ plugins {
 android {
     compileSdk = libs.versions.compileSdkVersion.get().toInt()
     defaultConfig {
-        applicationId = "com.pouyaheydari.androidappupdater"
+        applicationId = "com.pouyaheydari.appupdater.demo"
         minSdk = libs.versions.minSdkVersion.get().toInt()
         targetSdk = libs.versions.targetSdkVersion.get().toInt()
         versionCode = libs.versions.appVersion.get().toInt()
@@ -16,7 +16,7 @@ android {
             useSupportLibrary = true
         }
     }
-    namespace = "com.pouyaheydari.androidappupdater"
+    namespace = "com.pouyaheydari.appupdater.demo"
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17

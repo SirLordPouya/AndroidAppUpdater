@@ -13,7 +13,7 @@ import org.junit.runner.RunWith
 import org.mockito.Mockito
 import org.mockito.kotlin.verify
 import org.robolectric.RobolectricTestRunner
-import com.pouyaheydari.appupdater.core.R as coreR
+import com.pouyaheydari.appupdater.store.R as storeR
 
 @RunWith(RobolectricTestRunner::class)
 internal class SquareStoreItemComponentTest {
@@ -35,7 +35,7 @@ internal class SquareStoreItemComponentTest {
 
     @Test
     fun test_whenComponentIsCalled_thenCorrectIconIsBeingDisplayed() {
-        val storeIcon = coreR.drawable.appupdater_ic_google_play
+        val storeIcon = storeR.drawable.appupdater_ic_google_play
 
         composeTestRule.setContent {
             SquareStoreItemComponent(icon = storeIcon)

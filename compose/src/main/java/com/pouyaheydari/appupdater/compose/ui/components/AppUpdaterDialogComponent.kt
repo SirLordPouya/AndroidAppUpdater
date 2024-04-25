@@ -25,7 +25,7 @@ import com.pouyaheydari.appupdater.compose.ui.models.UpdaterDialogUIData
 import com.pouyaheydari.appupdater.compose.ui.theme.AndroidAppUpdaterTheme
 import com.pouyaheydari.appupdater.compose.ui.utils.previewDirectDownloadListData
 import com.pouyaheydari.appupdater.compose.ui.utils.previewStoreListData
-import com.pouyaheydari.appupdater.core.R
+import com.pouyaheydari.appupdater.directdownload.R as directDownloadR
 
 @Composable
 internal fun AppUpdaterDialogComponent(
@@ -97,8 +97,8 @@ private fun Preview() {
         AppUpdaterDialogComponent(
             dialogContent = UpdaterDialogUIData(
                 dialogHeader = DialogHeaderModel(
-                    dialogTitle = stringResource(id = R.string.appupdater_app_name),
-                    dialogDescription = stringResource(id = R.string.appupdater_download_notification_desc),
+                    dialogTitle = stringResource(id = directDownloadR.string.appupdater_app_name),
+                    dialogDescription = stringResource(id = directDownloadR.string.appupdater_download_notification_desc),
                 ),
                 directDownloadList = previewDirectDownloadListData,
                 storeList = previewStoreListData,
@@ -118,8 +118,8 @@ private fun PreviewSingleStoreItem() {
         AppUpdaterDialogComponent(
             dialogContent = UpdaterDialogUIData(
                 dialogHeader = DialogHeaderModel(
-                    dialogTitle = stringResource(id = R.string.appupdater_app_name),
-                    dialogDescription = stringResource(id = R.string.appupdater_download_notification_desc),
+                    dialogTitle = stringResource(id = directDownloadR.string.appupdater_app_name),
+                    dialogDescription = stringResource(id = directDownloadR.string.appupdater_download_notification_desc),
                 ),
                 directDownloadList = listOf(),
                 storeList = previewStoreListData.subList(0, 1),
@@ -139,8 +139,8 @@ private fun PreviewSingleDirectLinkItem() {
         AppUpdaterDialogComponent(
             dialogContent = UpdaterDialogUIData(
                 dialogHeader = DialogHeaderModel(
-                    dialogTitle = stringResource(id = R.string.appupdater_app_name),
-                    dialogDescription = stringResource(id = R.string.appupdater_download_notification_desc),
+                    dialogTitle = stringResource(id = directDownloadR.string.appupdater_app_name),
+                    dialogDescription = stringResource(id = directDownloadR.string.appupdater_download_notification_desc),
                 ),
                 directDownloadList = previewDirectDownloadListData.subList(0, 1),
                 storeList = listOf(),

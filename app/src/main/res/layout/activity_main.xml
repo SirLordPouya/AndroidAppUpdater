@@ -5,7 +5,7 @@
     style="@style/Theme.AppCompat.DayNight"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.pouyaheydari.androidappupdater.ui.android.MainActivity">
+    tools:context="com.pouyaheydari.appupdater.demo.ui.android.MainActivity">
 
     <Button
         android:id="@+id/btnDSL"
