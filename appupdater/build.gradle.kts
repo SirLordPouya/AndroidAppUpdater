@@ -31,8 +31,8 @@ android {
 
 dependencies {
 
-    api(project(":store"))
-    api(project(":directdownload"))
+    api(projects.store)
+    api(projects.directdownload)
 
     // support dependency
     implementation(libs.androidx.appcompat)

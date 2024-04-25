@@ -14,4 +14,14 @@ dependencyResolutionManagement {
     }
 }
 
-include(":app", ":appupdater", ":core", ":compose", ":store", ":directdownload")
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
+
+include(":app")
+
+include(":core")
+
+include(":store")
+include(":directdownload")
+
+include(":compose")
+include(":appupdater")

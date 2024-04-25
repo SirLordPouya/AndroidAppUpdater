@@ -42,8 +42,8 @@ android {
 dependencies {
 
     // library dependency
-    implementation(project(":appupdater"))
-    implementation(project(":compose"))
+    implementation(projects.appupdater)
+    implementation(projects.compose)
 
     // support dependency
     implementation(libs.androidx.appcompat)

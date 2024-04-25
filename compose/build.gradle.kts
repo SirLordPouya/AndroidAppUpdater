@@ -46,8 +46,8 @@ android {
 
 dependencies {
 
-    api(project(":store"))
-    api(project(":directdownload"))
+    api(projects.store)
+    api(projects.directdownload)
 
     // compose
     val composeBom = platform(libs.androidx.compose.bom)

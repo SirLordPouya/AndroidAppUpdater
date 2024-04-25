@@ -32,7 +32,7 @@ java {
     targetCompatibility = JavaVersion.VERSION_17
 }
 dependencies {
-    api(project(":core"))
+    api(projects.core)
 
     implementation(libs.androidx.core)
 
