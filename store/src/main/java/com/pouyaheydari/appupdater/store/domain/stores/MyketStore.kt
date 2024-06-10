@@ -10,13 +10,17 @@ internal const val MYKET_PACKAGE = "ir.mservices.market"
 /**
  * Opens application's page in [Myket Store](https://myket.ir/)
  */
-data class MyketStore(val packageName: String) : AppStore {
+internal data class MyketStore(val packageName: String) : AppStore {
     constructor(parcel: Parcel) : this(parcel.readString().orEmpty())
 
     override fun getIntent() = StoreIntentProvider
         .Builder("$MYKET_URL$packageName")
         .withPackage(MYKET_PACKAGE)
         .build()
+
+    override fun getType(): AppStoreType = AppStoreType.MYKET
+
+    override fun getUserReadableName(): String = AppStoreType.MYKET.userReadableName
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(packageName)

@@ -9,12 +9,16 @@ internal const val SAMSUNG_GALAXY_STORE_URL = "samsungapps://ProductDetail/"
 /**
  * Opens application's page in [Samsung Galaxy store](https://www.samsung.com/de/apps/galaxy-store/)
  */
-data class SamsungGalaxyStore(val packageName: String) : AppStore {
+internal data class SamsungGalaxyStore(val packageName: String) : AppStore {
     constructor(parcel: Parcel) : this(parcel.readString().orEmpty())
 
     override fun getIntent() = StoreIntentProvider
         .Builder("$SAMSUNG_GALAXY_STORE_URL$packageName")
         .build()
+
+    override fun getType(): AppStoreType = AppStoreType.SAMSUNG_GALAXY_STORE
+
+    override fun getUserReadableName(): String = AppStoreType.SAMSUNG_GALAXY_STORE.userReadableName
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(packageName)

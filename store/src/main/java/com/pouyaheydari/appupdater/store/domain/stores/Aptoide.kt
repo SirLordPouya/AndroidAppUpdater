@@ -10,13 +10,17 @@ internal const val APTOIDE_PACKAGE = "cm.aptoide.pt"
 /**
  * Opens application's page in [Aptoide App Store](https://en.aptoide.com/)
  */
-data class Aptoide(val packageName: String) : AppStore {
+internal data class Aptoide(val packageName: String) : AppStore {
     private constructor(parcel: Parcel) : this(parcel.readString().orEmpty())
 
     override fun getIntent() = StoreIntentProvider
         .Builder("$APTOIDE_URL$packageName")
         .withPackage(APTOIDE_PACKAGE)
         .build()
+
+    override fun getType(): AppStoreType = AppStoreType.APTOIDE
+
+    override fun getUserReadableName(): String = AppStoreType.APTOIDE.userReadableName
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(packageName)

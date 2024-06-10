@@ -25,8 +25,9 @@ import com.pouyaheydari.appupdater.compose.ui.utils.previewStoreListData
 import com.pouyaheydari.appupdater.core.model.Theme
 import com.pouyaheydari.appupdater.core.utils.ANDROID_APP_UPDATER_DEBUG_TAG
 import com.pouyaheydari.appupdater.directdownload.utils.getApk
-import com.pouyaheydari.appupdater.store.domain.ShowStoreModel
+import com.pouyaheydari.appupdater.store.domain.AppStoreCallback
 import com.pouyaheydari.appupdater.store.domain.showAppInSelectedStore
+import com.pouyaheydari.appupdater.store.domain.stores.AppStore
 import com.pouyaheydari.appupdater.directdownload.R as directDownloadR
 
 /**
@@ -60,9 +61,13 @@ fun AndroidAppUpdater(
             viewModel.handleIntent(DialogScreenIntents.OnErrorCallbackExecuted)
         }
 
-        setupStoreOpener(state.selectedStore, state.shouldOpenStore, activity) {
-            viewModel.handleIntent(DialogScreenIntents.OnStoreOpened)
-        }
+        setupStoreOpener(
+            store = state.selectedStore,
+            shouldOpenStore = state.shouldOpenStore,
+            context = activity,
+            onStoreOpenedListener = { viewModel.handleIntent(DialogScreenIntents.OnStoreOpened) },
+            onOpeningStoreFailed = { viewModel.handleIntent(DialogScreenIntents.OnOpeningStoreFailed(it)) },
+        )
 
         setupDirectApkDownload(
             state.downloadUrl,
@@ -118,10 +123,20 @@ private fun Context.getActivity(): Activity? = when (this) {
     else -> null
 }
 
-private fun setupStoreOpener(store: ShowStoreModel, shouldOpenStore: Boolean, context: Context?, onStoreOpenedListener: () -> Unit) {
+private fun setupStoreOpener(
+    store: AppStore,
+    shouldOpenStore: Boolean,
+    context: Context?,
+    onStoreOpenedListener: () -> Unit,
+    onOpeningStoreFailed: (AppStore) -> Unit,
+) {
     if (shouldOpenStore) {
-        showAppInSelectedStore(context, store)
-        onStoreOpenedListener()
+        showAppInSelectedStore(context, store) { callback ->
+            when (callback) {
+                is AppStoreCallback.Failure -> onOpeningStoreFailed(store)
+                is AppStoreCallback.Success -> onStoreOpenedListener()
+            }
+        }
     }
 }
 

@@ -6,7 +6,7 @@ import androidx.test.espresso.intent.matcher.IntentMatchers
 import androidx.test.espresso.intent.rule.IntentsRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
-import com.pouyaheydari.appupdater.store.domain.ShowStoreModel
+import com.pouyaheydari.appupdater.store.domain.AppStoreCallback
 import com.pouyaheydari.appupdater.store.domain.StoreFactory
 import com.pouyaheydari.appupdater.store.domain.showAppInSelectedStore
 import org.junit.Rule
@@ -22,9 +22,10 @@ internal class TencentStoreTest {
     fun whenCalling_setStoreData_then_intentGetsFiredCorrectly() {
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
         val packageName = appContext.packageName
-        val tencentStoreModel = ShowStoreModel(StoreFactory.getTencentAppStore(packageName))
+        val store = StoreFactory.getStore(AppStoreType.TENCENT_APPS_STORE, packageName)
+        val errorCallback: (AppStoreCallback) -> Unit = {}
 
-        showAppInSelectedStore(appContext, tencentStoreModel)
+        showAppInSelectedStore(appContext, store, errorCallback)
 
         Intents.intended(IntentMatchers.hasData(Uri.parse("$TENCENT_APP_STORE_URL$packageName")))
     }

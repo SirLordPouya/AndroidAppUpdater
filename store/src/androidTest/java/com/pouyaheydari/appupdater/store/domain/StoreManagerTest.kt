@@ -26,22 +26,22 @@ class StoreManagerTest {
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
         val packageName = "PackageName"
         val store = GooglePlayStore(packageName)
-        val storeModel = ShowStoreModel(store = store, errorCallBack = {})
+        val errorCallBack: (AppStoreCallback) -> Unit = {}
 
-        showAppInSelectedStore(appContext, storeModel)
+        showAppInSelectedStore(appContext, store, errorCallBack)
 
         Intents.intended(IntentMatchers.filterEquals(store.getIntent()))
     }
 
     @Test
     fun test_showAppInSelectedStore_storeNotInstalled_invokesErrorCallback() {
-        val callback: (String) -> Unit = mock()
-        val storeModel = ShowStoreModel(store = GooglePlayStore("PackageName"), errorCallBack = callback)
+        val errorCallBack: (AppStoreCallback) -> Unit = mock()
+        val store = GooglePlayStore("PackageName")
         val context: Context = mock()
         whenever(context.startActivity(any())).thenThrow(ActivityNotFoundException::class.java)
 
-        showAppInSelectedStore(context, storeModel)
+        showAppInSelectedStore(context, store, errorCallBack)
 
-        verify(callback).invoke(any())
+        verify(errorCallBack).invoke(any())
     }
 }

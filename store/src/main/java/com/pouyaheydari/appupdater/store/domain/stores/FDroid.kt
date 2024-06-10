@@ -10,13 +10,17 @@ internal const val FDROID_PACKAGE = "org.fdroid.fdroid"
 /**
  * Opens application's page in [F-Droid App Store](https://f-droid.org/)
  */
-data class FDroid(val packageName: String) : AppStore {
+internal data class FDroid(val packageName: String) : AppStore {
     constructor(parcel: Parcel) : this(parcel.readString().orEmpty())
 
     override fun getIntent() = StoreIntentProvider
         .Builder("$FDROID_URL$packageName")
         .withPackage(FDROID_PACKAGE)
         .build()
+
+    override fun getType(): AppStoreType = AppStoreType.FDROID
+
+    override fun getUserReadableName(): String = AppStoreType.FDROID.userReadableName
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(packageName)

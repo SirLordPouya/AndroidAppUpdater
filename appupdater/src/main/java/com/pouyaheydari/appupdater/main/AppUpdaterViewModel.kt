@@ -7,9 +7,8 @@ import com.pouyaheydari.appupdater.directdownload.domain.GetIsUpdateInProgress
 import com.pouyaheydari.appupdater.main.pojo.DialogStates
 import com.pouyaheydari.appupdater.main.utils.ErrorCallbackHolder
 import com.pouyaheydari.appupdater.main.utils.TypefaceHolder
-import com.pouyaheydari.appupdater.store.domain.ShowStoreModel
 import com.pouyaheydari.appupdater.store.domain.StoreListItem
-import kotlinx.coroutines.delay
+import com.pouyaheydari.appupdater.store.domain.stores.AppStore
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -21,30 +20,27 @@ internal class AppUpdaterViewModel : ViewModel() {
     val screenState = MutableStateFlow<DialogStates>(DialogStates.HideUpdateInProgress)
 
     fun onStoreClicked(item: StoreListItem) {
-        viewModelScope.launch {
-            val storeModel = ShowStoreModel(item.store, ::onErrorWhileOpeningStore)
-            screenState.value = DialogStates.OpenStore(storeModel)
-            runWithDelay {
-                screenState.value = DialogStates.Empty
-            }
-        }
+        screenState.value = DialogStates.OpenStore(item.store)
+    }
+
+    fun onStoreOpened() {
+        screenState.value = DialogStates.Empty
     }
 
     fun onDirectDownloadLinkClicked(item: DirectDownloadListItem) {
         screenState.value = DialogStates.DownloadApk(item.url)
     }
 
+    fun onErrorCallbackCalled() {
+        screenState.value = DialogStates.Empty
+    }
+
     fun onDownloadStarted() {
         observeUpdateInProgressStatus()
     }
 
-    private fun onErrorWhileOpeningStore(storeName: String) {
-        viewModelScope.launch {
-            screenState.value = DialogStates.ExecuteErrorCallback(storeName)
-            runWithDelay {
-                screenState.value = DialogStates.Empty
-            }
-        }
+    fun onErrorWhileOpeningStore(store: AppStore) {
+        screenState.value = DialogStates.ExecuteErrorCallback(store.getUserReadableName())
     }
 
     private fun observeUpdateInProgressStatus() {
@@ -59,10 +55,5 @@ internal class AppUpdaterViewModel : ViewModel() {
         TypefaceHolder.clear()
         ErrorCallbackHolder.clear()
         super.onCleared()
-    }
-
-    private suspend fun runWithDelay(job: () -> Unit) {
-        delay(100)
-        job()
     }
 }

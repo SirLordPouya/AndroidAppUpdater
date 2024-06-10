@@ -10,13 +10,17 @@ internal const val BAZAAR_PACKAGE = "com.farsitel.bazaar"
 /**
  * Opens application's page in [CafeBazaar App Store](https://cafebazaar.ir)
  */
-data class CafeBazaarStore(val packageName: String) : AppStore {
+internal data class CafeBazaarStore(val packageName: String) : AppStore {
     constructor(parcel: Parcel) : this(parcel.readString().orEmpty())
 
     override fun getIntent() = StoreIntentProvider
         .Builder("$BAZAAR_URL$packageName")
         .withPackage(BAZAAR_PACKAGE)
         .build()
+
+    override fun getType(): AppStoreType = AppStoreType.CAFE_BAZAAR
+
+    override fun getUserReadableName(): String = AppStoreType.CAFE_BAZAAR.userReadableName
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(packageName)

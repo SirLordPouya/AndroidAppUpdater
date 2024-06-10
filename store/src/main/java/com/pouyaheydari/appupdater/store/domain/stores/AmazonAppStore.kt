@@ -10,7 +10,7 @@ internal const val AMAZON_PACKAGE = "com.amazon.venezia"
 /**
  * Opens application's page in [Amazon App Store](https://www.amazon.com/gp/mas/get/amazonapp)
  */
-data class AmazonAppStore(val packageName: String) : AppStore {
+internal data class AmazonAppStore(val packageName: String) : AppStore {
     private constructor(parcel: Parcel) : this(parcel.readString().orEmpty())
 
     override fun getIntent() =
@@ -18,6 +18,10 @@ data class AmazonAppStore(val packageName: String) : AppStore {
             .Builder("$AMAZON_APP_STORE_URL$packageName")
             .withPackage(AMAZON_PACKAGE)
             .build()
+
+    override fun getType(): AppStoreType = AppStoreType.AMAZON_APP_STORE
+
+    override fun getUserReadableName(): String = AppStoreType.AMAZON_APP_STORE.userReadableName
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(packageName)

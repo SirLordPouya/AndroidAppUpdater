@@ -6,7 +6,7 @@ import androidx.test.espresso.intent.matcher.IntentMatchers
 import androidx.test.espresso.intent.rule.IntentsRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
-import com.pouyaheydari.appupdater.store.domain.ShowStoreModel
+import com.pouyaheydari.appupdater.store.domain.AppStoreCallback
 import com.pouyaheydari.appupdater.store.domain.StoreFactory
 import com.pouyaheydari.appupdater.store.domain.showAppInSelectedStore
 import org.junit.Rule
@@ -19,12 +19,13 @@ class AmazonAppStoreTest {
     val intentsTestRule = IntentsRule()
 
     @Test
-    fun whenCalling_setStoreData_then_intentGetsFiredCorrectly() {
+    fun whenCalling_showAppInSelectedStore_then_intentGetsFiredCorrectly() {
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
         val packageName = appContext.packageName
-        val storeModel = ShowStoreModel(StoreFactory.getAmazonAppStore(packageName))
+        val store = StoreFactory.getStore(AppStoreType.AMAZON_APP_STORE, packageName)
+        val errorCallback: (AppStoreCallback) -> Unit = {}
 
-        showAppInSelectedStore(appContext, storeModel)
+        showAppInSelectedStore(appContext, store, errorCallback)
 
         Intents.intended(IntentMatchers.hasPackage(AMAZON_PACKAGE))
         Intents.intended(IntentMatchers.hasData(Uri.parse("$AMAZON_APP_STORE_URL$packageName")))

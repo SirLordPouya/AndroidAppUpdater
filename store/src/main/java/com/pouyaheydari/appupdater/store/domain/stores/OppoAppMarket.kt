@@ -10,13 +10,17 @@ internal const val OPPO_PACKAGE = "com.heytap.market"
 /**
  * Opens application's page in [OppoAppMarket](https://oppomobile.com/)
  */
-data class OppoAppMarket(val packageName: String) : AppStore {
+internal data class OppoAppMarket(val packageName: String) : AppStore {
     constructor(parcel: Parcel) : this(parcel.readString().orEmpty())
 
     override fun getIntent() = StoreIntentProvider
         .Builder("$OPPO_APP_MARKET_URL$packageName")
         .withPackage(OPPO_PACKAGE)
         .build()
+
+    override fun getType(): AppStoreType = AppStoreType.OPPO_APP_MARKET
+
+    override fun getUserReadableName(): String = AppStoreType.OPPO_APP_MARKET.userReadableName
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(packageName)

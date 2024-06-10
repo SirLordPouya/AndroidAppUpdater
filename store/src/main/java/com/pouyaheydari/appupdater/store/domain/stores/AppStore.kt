@@ -5,4 +5,6 @@ import android.os.Parcelable
 
 interface AppStore : Parcelable {
     fun getIntent(): Intent
+    fun getType(): AppStoreType
+    fun getUserReadableName(): String
 }

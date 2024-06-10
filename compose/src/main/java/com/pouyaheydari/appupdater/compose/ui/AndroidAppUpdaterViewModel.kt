@@ -8,8 +8,8 @@ import com.pouyaheydari.appupdater.compose.ui.models.DialogScreenState
 import com.pouyaheydari.appupdater.compose.ui.models.UpdaterViewModelData
 import com.pouyaheydari.appupdater.directdownload.data.model.DirectDownloadListItem
 import com.pouyaheydari.appupdater.directdownload.domain.GetIsUpdateInProgress
-import com.pouyaheydari.appupdater.store.domain.ShowStoreModel
 import com.pouyaheydari.appupdater.store.domain.StoreListItem
+import com.pouyaheydari.appupdater.store.domain.stores.AppStore
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -25,8 +25,7 @@ internal class AndroidAppUpdaterViewModel(
     private val isUpdateInProgress: GetIsUpdateInProgress,
 ) : ViewModel() {
     private val _uiState = MutableStateFlow(DialogScreenState())
-    val uiState: StateFlow<DialogScreenState>
-        get() = _uiState.asStateFlow()
+    val uiState: StateFlow<DialogScreenState> = _uiState.asStateFlow()
 
     init {
         showUpdaterDialog(viewModelData)
@@ -49,17 +48,17 @@ internal class AndroidAppUpdaterViewModel(
             DialogScreenIntents.OnErrorCallbackExecuted -> _uiState.update { it.copy(errorWhileOpeningStore = it.errorWhileOpeningStore.copy(shouldNotifyCaller = false)) }
             DialogScreenIntents.OnApkDownloadRequested -> _uiState.update { it.copy(shouldStartAPKDownload = false) }
             DialogScreenIntents.OnApkDownloadStarted -> observeUpdateProgress()
+            is DialogScreenIntents.OnOpeningStoreFailed -> observeErrorWhileShowingStore(intent.store)
         }
     }
 
     private fun showAppInSelectedStore(item: StoreListItem) {
-        val storeModel = ShowStoreModel(item.store, ::observeErrorWhileShowingStore)
-        _uiState.update { it.copy(selectedStore = storeModel, shouldOpenStore = true) }
+        _uiState.update { it.copy(selectedStore = item.store, shouldOpenStore = true) }
     }
 
-    private fun observeErrorWhileShowingStore(storeName: String) {
+    private fun observeErrorWhileShowingStore(store: AppStore) {
         _uiState.update {
-            it.copy(errorWhileOpeningStore = it.errorWhileOpeningStore.copy(shouldNotifyCaller = true, storeName = storeName))
+            it.copy(errorWhileOpeningStore = it.errorWhileOpeningStore.copy(shouldNotifyCaller = true, storeName = store.getUserReadableName()))
         }
     }
 

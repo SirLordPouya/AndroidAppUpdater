@@ -1,6 +1,7 @@
 package com.pouyaheydari.appupdater.store.domain
 
 import com.pouyaheydari.appupdater.store.domain.stores.AmazonAppStore
+import com.pouyaheydari.appupdater.store.domain.stores.AppStoreType
 import com.pouyaheydari.appupdater.store.domain.stores.Aptoide
 import com.pouyaheydari.appupdater.store.domain.stores.CafeBazaarStore
 import com.pouyaheydari.appupdater.store.domain.stores.FDroid
@@ -21,161 +22,161 @@ import org.junit.Test
 
 class StoreFactoryTest {
     @Test
-    fun `whenever getGooglePlayStore is called, then proper instance gets returned`() {
+    fun `whenever getStore with GooglePlay parameter is called, then proper instance gets returned`() {
         val packageName = "PackageName"
         val expected = GooglePlayStore(packageName)
 
-        val result = StoreFactory.getGooglePlayStore(packageName)
+        val result = StoreFactory.getStore(AppStoreType.GOOGLE_PLAY, packageName)
 
         assertEquals(expected, result)
     }
 
     @Test
-    fun `whenever getAmazonAppStore is called, then proper instance gets returned`() {
+    fun `whenever getStore with Amazon parameter is called, then proper instance gets returned`() {
         val packageName = "PackageName"
         val expected = AmazonAppStore(packageName)
 
-        val result = StoreFactory.getAmazonAppStore(packageName)
+        val result = StoreFactory.getStore(AppStoreType.AMAZON_APP_STORE, packageName)
 
         assertEquals(expected, result)
     }
 
     @Test
-    fun `whenever getAptoideStore is called, then proper instance gets returned`() {
+    fun `whenever getStore with Aptiode parameter is called, then proper instance gets returned`() {
         val packageName = "PackageName"
         val expected = Aptoide(packageName)
 
-        val result = StoreFactory.getAptoideStore(packageName)
+        val result = StoreFactory.getStore(AppStoreType.APTOIDE, packageName)
 
         assertEquals(expected, result)
     }
 
     @Test
-    fun `whenever getCafeBazaarStore is called, then proper instance gets returned`() {
+    fun `whenever getStore with CafeBazaar parameter is called, then proper instance gets returned`() {
         val packageName = "PackageName"
         val expected = CafeBazaarStore(packageName)
 
-        val result = StoreFactory.getCafeBazaarStore(packageName)
+        val result = StoreFactory.getStore(AppStoreType.CAFE_BAZAAR, packageName)
 
         assertEquals(expected, result)
     }
 
     @Test
-    fun `whenever getFdroidStore is called, then proper instance gets returned`() {
+    fun `whenever getStore with Fdroid parameter is called, then proper instance gets returned`() {
         val packageName = "PackageName"
         val expected = FDroid(packageName)
 
-        val result = StoreFactory.getFdroidStore(packageName)
+        val result = StoreFactory.getStore(AppStoreType.FDROID, packageName)
 
         assertEquals(expected, result)
     }
 
     @Test
-    fun `whenever getHuaweiAppGalleryStore is called, then proper instance gets returned`() {
+    fun `whenever getStore with AppGallery parameter is called, then proper instance gets returned`() {
         val packageName = "PackageName"
         val expected = HuaweiAppGallery(packageName)
 
-        val result = StoreFactory.getHuaweiAppGalleryStore(packageName)
+        val result = StoreFactory.getStore(AppStoreType.HUAWEI_APP_GALLERY, packageName)
 
         assertEquals(expected, result)
     }
 
     @Test
-    fun `whenever getLenovoAppCenterStore is called, then proper instance gets returned`() {
+    fun `whenever getStore with LenovoAppCenter parameter is called, then proper instance gets returned`() {
         val packageName = "PackageName"
         val expected = LenovoAppCenter(packageName)
 
-        val result = StoreFactory.getLenovoAppCenterStore(packageName)
+        val result = StoreFactory.getStore(AppStoreType.LENOVO_APP_CENTER, packageName)
 
         assertEquals(expected, result)
     }
 
     @Test
-    fun `whenever getMiStore is called, then proper instance gets returned`() {
+    fun `whenever getStore with MiStore parameter is called, then proper instance gets returned`() {
         val packageName = "PackageName"
         val expected = MiGetAppStore(packageName)
 
-        val result = StoreFactory.getMiStore(packageName)
+        val result = StoreFactory.getStore(AppStoreType.MI_GET_APP_STORE, packageName)
 
         assertEquals(expected, result)
     }
 
     @Test
-    fun `whenever getMyketStore is called, then proper instance gets returned`() {
+    fun `whenever getStore with Myket parameter is called, then proper instance gets returned`() {
         val packageName = "PackageName"
         val expected = MyketStore(packageName)
 
-        val result = StoreFactory.getMyketStore(packageName)
+        val result = StoreFactory.getStore(AppStoreType.MYKET, packageName)
 
         assertEquals(expected, result)
     }
 
     @Test
-    fun `whenever getNineAppsStore is called, then proper instance gets returned`() {
+    fun `whenever getStore with NineApps parameter is called, then proper instance gets returned`() {
         val packageName = "PackageName"
         val expected = NineApps(packageName)
 
-        val result = StoreFactory.getNineAppsStore(packageName)
+        val result = StoreFactory.getStore(AppStoreType.NINE_APPS_STORE, packageName)
 
         assertEquals(expected, result)
     }
 
     @Test
-    fun `whenever getOneStore is called, then proper instance gets returned`() {
+    fun `whenever getStore with OneStore parameter is called, then proper instance gets returned`() {
         val packageName = "PackageName"
         val expected = OneStoreAppMarket(packageName)
 
-        val result = StoreFactory.getOneStore(packageName)
+        val result = StoreFactory.getStore(AppStoreType.ONE_STORE_APP_MARKET, packageName)
 
         assertEquals(expected, result)
     }
 
     @Test
-    fun `whenever getOppoAppMarketStore is called, then proper instance gets returned`() {
+    fun `whenever getStore with OppoMarket parameter is called, then proper instance gets returned`() {
         val packageName = "PackageName"
         val expected = OppoAppMarket(packageName)
 
-        val result = StoreFactory.getOppoAppMarketStore(packageName)
+        val result = StoreFactory.getStore(AppStoreType.OPPO_APP_MARKET, packageName)
 
         assertEquals(expected, result)
     }
 
     @Test
-    fun `whenever getSamsungGalaxyStore is called, then proper instance gets returned`() {
+    fun `whenever getStore with GalaxyStore parameter is called, then proper instance gets returned`() {
         val packageName = "PackageName"
         val expected = SamsungGalaxyStore(packageName)
 
-        val result = StoreFactory.getSamsungGalaxyStore(packageName)
+        val result = StoreFactory.getStore(AppStoreType.SAMSUNG_GALAXY_STORE, packageName)
 
         assertEquals(expected, result)
     }
 
     @Test
-    fun `whenever getTencentAppStore is called, then proper instance gets returned`() {
+    fun `whenever getStore with TencentAppStore parameter is called, then proper instance gets returned`() {
         val packageName = "PackageName"
         val expected = TencentAppStore(packageName)
 
-        val result = StoreFactory.getTencentAppStore(packageName)
+        val result = StoreFactory.getStore(AppStoreType.TENCENT_APPS_STORE, packageName)
 
         assertEquals(expected, result)
     }
 
     @Test
-    fun `whenever getVAppStore is called, then proper instance gets returned`() {
+    fun `whenever getStore with VAppStore parameter is called, then proper instance gets returned`() {
         val packageName = "PackageName"
         val expected = VAppStore(packageName)
 
-        val result = StoreFactory.getVAppStore(packageName)
+        val result = StoreFactory.getStore(AppStoreType.V_APP_STORE, packageName)
 
         assertEquals(expected, result)
     }
 
     @Test
-    fun `whenever getZTEStore is called, then proper instance gets returned`() {
+    fun `whenever getStore with ZTEAppStore parameter is called, then proper instance gets returned`() {
         val packageName = "PackageName"
         val expected = ZTEAppCenter(packageName)
 
-        val result = StoreFactory.getZTEStore(packageName)
+        val result = StoreFactory.getStore(AppStoreType.ZTE_APP_CENTER, packageName)
 
         assertEquals(expected, result)
     }

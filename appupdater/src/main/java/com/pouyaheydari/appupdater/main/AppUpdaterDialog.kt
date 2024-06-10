@@ -33,6 +33,7 @@ import com.pouyaheydari.appupdater.main.utils.TypefaceHolder
 import com.pouyaheydari.appupdater.main.utils.getDialogWidth
 import com.pouyaheydari.appupdater.main.utils.parcelable
 import com.pouyaheydari.appupdater.main.utils.putEnum
+import com.pouyaheydari.appupdater.store.domain.AppStoreCallback
 import com.pouyaheydari.appupdater.store.domain.StoreListItem
 import com.pouyaheydari.appupdater.store.domain.showAppInSelectedStore
 import kotlinx.coroutines.flow.distinctUntilChanged
@@ -101,13 +102,27 @@ class AppUpdaterDialog : DialogFragment() {
                         viewModel.onDownloadStarted()
                     }
 
-                    is DialogStates.OpenStore -> showAppInSelectedStore(context, it.store)
-                    is DialogStates.ExecuteErrorCallback -> ErrorCallbackHolder.callback?.invoke(it.storeName)
+                    is DialogStates.OpenStore -> showAppInSelectedStore(context, it.store) { storeCallback ->
+                        onStoreCallback(storeCallback)
+                    }
+
+                    is DialogStates.ExecuteErrorCallback -> {
+                        ErrorCallbackHolder.callback?.invoke(it.storeName)
+                        viewModel.onErrorCallbackCalled()
+                    }
+
                     DialogStates.HideUpdateInProgress -> hideUpdateInProgressDialog()
                     DialogStates.ShowUpdateInProgress -> showUpdateInProgressDialog(theme)
                     DialogStates.Empty -> hideUpdateInProgressDialog()
                 }
             }.launchIn(lifecycleScope)
+    }
+
+    private fun onStoreCallback(storeCallback: AppStoreCallback) {
+        when (storeCallback) {
+            is AppStoreCallback.Failure -> viewModel.onErrorWhileOpeningStore(storeCallback.store)
+            is AppStoreCallback.Success -> viewModel.onStoreOpened()
+        }
     }
 
     private fun getData() {
