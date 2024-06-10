@@ -10,6 +10,7 @@ import com.pouyaheydari.appupdater.compose.ui.models.UpdaterDialogUIData
 import com.pouyaheydari.appupdater.directdownload.data.model.DirectDownloadListItem
 import com.pouyaheydari.appupdater.store.domain.StoreFactory
 import com.pouyaheydari.appupdater.store.domain.StoreListItem
+import com.pouyaheydari.appupdater.store.domain.stores.AppStoreType
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -59,7 +60,7 @@ internal class AppUpdaterDialogComponentTest {
     @Test
     fun `whenever component is called with storeList, then items in direct download are shown correctly`() {
         val storeItem = StoreListItem(
-            store = StoreFactory.getSamsungGalaxyStore(""),
+            store = StoreFactory.getStore(storeType = AppStoreType.SAMSUNG_GALAXY_STORE, packageName = ""),
             title = "Store",
             icon = storeR.drawable.appupdater_ic_galaxy_store,
         )
@@ -80,7 +81,7 @@ internal class AppUpdaterDialogComponentTest {
     fun `whenever user clicks on store items, then correct callback is being called`() {
         val onStoreClickedListener: (StoreListItem) -> Unit = mock()
         val storeItem = StoreListItem(
-            store = StoreFactory.getSamsungGalaxyStore(""),
+            store = StoreFactory.getStore(storeType = AppStoreType.SAMSUNG_GALAXY_STORE, packageName = ""),
             title = "Store",
             icon = storeR.drawable.appupdater_ic_galaxy_store,
         )
