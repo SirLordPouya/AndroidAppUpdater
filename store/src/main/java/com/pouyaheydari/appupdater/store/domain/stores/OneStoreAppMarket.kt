@@ -2,7 +2,7 @@ package com.pouyaheydari.appupdater.store.domain.stores
 
 import android.os.Parcel
 import android.os.Parcelable
-import com.pouyaheydari.appupdater.store.domain.StoreIntentProvider
+import com.pouyaheydari.appupdater.store.domain.StoreIntentBuilder
 
 internal const val ONE_STORE_APP_MARKET_URL = "onestore://common/product/"
 
@@ -13,7 +13,7 @@ internal data class OneStoreAppMarket(val packageName: String) : AppStore {
     constructor(parcel: Parcel) : this(parcel.readString().orEmpty())
 
     override fun getIntent() =
-        StoreIntentProvider
+        StoreIntentBuilder
             .Builder("$ONE_STORE_APP_MARKET_URL$packageName")
             .build()
 

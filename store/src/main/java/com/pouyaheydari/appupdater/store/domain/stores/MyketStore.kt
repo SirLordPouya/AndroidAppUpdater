@@ -2,7 +2,7 @@ package com.pouyaheydari.appupdater.store.domain.stores
 
 import android.os.Parcel
 import android.os.Parcelable
-import com.pouyaheydari.appupdater.store.domain.StoreIntentProvider
+import com.pouyaheydari.appupdater.store.domain.StoreIntentBuilder
 
 internal const val MYKET_URL = "myket://details?id="
 internal const val MYKET_PACKAGE = "ir.mservices.market"
@@ -13,7 +13,7 @@ internal const val MYKET_PACKAGE = "ir.mservices.market"
 internal data class MyketStore(val packageName: String) : AppStore {
     constructor(parcel: Parcel) : this(parcel.readString().orEmpty())
 
-    override fun getIntent() = StoreIntentProvider
+    override fun getIntent() = StoreIntentBuilder
         .Builder("$MYKET_URL$packageName")
         .withPackage(MYKET_PACKAGE)
         .build()

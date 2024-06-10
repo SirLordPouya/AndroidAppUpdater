@@ -2,7 +2,7 @@ package com.pouyaheydari.appupdater.store.domain.stores
 
 import android.os.Parcel
 import android.os.Parcelable
-import com.pouyaheydari.appupdater.store.domain.StoreIntentProvider
+import com.pouyaheydari.appupdater.store.domain.StoreIntentBuilder
 
 internal const val HUAWEI_APP_GALLERY_URL = "appmarket://details?id="
 internal const val HUAWEI_APP_GALLERY_PACKAGE = "com.huawei.appmarket"
@@ -13,7 +13,7 @@ internal const val HUAWEI_APP_GALLERY_PACKAGE = "com.huawei.appmarket"
 internal data class HuaweiAppGallery(val packageName: String) : AppStore {
     constructor(parcel: Parcel) : this(parcel.readString().orEmpty())
 
-    override fun getIntent() = StoreIntentProvider
+    override fun getIntent() = StoreIntentBuilder
         .Builder("$HUAWEI_APP_GALLERY_URL$packageName")
         .withPackage(HUAWEI_APP_GALLERY_PACKAGE)
         .build()

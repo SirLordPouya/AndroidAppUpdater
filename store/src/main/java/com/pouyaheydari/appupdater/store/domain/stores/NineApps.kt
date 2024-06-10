@@ -2,7 +2,7 @@ package com.pouyaheydari.appupdater.store.domain.stores
 
 import android.os.Parcel
 import android.os.Parcelable
-import com.pouyaheydari.appupdater.store.domain.StoreIntentProvider
+import com.pouyaheydari.appupdater.store.domain.StoreIntentBuilder
 
 internal const val NINE_APPS_STORE_URL = "nineapps://AppDetail?id="
 internal const val NINE_APPS_PACKAGE = "com.gamefun.apk2u"
@@ -13,7 +13,7 @@ internal const val NINE_APPS_PACKAGE = "com.gamefun.apk2u"
 internal data class NineApps(val packageName: String) : AppStore {
     constructor(parcel: Parcel) : this(parcel.readString().orEmpty())
 
-    override fun getIntent() = StoreIntentProvider
+    override fun getIntent() = StoreIntentBuilder
         .Builder("$NINE_APPS_STORE_URL$packageName")
         .withPackage(NINE_APPS_PACKAGE)
         .build()

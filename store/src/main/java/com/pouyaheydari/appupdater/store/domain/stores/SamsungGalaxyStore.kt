@@ -2,7 +2,7 @@ package com.pouyaheydari.appupdater.store.domain.stores
 
 import android.os.Parcel
 import android.os.Parcelable
-import com.pouyaheydari.appupdater.store.domain.StoreIntentProvider
+import com.pouyaheydari.appupdater.store.domain.StoreIntentBuilder
 
 internal const val SAMSUNG_GALAXY_STORE_URL = "samsungapps://ProductDetail/"
 
@@ -12,7 +12,7 @@ internal const val SAMSUNG_GALAXY_STORE_URL = "samsungapps://ProductDetail/"
 internal data class SamsungGalaxyStore(val packageName: String) : AppStore {
     constructor(parcel: Parcel) : this(parcel.readString().orEmpty())
 
-    override fun getIntent() = StoreIntentProvider
+    override fun getIntent() = StoreIntentBuilder
         .Builder("$SAMSUNG_GALAXY_STORE_URL$packageName")
         .build()
 

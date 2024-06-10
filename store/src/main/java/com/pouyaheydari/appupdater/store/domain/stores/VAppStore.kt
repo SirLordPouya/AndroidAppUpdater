@@ -2,7 +2,7 @@ package com.pouyaheydari.appupdater.store.domain.stores
 
 import android.os.Parcel
 import android.os.Parcelable
-import com.pouyaheydari.appupdater.store.domain.StoreIntentProvider
+import com.pouyaheydari.appupdater.store.domain.StoreIntentBuilder
 
 internal const val V_APP_STORE_URL = "vivoMarket://details?id="
 
@@ -12,7 +12,7 @@ internal const val V_APP_STORE_URL = "vivoMarket://details?id="
 internal data class VAppStore(val packageName: String) : AppStore {
     constructor(parcel: Parcel) : this(parcel.readString().orEmpty())
 
-    override fun getIntent() = StoreIntentProvider
+    override fun getIntent() = StoreIntentBuilder
         .Builder("$V_APP_STORE_URL$packageName")
         .build()
 

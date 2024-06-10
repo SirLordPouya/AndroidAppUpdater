@@ -2,7 +2,7 @@ package com.pouyaheydari.appupdater.store.domain.stores
 
 import android.os.Parcel
 import android.os.Parcelable
-import com.pouyaheydari.appupdater.store.domain.StoreIntentProvider
+import com.pouyaheydari.appupdater.store.domain.StoreIntentBuilder
 
 internal const val TENCENT_APP_STORE_URL = "tmast://appdetails?pname="
 
@@ -12,7 +12,7 @@ internal const val TENCENT_APP_STORE_URL = "tmast://appdetails?pname="
 internal data class TencentAppStore(val packageName: String) : AppStore {
     constructor(parcel: Parcel) : this(parcel.readString().orEmpty())
 
-    override fun getIntent() = StoreIntentProvider
+    override fun getIntent() = StoreIntentBuilder
         .Builder("$TENCENT_APP_STORE_URL$packageName")
         .build()
 

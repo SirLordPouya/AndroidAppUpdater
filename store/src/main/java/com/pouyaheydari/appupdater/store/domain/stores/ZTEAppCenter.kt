@@ -2,7 +2,7 @@ package com.pouyaheydari.appupdater.store.domain.stores
 
 import android.os.Parcel
 import android.os.Parcelable
-import com.pouyaheydari.appupdater.store.domain.StoreIntentProvider
+import com.pouyaheydari.appupdater.store.domain.StoreIntentBuilder
 
 internal const val ZTE_APP_CENTER_URL = "zte_market://appdetails?pname="
 
@@ -12,7 +12,7 @@ internal const val ZTE_APP_CENTER_URL = "zte_market://appdetails?pname="
 internal data class ZTEAppCenter(val packageName: String) : AppStore {
     constructor(parcel: Parcel) : this(parcel.readString().orEmpty())
 
-    override fun getIntent() = StoreIntentProvider
+    override fun getIntent() = StoreIntentBuilder
         .Builder("$ZTE_APP_CENTER_URL$packageName")
         .build()
 

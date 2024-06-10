@@ -2,7 +2,7 @@ package com.pouyaheydari.appupdater.store.domain.stores
 
 import android.os.Parcel
 import android.os.Parcelable
-import com.pouyaheydari.appupdater.store.domain.StoreIntentProvider
+import com.pouyaheydari.appupdater.store.domain.StoreIntentBuilder
 
 internal const val APTOIDE_URL = "aptoideinstall://package="
 internal const val APTOIDE_PACKAGE = "cm.aptoide.pt"
@@ -13,7 +13,7 @@ internal const val APTOIDE_PACKAGE = "cm.aptoide.pt"
 internal data class Aptoide(val packageName: String) : AppStore {
     private constructor(parcel: Parcel) : this(parcel.readString().orEmpty())
 
-    override fun getIntent() = StoreIntentProvider
+    override fun getIntent() = StoreIntentBuilder
         .Builder("$APTOIDE_URL$packageName")
         .withPackage(APTOIDE_PACKAGE)
         .build()

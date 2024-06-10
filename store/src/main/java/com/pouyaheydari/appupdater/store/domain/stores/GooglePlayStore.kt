@@ -2,7 +2,7 @@ package com.pouyaheydari.appupdater.store.domain.stores
 
 import android.os.Parcel
 import android.os.Parcelable
-import com.pouyaheydari.appupdater.store.domain.StoreIntentProvider
+import com.pouyaheydari.appupdater.store.domain.StoreIntentBuilder
 
 internal const val PLAY_URL = "market://details?id="
 internal const val PLAY_PACKAGE = "com.android.vending"
@@ -13,7 +13,7 @@ internal const val PLAY_PACKAGE = "com.android.vending"
 internal data class GooglePlayStore(val packageName: String) : AppStore {
     private constructor(parcel: Parcel) : this(parcel.readString().orEmpty())
 
-    override fun getIntent() = StoreIntentProvider
+    override fun getIntent() = StoreIntentBuilder
         .Builder("$PLAY_URL$packageName")
         .withPackage(PLAY_PACKAGE)
         .build()

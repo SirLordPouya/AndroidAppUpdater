@@ -2,7 +2,7 @@ package com.pouyaheydari.appupdater.store.domain.stores
 
 import android.os.Parcel
 import android.os.Parcelable
-import com.pouyaheydari.appupdater.store.domain.StoreIntentProvider
+import com.pouyaheydari.appupdater.store.domain.StoreIntentBuilder
 
 internal const val MI_APP_STORE_URL = "mimarket://details?id="
 
@@ -13,7 +13,7 @@ internal data class MiGetAppStore(val packageName: String) : AppStore {
     constructor(parcel: Parcel) : this(parcel.readString().orEmpty())
 
     override fun getIntent() =
-        StoreIntentProvider
+        StoreIntentBuilder
             .Builder("$MI_APP_STORE_URL$packageName")
             .build()
 

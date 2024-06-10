@@ -3,7 +3,7 @@ package com.pouyaheydari.appupdater.store.domain
 import android.content.Intent
 import android.net.Uri
 
-internal object StoreIntentProvider {
+internal object StoreIntentBuilder {
     internal class Builder(private val uriString: String) {
         private var storePackageName: String? = null
 

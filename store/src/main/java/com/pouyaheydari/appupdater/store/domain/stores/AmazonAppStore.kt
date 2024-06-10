@@ -2,7 +2,7 @@ package com.pouyaheydari.appupdater.store.domain.stores
 
 import android.os.Parcel
 import android.os.Parcelable
-import com.pouyaheydari.appupdater.store.domain.StoreIntentProvider
+import com.pouyaheydari.appupdater.store.domain.StoreIntentBuilder
 
 internal const val AMAZON_APP_STORE_URL = "amzn://apps/android?p="
 internal const val AMAZON_PACKAGE = "com.amazon.venezia"
@@ -14,7 +14,7 @@ internal data class AmazonAppStore(val packageName: String) : AppStore {
     private constructor(parcel: Parcel) : this(parcel.readString().orEmpty())
 
     override fun getIntent() =
-        StoreIntentProvider
+        StoreIntentBuilder
             .Builder("$AMAZON_APP_STORE_URL$packageName")
             .withPackage(AMAZON_PACKAGE)
             .build()

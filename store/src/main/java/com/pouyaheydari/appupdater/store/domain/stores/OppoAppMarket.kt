@@ -2,7 +2,7 @@ package com.pouyaheydari.appupdater.store.domain.stores
 
 import android.os.Parcel
 import android.os.Parcelable
-import com.pouyaheydari.appupdater.store.domain.StoreIntentProvider
+import com.pouyaheydari.appupdater.store.domain.StoreIntentBuilder
 
 internal const val OPPO_APP_MARKET_URL = "market://details?id="
 internal const val OPPO_PACKAGE = "com.heytap.market"
@@ -13,7 +13,7 @@ internal const val OPPO_PACKAGE = "com.heytap.market"
 internal data class OppoAppMarket(val packageName: String) : AppStore {
     constructor(parcel: Parcel) : this(parcel.readString().orEmpty())
 
-    override fun getIntent() = StoreIntentProvider
+    override fun getIntent() = StoreIntentBuilder
         .Builder("$OPPO_APP_MARKET_URL$packageName")
         .withPackage(OPPO_PACKAGE)
         .build()

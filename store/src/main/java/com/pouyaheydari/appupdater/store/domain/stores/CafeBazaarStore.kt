@@ -2,7 +2,7 @@ package com.pouyaheydari.appupdater.store.domain.stores
 
 import android.os.Parcel
 import android.os.Parcelable
-import com.pouyaheydari.appupdater.store.domain.StoreIntentProvider
+import com.pouyaheydari.appupdater.store.domain.StoreIntentBuilder
 
 internal const val BAZAAR_URL = "bazaar://details?id="
 internal const val BAZAAR_PACKAGE = "com.farsitel.bazaar"
@@ -13,7 +13,7 @@ internal const val BAZAAR_PACKAGE = "com.farsitel.bazaar"
 internal data class CafeBazaarStore(val packageName: String) : AppStore {
     constructor(parcel: Parcel) : this(parcel.readString().orEmpty())
 
-    override fun getIntent() = StoreIntentProvider
+    override fun getIntent() = StoreIntentBuilder
         .Builder("$BAZAAR_URL$packageName")
         .withPackage(BAZAAR_PACKAGE)
         .build()

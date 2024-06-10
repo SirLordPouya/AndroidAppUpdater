@@ -2,7 +2,7 @@ package com.pouyaheydari.appupdater.store.domain.stores
 
 import android.os.Parcel
 import android.os.Parcelable
-import com.pouyaheydari.appupdater.store.domain.StoreIntentProvider
+import com.pouyaheydari.appupdater.store.domain.StoreIntentBuilder
 
 internal const val LENOVO_APP_CENTER_URL = "leapp://ptn/appinfo.do?pn="
 
@@ -12,7 +12,7 @@ internal const val LENOVO_APP_CENTER_URL = "leapp://ptn/appinfo.do?pn="
 internal data class LenovoAppCenter(val packageName: String) : AppStore {
     constructor(parcel: Parcel) : this(parcel.readString().orEmpty())
 
-    override fun getIntent() = StoreIntentProvider
+    override fun getIntent() = StoreIntentBuilder
         .Builder("$LENOVO_APP_CENTER_URL$packageName")
         .build()
 

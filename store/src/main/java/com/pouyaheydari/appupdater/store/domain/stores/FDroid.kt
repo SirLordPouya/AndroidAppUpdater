@@ -2,7 +2,7 @@ package com.pouyaheydari.appupdater.store.domain.stores
 
 import android.os.Parcel
 import android.os.Parcelable
-import com.pouyaheydari.appupdater.store.domain.StoreIntentProvider
+import com.pouyaheydari.appupdater.store.domain.StoreIntentBuilder
 
 internal const val FDROID_URL = "fdroid.app://details?id="
 internal const val FDROID_PACKAGE = "org.fdroid.fdroid"
@@ -13,7 +13,7 @@ internal const val FDROID_PACKAGE = "org.fdroid.fdroid"
 internal data class FDroid(val packageName: String) : AppStore {
     constructor(parcel: Parcel) : this(parcel.readString().orEmpty())
 
-    override fun getIntent() = StoreIntentProvider
+    override fun getIntent() = StoreIntentBuilder
         .Builder("$FDROID_URL$packageName")
         .withPackage(FDROID_PACKAGE)
         .build()
