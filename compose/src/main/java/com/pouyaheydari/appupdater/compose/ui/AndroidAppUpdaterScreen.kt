@@ -11,7 +11,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewFontScale
 import androidx.compose.ui.tooling.preview.PreviewScreenSizes
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.pouyaheydari.appupdater.compose.ui.components.AppUpdaterDialogComponent
@@ -34,13 +33,8 @@ import com.pouyaheydari.appupdater.directdownload.R as directDownloadR
  * Use this composable to show the updater dialog.
  */
 @Composable
-fun AndroidAppUpdater(
-    dialogData: UpdaterDialogData,
-    viewModel: ViewModel = viewModel<AndroidAppUpdaterViewModel>(factory = AndroidAppUpdaterViewModelFactory(dialogData)),
-) {
-    // As we want to keep AndroidAppUpdaterViewModel internal, we need to upcast it at the compose function and then use smart cast here
-    viewModel as? AndroidAppUpdaterViewModel ?: throw IllegalStateException("ViewModel must be of type AndroidAppUpdaterViewModel")
-
+fun AndroidAppUpdater(dialogData: UpdaterDialogData) {
+    val viewModel: AndroidAppUpdaterViewModel = viewModel(factory = AndroidAppUpdaterViewModelFactory(dialogData))
     val state = viewModel.uiState.collectAsStateWithLifecycle().value
 
     AndroidAppUpdaterTheme(darkTheme = isDarkThemeSelected(dialogData.theme, isSystemInDarkTheme())) {
