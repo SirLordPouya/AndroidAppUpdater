@@ -1,7 +1,6 @@
 jdk:
     - openjdk17
 install:
-    - ./gradlew assemble :core:publishToMavenLocal
     - ./gradlew assemble :store:publishToMavenLocal
     - ./gradlew assemble :directdownload:publishToMavenLocal
     - ./gradlew assemble :compose:publishToMavenLocal
