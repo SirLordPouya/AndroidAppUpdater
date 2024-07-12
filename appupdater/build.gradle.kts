@@ -1,7 +1,9 @@
+import com.vanniktech.maven.publish.AndroidSingleVariantLibrary
+
 plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.jetbrainsKotlinAndroid)
-    `maven-publish`
+    alias(libs.plugins.maven.publish)
 }
 android {
     compileSdk = libs.versions.compileSdkVersion.get().toInt()
@@ -20,13 +22,17 @@ android {
     buildFeatures {
         viewBinding = true
     }
-    publishing {
-        singleVariant("release") {
-            withSourcesJar()
-            withJavadocJar()
-        }
-    }
     namespace = "com.pouyaheydari.appupdater.main"
+}
+
+mavenPublishing {
+    configure(
+        AndroidSingleVariantLibrary(
+            variant = "release",
+            sourcesJar = true,
+            publishJavadocJar = false,
+        )
+    )
 }
 
 dependencies {
@@ -46,17 +52,4 @@ dependencies {
     androidTestImplementation(libs.androidx.test.junit)
     androidTestImplementation(libs.androidx.test.rules)
     androidTestImplementation(libs.androidx.test.ui.espresso.core)
-}
-
-afterEvaluate {
-    publishing {
-        publications {
-            register<MavenPublication>("release") {
-                from(components["release"])
-                groupId = "com.pouyaheydari.updater"
-                artifactId = "main"
-                version = libs.versions.appVersion.get()
-            }
-        }
-    }
 }
