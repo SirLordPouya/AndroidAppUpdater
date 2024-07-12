@@ -2,7 +2,7 @@ plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.jetbrainsKotlinAndroid)
     alias(libs.plugins.compose.compiler)
-    `maven-publish`
+    alias(libs.plugins.maven.publish)
 }
 
 android {
@@ -15,12 +15,6 @@ android {
         }
     }
 
-    publishing {
-        singleVariant("release") {
-            withSourcesJar()
-            withJavadocJar()
-        }
-    }
     namespace = "com.pouyaheydari.appupdater.compose"
 
     testOptions.unitTests.isIncludeAndroidResources = true
@@ -70,17 +64,4 @@ dependencies {
     androidTestImplementation(libs.mockito.kotlin)
     androidTestImplementation(libs.androidx.uiautomator)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
-}
-
-afterEvaluate {
-    publishing {
-        publications {
-            register<MavenPublication>("release") {
-                from(components["release"])
-                groupId = "com.pouyaheydari.updater"
-                artifactId = "compose"
-                version = libs.versions.appVersion.get()
-            }
-        }
-    }
 }
