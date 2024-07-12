@@ -1,7 +1,7 @@
 plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.jetbrainsKotlinAndroid)
-    `maven-publish`
+    alias(libs.plugins.maven.publish)
 }
 
 android {
@@ -18,12 +18,6 @@ android {
 
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_17.toString()
-    }
-    publishing {
-        singleVariant("release") {
-            withSourcesJar()
-            withJavadocJar()
-        }
     }
     namespace = "com.pouyaheydari.appupdater.store"
 }
@@ -45,17 +39,4 @@ dependencies {
     androidTestImplementation(libs.androidx.test.rules)
     androidTestImplementation(libs.androidx.test.ui.espresso.core)
     androidTestImplementation(libs.androidx.test.ui.espresso.intents)
-}
-
-afterEvaluate {
-    publishing {
-        publications {
-            register<MavenPublication>("release") {
-                from(components["release"])
-                groupId = "com.pouyaheydari.updater"
-                artifactId = "store"
-                version = libs.versions.appVersion.get()
-            }
-        }
-    }
 }
