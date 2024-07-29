@@ -17,7 +17,7 @@ compose = "1.5.7"
 lifecycle = "2.6.2"
 coroutines = "1.7.3"
 fragment = "1.6.2"
-androidxComposeBom = "2023.10.01"
+androidxComposeBom = "2024.06.00"
 composeActivity = "1.8.2"
 
 [libraries]
