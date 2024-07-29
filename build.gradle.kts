@@ -1,22 +1,8 @@
-buildscript {
-    repositories {
-        google()
-        mavenCentral()
-    }
-    dependencies {
-        classpath(libs.agp)
-        classpath(libs.kotlin.gradle.plugin)
-    }
-}
-
-allprojects {
-    repositories {
-        maven("https://maven.google.com")
-        google()
-        mavenCentral()
-    }
-}
-
-tasks.register("clean", Delete::class) {
-    delete(rootProject.buildDir)
+plugins {
+    alias(libs.plugins.androidApplication) apply false
+    alias(libs.plugins.androidLibrary) apply false
+    alias(libs.plugins.jetbrainsKotlinAndroid) apply false
+    alias(libs.plugins.kotlin.jvm) apply false
+    alias(libs.plugins.compose.compiler) apply false
+    alias(libs.plugins.maven.publish) apply false
 }

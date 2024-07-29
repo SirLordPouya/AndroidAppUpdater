@@ -1,7 +1,9 @@
+import com.vanniktech.maven.publish.AndroidSingleVariantLibrary
+
 plugins {
-    id("com.android.library")
-    id("kotlin-android")
-    `maven-publish`
+    alias(libs.plugins.androidLibrary)
+    alias(libs.plugins.jetbrainsKotlinAndroid)
+    alias(libs.plugins.maven.publish)
 }
 android {
     compileSdk = libs.versions.compileSdkVersion.get().toInt()
@@ -9,47 +11,45 @@ android {
         minSdk = libs.versions.minSdkVersion.get().toInt()
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = JavaVersion.VERSION_17.toString()
     }
     buildFeatures {
         viewBinding = true
     }
-    publishing {
-        singleVariant("release") {
-            withSourcesJar()
-            withJavadocJar()
-        }
-    }
-    namespace = "com.pouyaheydari.appupdater"
+    namespace = "com.pouyaheydari.appupdater.main"
+}
+
+mavenPublishing {
+    configure(
+        AndroidSingleVariantLibrary(
+            variant = "release",
+            sourcesJar = true,
+            publishJavadocJar = false,
+        )
+    )
 }
 
 dependencies {
 
-    api(project(":core"))
+    api(projects.store)
+    api(projects.directdownload)
+
     // support dependency
-    implementation(libs.appcompat)
-    implementation(libs.constraintLayout)
-    implementation(libs.recyclerView)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.constraintLayout)
+    implementation(libs.androidx.recyclerView)
     implementation(libs.coroutines)
     implementation(libs.androidx.fragment)
 
     // testing dependency
     testImplementation(libs.junit4)
-    androidTestImplementation(libs.androidTestJUnit)
-    androidTestImplementation(libs.androidTestRules)
-    androidTestImplementation(libs.androidTestEspresso)
-}
-
-afterEvaluate {
-    publishing {
-        publications {
-            register<MavenPublication>("release") {
-                from(components["release"])
-                groupId = "com.pouyaheydari.updater"
-                artifactId = "main"
-                version = libs.versions.appVersion.get()
-            }
-        }
-    }
+    androidTestImplementation(libs.androidx.test.junit)
+    androidTestImplementation(libs.androidx.test.rules)
+    androidTestImplementation(libs.androidx.test.ui.espresso.core)
 }

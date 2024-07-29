@@ -1,13 +1,14 @@
 plugins {
-    id("com.android.application")
-    id("kotlin-android")
+    alias(libs.plugins.androidApplication)
+    alias(libs.plugins.jetbrainsKotlinAndroid)
+    alias(libs.plugins.compose.compiler)
 }
 
 android {
     compileSdk = libs.versions.compileSdkVersion.get().toInt()
     defaultConfig {
-        applicationId = "com.pouyaheydari.androidappupdater"
-        minSdk = libs.versions.composeMinSdkVersion.get().toInt()
+        applicationId = "com.pouyaheydari.appupdater.demo"
+        minSdk = libs.versions.minSdkVersion.get().toInt()
         targetSdk = libs.versions.targetSdkVersion.get().toInt()
         versionCode = libs.versions.appVersion.get().toInt()
         versionName = libs.versions.appVersion.get()
@@ -16,16 +17,18 @@ android {
             useSupportLibrary = true
         }
     }
-    namespace = "com.pouyaheydari.androidappupdater"
+    namespace = "com.pouyaheydari.appupdater.demo"
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
 
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = JavaVersion.VERSION_17.toString()
     }
     buildFeatures {
         compose = true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.compose.get()
     }
     packaging {
         resources {
@@ -37,12 +40,12 @@ android {
 dependencies {
 
     // library dependency
-    implementation(project(":appupdater"))
-    implementation(project(":compose"))
+    implementation(projects.appupdater)
+    implementation(projects.compose)
 
     // support dependency
-    implementation(libs.appcompat)
-    implementation(libs.constraintLayout)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.constraintLayout)
 
     // compose
     val composeBom = platform(libs.androidx.compose.bom)
@@ -55,8 +58,8 @@ dependencies {
 
     // testing dependency
     testImplementation(libs.junit4)
-    androidTestImplementation(libs.androidTestJUnit)
-    androidTestImplementation(libs.androidTestRules)
-    androidTestImplementation(libs.androidTestEspresso)
+    androidTestImplementation(libs.androidx.test.junit)
+    androidTestImplementation(libs.androidx.test.rules)
+    androidTestImplementation(libs.androidx.test.ui.espresso.core)
     androidTestImplementation(composeBom)
 }
