@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.content.ContextWrapper
 import android.util.Log
+import androidx.annotation.VisibleForTesting
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.runtime.Composable
@@ -34,7 +35,15 @@ import com.pouyaheydari.appupdater.directdownload.R as directDownloadR
  */
 @Composable
 fun AndroidAppUpdater(dialogData: UpdaterDialogData) {
-    val viewModel: AndroidAppUpdaterViewModel = viewModel(factory = AndroidAppUpdaterViewModelFactory(dialogData))
+    AndroidAppUpdaterScreen(dialogData = dialogData)
+}
+
+@VisibleForTesting
+@Composable
+internal fun AndroidAppUpdaterScreen(
+    dialogData: UpdaterDialogData,
+    viewModel: AndroidAppUpdaterViewModel = viewModel(factory = AndroidAppUpdaterViewModelFactory(dialogData)),
+) {
     val state = viewModel.uiState.collectAsStateWithLifecycle().value
 
     AndroidAppUpdaterTheme(darkTheme = isDarkThemeSelected(dialogData.theme, isSystemInDarkTheme())) {

@@ -38,10 +38,7 @@ internal fun AppUpdaterDialogComponent(
 }
 
 @Composable
-private fun DialogContent(
-    dialogContent: UpdaterDialogUIData,
-    typeface: Typeface?,
-) {
+private fun DialogContent(dialogContent: UpdaterDialogUIData, typeface: Typeface?) {
     Card(
         shape = RoundedCornerShape(12.dp),
         elevation = CardDefaults.cardElevation(8.dp),

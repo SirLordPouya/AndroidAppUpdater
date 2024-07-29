@@ -47,11 +47,12 @@ dependencies {
     implementation(libs.androidx.compose.foundation)
     implementation(libs.androidx.compose.viewModel)
     implementation(libs.androidx.compose.material)
-    implementation(libs.androidx.compose.ui.tooling)
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.lifecycle)
 
-    // testing
+    // testing and preview
+    debugImplementation(libs.androidx.compose.ui.test.manifest)
+    debugImplementation(libs.androidx.compose.ui.tooling)
     testImplementation(libs.junit4)
     testImplementation(libs.androidx.compose.ui.test.junit)
     testImplementation(libs.mockito.kotlin)
@@ -63,5 +64,4 @@ dependencies {
     androidTestImplementation(libs.mockito.android)
     androidTestImplementation(libs.mockito.kotlin)
     androidTestImplementation(libs.androidx.uiautomator)
-    debugImplementation(libs.androidx.compose.ui.test.manifest)
 }
